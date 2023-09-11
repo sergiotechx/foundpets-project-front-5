@@ -9,10 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@mantine/core": "^6.0.20",
+    "@mantine/hooks": "^6.0.20",
+    "@mantine/modals": "^6.0.20",
+    "@mantine/next": "^6.0.20",
+    "axios": "^1.5.0",
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.10.5",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.1"
+  },
+  "devDependencies": {
+    "sass": "^1.66.1"
   }
 }
