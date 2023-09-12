@@ -2,6 +2,7 @@
 import React from 'react'
 import "./style.scss"
 const page = () => {
+    
   return (
     
     <div className='store'>

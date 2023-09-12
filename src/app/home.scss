@@ -1,0 +1,25 @@
+.happyEndings {
+  // display: flex;
+  // flex-direction: column;
+
+  &__section1 {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    .btn1 {
+      padding: 2px;
+      background-color: #8fd14f;
+    }
+    .btn2 {
+      padding: 2px;
+      background-color: #ffd16d;
+    }
+  }
+
+  &__imgLog {
+    width: 250px;
+    height: auto;
+    padding: 10px;
+  }
+}
