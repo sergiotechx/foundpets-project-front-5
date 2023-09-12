@@ -1,0 +1,24 @@
+.HeaderC {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    img{
+        min-width: 4em;
+        max-width: 10em;
+    }
+ 
+
+    .Options {
+        display: flex;
+        flex-direction: row;
+        align-items:baseline;
+        gap:0.5em;
+            
+        i{
+            cursor:pointer;
+        }
+      
+    }
+}
