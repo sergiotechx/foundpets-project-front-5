@@ -25,11 +25,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
-<<<<<<< HEAD
-    "sweetalert2": "^11.7.27"
-=======
+    "sweetalert2": "^11.7.27",
     "swiper": "^10.2.0"
->>>>>>> 3ec1b1ea71d60367c52140887b11d3d77c13352f
   },
   "devDependencies": {
     "sass": "^1.66.1"
