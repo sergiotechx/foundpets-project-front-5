@@ -1,0 +1,86 @@
+.ProfileC {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   
+
+    .mantine-Tabs-panel {
+        #UserTab {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            
+            figure{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                i{
+                    position: relative;
+                    #CameraIcon{
+                        position: absolute;
+                        left:-1em;
+                        bottom:0;
+                        cursor: pointer;
+                    }
+                }
+               
+            }
+            form{
+                
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                align-self: center;
+                .Operations{
+                    display: flex;
+                    flex-direction: row;
+                  justify-content: space-around; 
+                }
+            
+            }
+           
+        }
+        #PetTab {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+           
+            .PetGallery{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 80%; 
+                margin:auto;
+                justify-content:space-between;
+             figure{
+                margin-top:1em;
+                position:relative;
+                img{
+                   
+                    max-width: 10em; 
+                }
+                i{
+                    position:absolute;
+                    left:-1em;
+                    bottom:-0.5em;
+                    cursor:pointer;
+                }
+             }
+                
+               
+            }
+            form{
+                
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                align-self: center;
+               
+            
+            }
+        }
+
+    }
+}
