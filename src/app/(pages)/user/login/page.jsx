@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import './login.scss';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useRouter } from 'next/navigation';
+import {useForm} from 'react-hook-form'
 
 const Page = () => {
   const [username, setUsername] = useState('');
@@ -10,41 +12,71 @@ const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [handsVisible, setHandsVisible] = useState(true);
   const [peekActive, setPeekActive] = useState(false);
-  const [rotateHead, setRotateHead] = useState(0);  
+  const [rotateHead, setRotateHead] = useState(0); 
+  
+  const { 
+    register,
+    handleSubmit, 
+    formState:{errors},
+    setValue,
+    setError,
+    reset
+   } = useForm()
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-    const length = Math.min(e.target.value.length - 16, 19);
+   const handleUsernameChange = (value) => {
+    const length = Math.min(value.length - 16, 19);
     setHandsVisible(true);
-    setRotateHead(-length);
+    if (value === '') {
+      setRotateHead(0);
+    } else {
+      setRotateHead(-length);
+    }
   };
 
+  
+
+  const router = useRouter()
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
    
   };
 
-  const toggleShowPassword = () => {
+  const toggleShowPassword = (event) => {
+    event.prevenDafault()
     setShowPassword(!showPassword);
     if (!showPassword) {
-      setPeekActive(false);
-    } else {
       setPeekActive(true);
+    } else {
+      setPeekActive(false);
       setHandsVisible(true);
     }
   };
   const handlePasswordInputClick = () => {
     setRotateHead(0);
+    setHandsVisible(true);
+
   };
+  const handleClik = () =>{
+    router.push('register')
+  }
 
   const handleLogin = () => {
+    
   };
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+
+    reset()
+  })
+
+
 
   return (
     <div className='main'>
       <div className='logo'>
-        <figure>
+        <figure className='images'>
           <img  src="/images/logo.png" alt="" />
+          <img src="/images/huellas3.png" alt="" />
         </figure>
       </div>
     <div className="center">
@@ -78,7 +110,7 @@ const Page = () => {
         </div>
       </div>
       <div className="hands">
-        <div className={`hand hand--left ${handsVisible ? '' : 'hide'} ${peekActive ? 'peek' : ''}`}>
+        <div className={`hand hand--left ${!handsVisible ? 'hide' : ''} `}>
           <div className="finger">
             <div className="bone"></div>
             <div className="nail"></div>
@@ -92,7 +124,7 @@ const Page = () => {
             <div className="nail"></div>
           </div>
         </div>
-        <div className={`hand hand--right ${handsVisible ? '' : 'hide'} ${peekActive ? 'peek' : ''} `}>
+        <div className={`hand hand--right ${!handsVisible ? 'hide' : ''}`}>
           <div className="finger">
             <div className="bone"></div>
             <div className="nail"></div>
@@ -107,17 +139,28 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="login">
+      <form onSubmit={onSubmit} className="login">
         <label>
           <div className="fa fa-phone"></div>
           <input
             className="username"
             type="text"
             autoComplete="on"
-            placeholder="Número de teléfono"
-            value={username}
-            onChange={handleUsernameChange}
+            {...register("username", {
+              required:{
+                value: true,
+                message: "Nombre requerido"
+              }
+            })}
+            onChange={(e) => {
+              const value = e.target.value;
+              setUsername(value);
+              handleUsernameChange(value);
+            }}
           />
+          {
+           errors.username && <span>{errors.username.message} </span> 
+          }
         </label>
         <label>
           <div className="fa fa-commenting"></div>
@@ -126,26 +169,47 @@ const Page = () => {
             type={showPassword ? 'text' : 'password'}
             autoComplete="off"
             placeholder="Contraseña"
-            value={password}
             onChange={handlePasswordChange}
             onFocus={() => setHandsVisible(false)}
             onBlur={() => setHandsVisible(true)}
             onClick={handlePasswordInputClick}
+            {...register("password",{
+              required: {
+                value: true,
+                message: "Contraseña Necesaria" 
+              }
+            })}
           />
+          {
+           errors.password && <span>{errors.password.message} </span> 
+          }
           <button className="password-button" onClick={toggleShowPassword}>
             {showPassword ? 'Ocultar' : 'Mostrar'}
           </button>
         </label>
-        <button className="login-button" onClick={handleLogin}>
+        <button type='submit' className="login-button" onClick={handleLogin}>
           Iniciar sesión
         </button>
-      </div>
-      <div className="footer">O inicia sesion con</div>
+      </form >
+      <div className="footer">inicia sesion con</div>
       <div className="social-buttons">
-      <i className="bi bi-google "></i>
+        <figure>
+          <img className='google' src="/images/google.png" alt="" />
+        </figure>
+      {/* <i className="bi bi-google"></i> */}
       </div>
-      
+      <div className='redireccionL'>
+      <p>Si no tienes cuenta!</p>
+      <span className="redireccion__link" onClick={handleClik}>
+            Registrate
+          </span>
+        </div>
     </div>
+    <div className='logo3'>
+        <figure className='images'>
+          <img src="/images/huellas3.png" alt="" />
+        </figure>
+      </div>
     </div>
   );
 };
