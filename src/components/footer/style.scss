@@ -1,0 +1,59 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background: linear-gradient(to right, #8FD14F, #FFD16D); /* Aplica el degradado */
+        padding: 30px; 
+    font-family: Arial, sans-serif; 
+  } 
+  hr {
+    display: none;
+  } 
+
+  .contanto {
+    text-align: center;
+    font-size: 22px; 
+    line-height: 1.5; 
+  }
+  
+  .footer-img {
+    margin-left: 1rem;
+    width: 8%;
+    border-radius: 7rem;
+  }
+  
+  .redes {
+    margin: 1rem;
+    font-size: 24px; 
+    cursor: pointer; 
+}
+.redesc{
+    text-align: center;
+}
+  
+  span {
+    text-align: center;
+    font-size: 2rem; 
+  }
+
+@media(max-width:768px){
+    .footer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    hr {
+        display: block;
+        width: 100%; 
+        border-top: .3rem solid #333; 
+        margin: 1rem; 
+    }
+
+    .footer-img{
+        margin: 2rem;
+        width: 30%;
+    }
+    .contanto{
+        margin: 1rem;
+    }
+}
