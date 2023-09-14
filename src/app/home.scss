@@ -1,25 +1,17 @@
-.happyEndings {
-  // display: flex;
-  // flex-direction: column;
-
-  &__section1 {
-    padding: 5px;
+* {
+  padding: 0;
+  margin: 0;
+}
+.home {
+  .search {
     display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    .btn1 {
-      padding: 2px;
-      background-color: #8fd14f;
-    }
-    .btn2 {
-      padding: 2px;
-      background-color: #ffd16d;
-    }
-  }
-
-  &__imgLog {
-    width: 250px;
-    height: auto;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
+    &__section1 {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 }

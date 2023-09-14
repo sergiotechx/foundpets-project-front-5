@@ -1,24 +1,50 @@
-.HeaderC {
-    padding: 1em;
+.Header__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .HeaderC {
+    padding: 1em 1em 0 1em;
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    img{
-        min-width: 4em;
-        max-width: 10em;
+    img {
+      width: 10em;
     }
- 
 
     .Options {
-        display: flex;
-        flex-direction: row;
-        align-items:baseline;
-        gap:0.5em;
-            
-        i{
-            cursor:pointer;
-        }
-      
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5em;
+
+      i {
+        cursor: pointer;
+      }
+      .btn1 {
+        padding: 2px;
+        background-color: #8fd14f;
+      }
+      .btn2 {
+        padding: 2px;
+        background-color: #ffd16d;
+      }
     }
+    .center {
+      display: flex;
+      align-content: center;
+      width: 40%;
+      background-color: #ffd16d;
+    }
+  }
+  .navbar {
+    background-color: #8fd04e;
+    .color {
+      color: #ffff;
+    }
+    .color:hover {
+      font-weight: bold;
+      color: #ffff;
+    }
+  }
 }
