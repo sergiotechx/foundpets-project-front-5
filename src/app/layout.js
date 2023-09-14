@@ -1,6 +1,8 @@
+'use client'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Roboto_Serif } from 'next/font/google'
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 
 const roboto = Roboto_Serif({

@@ -1,0 +1,43 @@
+.Err404C {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+
+    .Err404H {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        img {
+            width: 10em;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 400px;
+        }
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 200px;
+        text-align: center;
+    }
+
+    .Err404B {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            max-width: 30%;
+            box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+        }
+
+        Link {
+            font-weight: bold;
+        }
+    }
+}
