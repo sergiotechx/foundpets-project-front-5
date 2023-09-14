@@ -1,0 +1,59 @@
+.AdminM {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .AdminC {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+
+        .AdminH {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 1em;
+            gap: 0.5em;
+
+            img {
+                max-width: 7em;
+                border-radius: 5px;
+            }
+        }
+
+        .Admin_Search {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            align-items: baseline;
+            gap: 0.5em;
+            justify-content: center;
+            button{
+                margin-top:1em;
+                background-color: #7FD262;
+                border: none;
+                border-radius:5px;
+                width:fit-content;
+            }
+        }
+
+        table {
+            margin-top: 1em;
+        }
+
+    }
+
+    .AdminL {
+        display: flex;
+        flex-direction: column;
+        width: 10%;
+        justify-content: space-between;
+        height: 85vh;
+    }
+}

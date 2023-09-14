@@ -1,11 +1,9 @@
 import React from 'react'
 import './style.scss'
-import Header from '@/components/header/header'
 import Footer from '@/components/footer/footer'
 const Page = () => {
   return (
     <div>
-    <Header/>
     <div className="container">
       <h2>Acerca de Nosotros</h2>
       <p>
