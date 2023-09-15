@@ -1,5 +1,9 @@
 ![](https://33333.cdn.cke-cs.com/kSW7V9NHUXugvhoQeFaf/images/ad5ee931298f8a237814a740e5c85d1ab4bbf7d030ab5180.png)
 
+Diagramación inicial:
+
+[https://github.com/MAKAIABootcamp/foundpets-project-front-5/blob/main/Diagramas%20t%C3%A9cnicos.pdf](https://github.com/MAKAIABootcamp/foundpets-project-front-5/blob/main/Diagramas%20t%C3%A9cnicos.pdf)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
