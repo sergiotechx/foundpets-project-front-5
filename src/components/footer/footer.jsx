@@ -15,12 +15,14 @@ const Footer = () => {
       <br />
       Teléfono: (123) 456-7890
       <br />
-      Correo Electrónico: info@sweetpet.com
+      Correo Electrónico: info@Foundpet.com
       <br />
-      Dirección: 123 Calle Principal, Ciudad
+      Dirección: 123 Calle Principal, Ciudad de 
+      Medellin
       <br />
-      @foundpets en Twitter
-      © 2023 SweetPet. Todos los derechos reservados. 
+      © 2023 Found Pet. 
+      <br />
+      Todos los derechos reservados. 
       
       </div>
 

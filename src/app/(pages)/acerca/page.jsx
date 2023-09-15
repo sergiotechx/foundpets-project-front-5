@@ -1,9 +1,8 @@
 import React from 'react'
 import './style.scss'
-import Footer from '@/components/footer/footer'
 const Page = () => {
   return (
-    <div>
+    <div className='acerca'>
     <div className="container">
       <h2>Acerca de Nosotros</h2>
       <p>
@@ -15,7 +14,6 @@ const Page = () => {
       <br />
       Únete a nosotros en esta aventura para mantener a las mascotas seguras.</p>
     </div>
-    <Footer/>
   </div>
   )
 }
