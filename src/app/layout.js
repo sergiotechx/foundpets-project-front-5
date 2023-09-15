@@ -31,10 +31,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
       <body className={roboto.className}>
-        {hiddenHeader && (<Header />, <Footer/>)}
+        {hiddenHeader && <Header />}
         {children}
-        
-
+        {hiddenHeader && <Footer />}
       </body>
     </html>
   );
