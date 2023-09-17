@@ -4,17 +4,27 @@ import React from "react";
 import {useForm} from 'react-hook-form'
 import "./register.scss";
 import { useRouter } from "next/navigation";
+import { store } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { startCreatingUserWithEmailPassword } from "@/store/auth/authActions";
 
+const formData = {
+  email: "",
+  password: "",
+  username: "",
+  celphone: "",
+  photoURL: "",
+};
 
 const Page = () => {
-
+  const dispatch = useDispatch();
   const { 
     register,
     handleSubmit, 
     formState:{errors},
     setValue,
     reset
-   } = useForm()
+   } = useForm(formData)
   const router = useRouter();
 
   const handleClik = () => {
@@ -26,6 +36,16 @@ const Page = () => {
 
     reset()
   })
+
+  const onClickNewUser = async (formData) => {
+    await dispatch(startCreatingUserWithEmailPassword(formData));  
+
+    // dispatch(startNewUser(updatedCreateUser));
+
+    Swal.fire("Bien hecho", "Cuenta creada exitosamente", "success");
+
+    const currentState = store.getState().auth;
+  };
 
 
   return (
@@ -42,7 +62,7 @@ const Page = () => {
           <p>Nombre completo</p>
           <input 
           type="text" 
-          {...register("nombre", {
+          {...register("username", {
             required: {
               value: true,
               message: "Nombre requerido"
@@ -97,7 +117,7 @@ const Page = () => {
           }
         </div>
 
-        <div className="form-floating">
+        {/* <div className="form-floating">
           <p>Avatar</p>
           <input 
           type="file" 
@@ -106,10 +126,12 @@ const Page = () => {
             setValue('fotoAvatar',e.target.files[0].name)
           }}
           />
-        </div>
+        </div> */}
         <button 
         className="btn" 
-        type="submit">
+        type="submit"
+        onClick={onClickNewUser} 
+        >
           Registrarse
         </button>
         <div className="redireccion">

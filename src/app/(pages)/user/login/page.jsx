@@ -1,10 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './login.scss';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useRouter } from 'next/navigation';
 import {useForm} from 'react-hook-form'
+import { startGoogleSignIn } from '@/store/auth/authActions';
+import { chekingCredentials, loging } from '../../../../store/auth/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '@/store/store';
 
 const Page = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +17,7 @@ const Page = () => {
   const [handsVisible, setHandsVisible] = useState(true);
   const [peekActive, setPeekActive] = useState(false);
   const [rotateHead, setRotateHead] = useState(0); 
+  const { status } = useSelector((state) => state.auth);
   
   const { 
     register,
@@ -22,6 +27,9 @@ const Page = () => {
     setError,
     reset
    } = useForm()
+
+   const dispatch = useDispatch();
+   const isLogin = useMemo(() => status === "authenticated", [status]);
 
    const handleUsernameChange = (value) => {
     const length = Math.min(value.length - 16, 19);
@@ -42,18 +50,15 @@ const Page = () => {
   };
 
   const toggleShowPassword = (event) => {
-    event.prevenDafault()
+    event.preventDefault();
     setShowPassword(!showPassword);
-    if (!showPassword) {
-      setPeekActive(true);
-    } else {
-      setPeekActive(false);
-      setHandsVisible(true);
-    }
+    
+     
+      setHandsVisible(false);
+    
   };
   const handlePasswordInputClick = () => {
-    setRotateHead(0);
-    setHandsVisible(true);
+    setRotateHead(0); 
 
   };
   const handleClik = () =>{
@@ -68,7 +73,13 @@ const Page = () => {
 
     reset()
   })
-
+  const onGoogleSignIn = () => {
+    dispatch(chekingCredentials());
+    dispatch(startGoogleSignIn());
+  };
+  if (isLogin) {
+    router.push("/");
+  }
 
 
   return (
@@ -191,9 +202,9 @@ const Page = () => {
           Iniciar sesión
         </button>
       </form >
-      <div className="footer">inicia sesion con</div>
+      <div className="textLink">inicia sesion con</div>
       <div className="social-buttons">
-        <figure>
+        <figure onClick={onGoogleSignIn}>
           <img className='google' src="/images/google.png" alt="" />
         </figure>
       {/* <i className="bi bi-google"></i> */}

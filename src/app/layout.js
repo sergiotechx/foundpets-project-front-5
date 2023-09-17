@@ -6,6 +6,7 @@ import { Roboto_Serif } from "next/font/google";
 import Header from "@/components/header/header";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/footer/footer";
+import { ReduxProvider } from "../store/auth/providers";
 
 const roboto = Roboto_Serif({
   subsets: ["latin"],
@@ -31,9 +32,11 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
       <body className={roboto.className}>
+        <ReduxProvider>
         {hiddenHeader && <Header />}
         {children}
         {hiddenHeader && <Footer />}
+        </ReduxProvider>
       </body>
     </html>
   );

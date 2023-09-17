@@ -17,6 +17,7 @@
     "@mantine/modals": "^6.0.20",
     "@mantine/next": "^6.0.20",
     "@mantine/tiptap": "^6.0.20",
+    "@reduxjs/toolkit": "^1.9.5",
     "@tabler/icons-react": "^2.34.0",
     "@tiptap/extension-highlight": "^2.1.8",
     "@tiptap/extension-link": "^2.1.8",
@@ -33,9 +34,11 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
+    "pocketbase": "^0.18.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
+    "react-redux": "^8.1.2",
     "sweetalert2": "^11.7.27"
   },
   "devDependencies": {

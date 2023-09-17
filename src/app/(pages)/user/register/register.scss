@@ -46,3 +46,9 @@ span{
     color:rgb(243, 99, 27);
    
 }
+
+@media(max-width: 550px){
+    .images{
+      display: none;
+    }
+  }
