@@ -17,9 +17,8 @@
             width: 100%;
             align-items: center;
             justify-content: center;
-            padding: 1em;
+            padding: 1rem;
             gap: 0.5em;
-
             img {
                 max-width: 7em;
                 border-radius: 5px;
@@ -27,27 +26,22 @@
         }
 
         .Admin_Search {
-            margin-top: 1em;
             display: flex;
-            flex-direction: row;
-            width: 100%;
+            justify-content: center;
             align-items: baseline;
             gap: 0.5em;
-            justify-content: center;
+            font-size: large;
             button{
-                margin-top:1em;
                 background-color: #7FD262;
                 border: none;
-                border-radius:5px;
-                width:fit-content;
+                border-radius:1rem;
             }
         }
 
         table {
-            margin-top: 1em;
-        }
-
+            width: 100%;            
     }
+}
 
     .AdminL {
         display: flex;
@@ -55,5 +49,28 @@
         width: 10%;
         justify-content: space-between;
         height: 85vh;
+
+    }
+}
+
+@media(max-width: 768px){
+    .AdminM{
+    .AdminH{
+        img{        
+          display: none;       
+        }
+    }
+
+    .AdminL{
+        display: none;
+    }
+            
+}
+}
+@media(min-width: 768px){
+    .AdminM{
+        .Admin_Search {
+        padding: 2rem;
+        }
     }
 }

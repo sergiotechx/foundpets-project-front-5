@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import { authActions } from "./auth/authReducer";
+import { adminActions } from "./admin/adminReducer";
 
 
 const rootReducer = {
   auth: authActions.reducer,
+  admin: adminActions.reducer,
 
 };
 

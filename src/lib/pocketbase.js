@@ -3,15 +3,20 @@ import PocketBase from "pocketbase"
 const url = "https://foundpets.pockethost.io";
 export const client = new PocketBase(url);
 
-const authData = await pb.collection('users').authWithPassword(
-    'YOUR_USERNAME_OR_EMAIL',
-    'YOUR_PASSWORD',
-);
+const login  = async (user_email,password) =>{
+    const authData = await pb.collection('users').authWithPassword(
+        user_email,
+        password,
+    );
+}
+const logout = ()=>{
+    client.authStore.clear();
+}
 
-// after the above you can also access the auth data from the authStore
-console.log(pb.authStore.isValid);
-console.log(pb.authStore.token);
-console.log(pb.authStore.model.id);
+export const getUsers = async ()=>{
+    const records = await client.collection('users').getFullList({
+        sort: '-created',
+    });
+   return records;
+}
 
-// "logout" the last authenticated account
-pb.authStore.clear();
