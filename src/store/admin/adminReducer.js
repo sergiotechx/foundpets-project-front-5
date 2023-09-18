@@ -1,30 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-/*user info data structure
-id: null,
-      name: null,
-      date: null,
-      errorMessage: null, 
-*/
+const initialState = {
+    users: [],
+    errorMessage: null
+};
 
-export const adminActions = createSlice({
+
+
+export const adminSlice = createSlice({
     name: 'admin',
-    
-    initialState: {
-      users: [],
-      errorMessage:null 
-    },
+    initialState,
     reducers: {
+<<<<<<< HEAD
         setData: (state, {payload}) => {
             console.log('payload', payload)
             state.users= payload.users   
             // state.errorMessage= null
+=======
+
+        setData: (state, action) => {
+            state.users = action.payload.users;
+            state.errorMessage = null
+>>>>>>> sergioBranch
         },
-        deleteUser:(state,{payload}) =>{
-            state.users = state.users.filter((user)=> user.id=! payload.id)
-            state.errorMessage= null
+
+        deleteUser: (state, { payload }) => {
+            state.users = state.users.filter((user) => user.id = !action.payload.id)
+            state.errorMessage = null
         }
     }
 });
 
-export const { setData, deleteUser } = adminActions.actions;
+export const { setData, deleteUser } = adminSlice.actions;
