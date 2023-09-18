@@ -18,7 +18,7 @@ export const adminActions = createSlice({
         setData: (state, {payload}) => {
             console.log('payload', payload)
             state.users= payload.users   
-            state.errorMessage= null
+            // state.errorMessage= null
         },
         deleteUser:(state,{payload}) =>{
             state.users = state.users.filter((user)=> user.id=! payload.id)
