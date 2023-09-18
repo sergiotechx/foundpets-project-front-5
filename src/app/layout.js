@@ -7,6 +7,8 @@ import Header from "@/components/header/header";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/footer/footer";
 import { ReduxProvider } from "../store/auth/providers";
+import { MantineProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals'
 
 const roboto = Roboto_Serif({
   subsets: ["latin"],
@@ -32,11 +34,15 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
       </head>
       <body className={roboto.className}>
-        <ReduxProvider>
-        {hiddenHeader && <Header />}
-        {children}
-        {hiddenHeader && <Footer />}
-        </ReduxProvider>
+        
+          <ModalsProvider>
+            <ReduxProvider>
+              {hiddenHeader && <Header />}
+              {children}
+              {hiddenHeader && <Footer />}
+            </ReduxProvider>
+          </ModalsProvider>
+      
       </body>
     </html>
   );

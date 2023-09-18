@@ -27,8 +27,9 @@ export const deleDataAction = (id) => {
   return async (dispatch) => {
     try {
      
-      let result = await deleteUserBd(id);
-      if(result == true){
+     let result = await deleteUserBd(id);
+  
+     if(result == true){
         dispatch(deleteUser({ id: id }));
       }
     }
