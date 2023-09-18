@@ -1,12 +1,13 @@
 'use client'
 
-import React from "react";
+import React, { useMemo } from "react";
 import {useForm} from 'react-hook-form'
 import "./register.scss";
 import { useRouter } from "next/navigation";
-import { store } from "@/store/store";
-import { useDispatch } from "react-redux";
-import { startCreatingUserWithEmailPassword } from "@/store/auth/authActions";
+import { store } from "../../../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { startCreatingUserWithEmailPassword, startGoogleSignIn } from "@/store/auth/authActions";
+import { chekingCredentials } from "../../../../store/auth/authReducer";
 
 const formData = {
   email: "",
@@ -18,6 +19,7 @@ const formData = {
 
 const Page = () => {
   const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.auth);
   const { 
     register,
     handleSubmit, 
@@ -27,26 +29,36 @@ const Page = () => {
    } = useForm(formData)
   const router = useRouter();
 
+
+   const isLogin = useMemo(() => status === "authenticated", [status]);
+
   const handleClik = () => {
     router.push("login");
   };
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-
+  const onSubmit =  handleSubmit((data) => {
+    console.log("data:", data);
+    
+    dispatch(startCreatingUserWithEmailPassword(data))
     reset()
   })
 
-  const onClickNewUser = async (formData) => {
-    await dispatch(startCreatingUserWithEmailPassword(formData));  
+  const onClickNewUser =  () => {
+    // await dispatch(startCreatingUserWithEmailPassword());  
 
     // dispatch(startNewUser(updatedCreateUser));
 
-    Swal.fire("Bien hecho", "Cuenta creada exitosamente", "success");
+    // Swal.fire("Bien hecho", "Cuenta creada exitosamente", "success");
 
     const currentState = store.getState().auth;
   };
-
+  const onGoogleLogin = () => {
+    dispatch(chekingCredentials());
+    dispatch(startGoogleSignIn());
+  };
+  if (isLogin) {
+    router.push("/");
+  }
 
   return (
     <div className="main">
@@ -134,6 +146,12 @@ const Page = () => {
         >
           Registrarse
         </button>
+        <div className="social" onClick={onGoogleLogin}>
+        <figure >
+          <img className='googleR' src="/images/google.png" alt="" />
+        </figure>
+      {/* <i className="bi bi-google"></i> */}
+      </div>
         <div className="redireccion">
           <p >¿Ya tienes cuenta?</p>
           <span className="redireccion__link" onClick={handleClik}>
