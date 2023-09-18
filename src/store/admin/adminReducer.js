@@ -13,14 +13,15 @@ export const adminSlice = createSlice({
     reducers: {
         setData: (state, {payload}) => {
             console.log('payload', payload)
-            state.users= payload.users   
+            state.users= payload.users  
             // state.errorMessage= null
         },
 
         deleteUser: (state, { payload }) => {
             try{
                 
-                console.log('temporal',state);
+                console.log('temporal',state.users);
+                console.log('payload perro',payload);
                 //state.users = state.users.filter(user => user.id != action.payload.id)
                 //  state.errorMessage = null
             } 
