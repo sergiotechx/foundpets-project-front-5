@@ -7,7 +7,6 @@ import { adminSlice } from "./admin/adminReducer";
 const rootReducer = {
   auth: authActions.reducer,
   admin: adminSlice.reducer,
-
 };
 
 export const store = configureStore({
