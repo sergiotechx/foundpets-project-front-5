@@ -52,21 +52,13 @@ const Header = () => {
                   Como funciona
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link color" href="#">
-                  Tienda
-                </a>
-              </li>
+              
               <li className="nav-item">
                 <a className="nav-link color" href="#">
                   Registro
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link color" href="#">
-                  Tienda
-                </a>
-              </li>
+          
               <li className="nav-item">
                 <a className="nav-link color" href="#">
                   Acerca de nosotros

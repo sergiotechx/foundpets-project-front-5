@@ -44,3 +44,20 @@ export const createUser = async (data) => {
 
 
 
+const login  = async (user_email,password) =>{
+    const authData = await pb.collection('users').authWithPassword(
+        user_email,
+        password,
+    );
+}
+const logout = ()=>{
+    client.authStore.clear();
+}
+
+export const getUsers = async ()=>{
+    const records = await client.collection('users').getFullList({
+        sort: '-created',
+    });
+   return records;
+}
+
