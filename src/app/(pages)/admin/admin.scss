@@ -3,74 +3,89 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-
+  
     .AdminC {
-        padding: 1em;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+  
+      .AdminH {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
         align-items: center;
-
-        .AdminH {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            gap: 0.5em;
-            img {
-                max-width: 7em;
-                border-radius: 5px;
-            }
+        justify-content: center;
+        padding: 1rem;
+        gap: 0.5em;
+        img {
+          max-width: 7em;
+          border-radius: 5px;
         }
-
-        .Admin_Search {
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            gap: 0.5em;
-            font-size: large;
-            button{
-                background-color: #7FD262;
-                border: none;
-                border-radius:1rem;
-            }
-        }
-
-        table {
-            width: 100%;            
-    }
-}
-
-    .AdminL {
+      }
+  
+      .Admin_Search {
         display: flex;
-        flex-direction: column;
-        width: 10%;
-        justify-content: space-between;
-        height: 85vh;
-
-    }
-}
-
-@media(max-width: 768px){
-    .AdminM{
-    .AdminH{
-        img{        
-          display: none;       
+        justify-content: center;
+        align-items: baseline;
+        gap: 0.5em;
+        font-size: large;
+        button {
+          background-color: #7FD262;
+          border: none;
+          border-radius: 1rem;
         }
-    }
+      }
+  
+      table {
+        width: 100%;
+        thead {
+          th {
+            border: 0.1rem solid #ccc;
+            padding: 5px;
+          }
+        }
 
-    .AdminL{
+        tbody {
+          tr {
+            td {
+              border: 0.1rem solid #ccc;
+              padding: 1rem;
+            }
+          }
+        }
+      }
+    }
+  
+    .AdminL {
+      display: flex;
+      flex-direction: column;
+      width: 10%;
+      justify-content: space-between;
+      height: 85vh;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .AdminM {
+      .AdminH {
+        img {
+          display: none;
+        }
+      }
+  
+      .AdminL {
         display: none;
+      }
     }
-            
-}
-}
-@media(min-width: 768px){
-    .AdminM{
-        .Admin_Search {
+  }
+  
+  @media (min-width: 768px) {
+    .AdminM {
+      .Admin_Search {
         padding: 2rem;
-        }
+      }
     }
-}
+  }
+  

@@ -1,68 +1,94 @@
 'use client'
 import './admin.scss'
-import React, {useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import { TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction } from '@/store/admin/adminActions';
-
-
 
 const Page = () => {
 
-  const users = useSelector((store) => store.admin);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const users = useSelector((store) => store.admin.users);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    
-    dispatch(getDataAction())
-    
+    dispatch(getDataAction());
+    console.log("hey bro", users);
   }, [])
-  
+  const filteredUsers = users.filter((user) =>
+  user.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+  const handleDeleteUser = (userId) => {
+    console.log("que onda perro");
+    // Dispatch a la acción para eliminar el usuario por su ID
+    // Puedes crear una acción como deleteUserAction(userId) y usarla aquí
+    // Luego, después de eliminar el usuario, actualiza la lista de usuarios
+    // Esto puede implicar otra llamada a la acción para cargar los usuarios nuevamente.
+  };
+
   return (
-    
-      <div className='AdminM'>
-       {console.log('los users:',users)}    
-        <div className='AdminC'>
-          <div className='AdminH'>
-            <img src='/images/dogAdmin.png' />
-            <h2>Sistema Administrativo</h2>
-          </div>
-          <div className='Admin_Search'>
+    <div className='AdminM'>
+      <div className='AdminC'>
+        <div className='AdminH'>
+          <img src='/images/dogAdmin.png' />
+          <h2>Sistema Administrativo</h2>
+        </div>
+        <div className='Admin_Search'>
           <p>Usuario</p>
           <TextInput
-            placeholder="usuario a buscar"
-            radius="lg"
-            size="xs"
-            icon={< IconSearch size="0.8rem" />}
-          />
+  placeholder="Usuario a buscar"
+  radius="lg"
+  size="xs"
+  icon={<IconSearch size="0.8rem" />}
+  value={searchTerm} // Asigna el valor del estado searchTerm al input
+  onChange={(event) => setSearchTerm(event.target.value)} // Actualiza searchTerm en cada cambio
+/>
           <button>Buscar</button>
-          </div>
-          < table className='col-md-6'>
-            <thead>
-              <tr>
-                <th className='col-md-3'>Usuario <i className="bi bi-sort-alpha-down"></i></th>
-                <th className='col-md-2'>Ultimo ingreso <i className="bi bi-sort-alpha-down"></i></th>
-                <th className='col-md-1'>Borrar</th>
+        </div>
+        <table className='col-md-6'>
+          <thead >
+            <tr>
+              <th className='col-md-3'>Usuario <i className="bi bi-sort-alpha-down"></i></th>
+              <th className='col-md-2'>Ultimo ingreso <i className="bi bi-sort-alpha-down"></i></th>
+              <th className='col-md-1'>Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+          {filteredUsers && filteredUsers.length > 0 ? (
+  filteredUsers.map((user, index) => (
+    <tr key={index}>
+      <td>{user.name}</td>
+      <td>{formatDate(user.date)}</td>
+      <td>
+  <i
+    className="bi bi-trash3-fill fs-5"
+    id='TrashIcon'
+    onClick={() => handleDeleteUser(user.id)}
+  ></i>
+</td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan="3">No se encontraron usuarios</td>
+  </tr>
+)}
 
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr>
-                <td></td>
-                <td>2023-09-14</td>
-                <td><i className="bi bi-trash3-fill fs-5" id='TrashIcon'></i></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className='AdminL'>
-          < img src='/images/huellas3.png' />
-          < img src='/images/puppy1.jpg' />
-        </div>
+          </tbody>
+        </table>
       </div>
-   
+      <div className='AdminL'>
+        <img src='/images/huellas3.png' />
+        <img src='/images/puppy1.jpg' />
+      </div>
+    </div>
   )
 }
 
-export default Page
+export default Page;
