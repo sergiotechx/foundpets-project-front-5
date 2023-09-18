@@ -5,7 +5,7 @@ import './login.scss';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useRouter } from 'next/navigation';
 import {useForm} from 'react-hook-form'
-import { startGoogleSignIn } from '@/store/auth/authActions';
+import { startLoginWithGoogle } from '../../../../store/auth/authActions';
 import { chekingCredentials, loging } from '../../../../store/auth/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { store } from '@/store/store';
@@ -73,9 +73,10 @@ const Page = () => {
 
     reset()
   })
-  const onGoogleSignIn = () => {
+  const onGoogleLogin = () => {
     dispatch(chekingCredentials());
-    dispatch(startGoogleSignIn());
+    dispatch(startLoginWithGoogle());
+   
   };
   if (isLogin) {
     router.push("/");
@@ -204,7 +205,7 @@ const Page = () => {
       </form >
       <div className="textLink">inicia sesion con</div>
       <div className="social-buttons">
-        <figure onClick={onGoogleSignIn}>
+        <figure onClick={onGoogleLogin}>
           <img className='google' src="/images/google.png" alt="" />
         </figure>
       {/* <i className="bi bi-google"></i> */}
@@ -224,5 +225,6 @@ const Page = () => {
     </div>
   );
 };
+//
 
 export default Page;

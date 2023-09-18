@@ -1,5 +1,8 @@
+
+
 import { loginWithGoogle } from "@/lib/providers";
 import { addNewUser, chekingCredentials, loging, logout, updateUser } from "./authReducer";
+import { createUser } from "../../lib/pocketbase";
 
 
 export const checkingAuthetication = (email, password,) => {
@@ -26,26 +29,24 @@ export const checkingAuthetication = (email, password,) => {
   };
 
 
-  export const startLoginWithGoogle = () => {
+   export const startLoginWithGoogle = () => {
     return async (dispatch) => {
       dispatch(chekingCredentials());
   
       const result = await loginWithGoogle();
+
+      console.log("resultado:",result);
   
-      if (isValid) {
+      if (result.meta.id != null) {
         dispatch(
-          loging({
-            ok: true,
-            id: result.meta.id,
-            photoURL: result.meta.avatarURL,
-            email: result.meta.email,
-            displayName: result.meta.name,
-          })
+          loging(result)
+          
         );
         return { ok: true };
       } else {
-        dispatch(logout(result.errorMessage));
-        return { ok: false };
+        alert("No hay usuario!")
+        // dispatch(logout(result.errorMessage));
+         return { ok: false };
       }
     };
   };
@@ -55,35 +56,41 @@ export const checkingAuthetication = (email, password,) => {
   
   
   
-  export const startCreatingUserWithEmailPassword = () => {
+    export const startCreatingUserWithEmailPassword = (data) => {
     return async (dispatch) => {
       dispatch(chekingCredentials());
-  
-      if (!result.ok) return dispatch(logout(result.errorMessage));
-  
-      if (result.ok) {
+      
+      try {
+        const result = await createUser(data)
+        console.log("prueba:", result);
+
+      if (result.collectionId == "_pb_users_auth_") {
         dispatch(
           loging({
             ok: true,
-            uid: result.uid,
+            id: result.id,
             photoURL: result.photoURL,
             email: result.email,
-            username: result.username,
+            username: result.name,
             date: result.date,
             celphone: result.celphone,
           })
         );
         
-        dispatch(
-          addNewUser({
-            ok: true,
-            id: result.uid,
-            photoURL: result.photoURL,
-            email: result.email,
-            username: result.username,
-            celphone: result.celphone,
-          })
-        );
+      //   dispatch(
+      //     addNewUser({
+      //       ok: true,
+      //       id: result.uid,
+      //       photoURL: result.photoURL,
+      //       email: result.email,
+      //       username: result.username,
+      //       celphone: result.celphone,
+      //     })
+      //   );
       }
+      } catch (error) {
+        console.log(error.message);
+      }
+      
     };
   };
