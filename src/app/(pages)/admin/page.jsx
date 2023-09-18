@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataAction } from '@/store/admin/adminActions';
+import { getDataAction,deleDataAction } from '@/store/admin/adminActions';
 
 const Page = () => {
 
@@ -25,11 +25,12 @@ const Page = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   const handleDeleteUser = (userId) => {
-    console.log("que onda perro");
+    console.log("que onda perro",userId);
     // Dispatch a la acción para eliminar el usuario por su ID
     // Puedes crear una acción como deleteUserAction(userId) y usarla aquí
     // Luego, después de eliminar el usuario, actualiza la lista de usuarios
     // Esto puede implicar otra llamada a la acción para cargar los usuarios nuevamente.
+    dispatch(deleDataAction(userId));
   };
 
   return (
@@ -66,11 +67,11 @@ const Page = () => {
       <td>{user.name}</td>
       <td>{formatDate(user.date)}</td>
       <td>
-  <i
-    className="bi bi-trash3-fill fs-5"
-    id='TrashIcon'
-    onClick={() => handleDeleteUser(user.id)}
-  ></i>
+        <i
+         className="bi bi-trash3-fill fs-5"
+         id='TrashIcon'
+         onClick={() => handleDeleteUser(user.id)}
+         ></i>
 </td>
     </tr>
   ))

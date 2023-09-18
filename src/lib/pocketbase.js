@@ -61,3 +61,10 @@ export const getUsers = async ()=>{
    return records;
 }
 
+export const deleteUserBd = async (id)=>{
+  const operation = await client.collection('users').delete(id);
+   return operation;
+}
+
+
+

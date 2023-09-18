@@ -18,8 +18,16 @@ export const adminSlice = createSlice({
         },
 
         deleteUser: (state, { payload }) => {
-            state.users = state.users.filter((user) => user.id = !action.payload.id)
-            state.errorMessage = null
+            try{
+                
+                console.log('temporal',state);
+                //state.users = state.users.filter(user => user.id != action.payload.id)
+                //  state.errorMessage = null
+            } 
+            catch(error){
+                console.log(error.message)
+            }
+            
         }
     }
 });

@@ -1,6 +1,6 @@
 'use client'
 import { setData, deleteUser } from "./adminReducer";
-import { getUsers } from '../../lib/pocketbase'
+import { getUsers,deleteUserBd } from '../../lib/pocketbase'
 
 
 
@@ -15,9 +15,24 @@ export const getDataAction = () => {
       dispatch(setData({ users: data }));
     }
     catch (error) {
-      trhow(error.message)
+      throw(error.message)
     }
   };
 };
 
+export const deleDataAction = (id) => {
+  
+  return async (dispatch) => {
+    try {
+     
+      let result = await deleteUserBd(id);
+      if(result == true){
+        dispatch(deleteUser({ id: id }));
+      }
+    }
+    catch (error) {
+      console.log(error.message)
+    }
+  };
+};
 
