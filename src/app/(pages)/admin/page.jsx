@@ -47,8 +47,9 @@ const Page = () => {
               </tr>
             </thead>
             <tbody>
+              
               <tr>
-                <td>Señor Huesos</td>
+                <td></td>
                 <td>2023-09-14</td>
                 <td><i className="bi bi-trash3-fill fs-5" id='TrashIcon'></i></td>
               </tr>
