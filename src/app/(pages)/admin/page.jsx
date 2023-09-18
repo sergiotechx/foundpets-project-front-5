@@ -1,16 +1,17 @@
 'use client'
-import React, {useEffect} from 'react'
 import './admin.scss'
+import React, {useEffect} from 'react'
 import { TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
-import { store } from '@/store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector } from "react-redux";
 import { getDataAction } from '@/store/admin/adminActions';
 
+
+
 const Page = () => {
+
+  const users = useSelector((store) => store.admin);
   const dispatch = useDispatch();
-  const { admin } = useSelector((store) => store.admin);
-  
   useEffect(() => {
     
     dispatch(getDataAction())
@@ -20,7 +21,7 @@ const Page = () => {
   return (
     
       <div className='AdminM'>
-        {console.log('iiii',admin)}
+       {console.log('los users:',users)}    
         <div className='AdminC'>
           <div className='AdminH'>
             <img src='/images/dogAdmin.png' />
