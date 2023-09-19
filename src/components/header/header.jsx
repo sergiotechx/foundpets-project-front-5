@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+//import "bootstrap/dist/css/bootstrap.min.css";
+import { useDispatch, useSelector } from 'react-redux';
 import "./header.scss";
 import { motion, useScroll, useSpring } from "framer-motion";
 
@@ -13,6 +14,13 @@ const Header = () => {
     restDelta: 0.001,
   });
 
+  const status = useSelector((store) => store.auth.status);
+  console.log(status)
+  useEffect(() => {
+    if(status==='authentucated'){}
+    setIsLogin(true)
+  }, [])
+  
   return (
     <div className="Header__primary">
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
