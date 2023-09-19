@@ -1,23 +1,31 @@
 "use client";
-import React, { useEffect, useState } from "react";
-//import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
+  const router = useRouter();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
-  const status = useSelector((store) => store.auth.status);
-  console.log(status);
+  const auth = useSelector((store) => store.auth);
+
+  const goLogin = () => {
+    router.push("/user/login");
+  }
+  const goRegister = () => {
+    router.push("/user/register");
+  }
+  console.log(auth);
   useEffect(() => {
-    if (status === "authenticated") {
+    if (auth.status === "authenticated") {
       setIsLogin(true);
     } else {
       setIsLogin(false);
@@ -43,6 +51,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn1 "
+              onClick={goLogin}
             >
               Acceder
             </motion.button>
@@ -51,6 +60,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn2"
+              onClick={goRegister}
             >
               Registro
             </motion.button>
