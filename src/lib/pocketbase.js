@@ -1,9 +1,7 @@
-import PocketBase from "pocketbase"
+import PocketBase from "pocketbase";
 
 const url = "https://foundpets.pockethost.io";
 export const client = new PocketBase(url);
-
-
 
 export const createUser = async (data) => {
   const newUser = {
@@ -16,8 +14,6 @@ export const createUser = async (data) => {
   }
   console.log("usuario:", newUser);
   try {
-
-
     let record = await client.collection('users').create(newUser);
 
     //   record.verified = true;
@@ -34,23 +30,33 @@ export const createUser = async (data) => {
   }
 };
 
-//   export const authWithPassword = async (user_email,password)=>{
-//        const authData = await client.collection('users').authWithPassword(
-//         user_email,password );
-//   }
+
+export const authWithEmail = async (data2) => {
+  try {
+    const validate = await client
+      .collection("users")
+      .requestVerification(email === data2.email);
+    console.log("Validacion:", validate);
+    return validate;
+  } catch (error) {
+    console.error("Usuario no encontrado:", error);
+  }
+};
+
+export const authWithPassword = async (data) => {
+  const authData = await client
+    .collection("users")
+    .authWithPassword(user_email, password);
+};
 
 
-
-
-
-
-const login = async (user_email, password) => {
+ export const login = async (user_email, password) => {
   const authData = await pb.collection('users').authWithPassword(
     user_email,
     password,
   );
 }
-const logout = () => {
+ export const logout = () => {
   client.authStore.clear();
 }
 
@@ -66,21 +72,17 @@ export const deleteUserBd = async (id) => {
   return operation;
 }
 
+
 export const fullDataHomeBd = async () => {
   const records = await client.collection('lostPets').getFullList();
   return {records:records,length:records.length}
 }
 
-export const filterDataHomeBd = async (type,city,neighborhood) => {
-  const records = await client.collection('lostPets').getList(1, 50);
-  return {records:records,length:records.items.length}
-}
+
 export const getBarrios = async () => {
   const records = await client.collection('barrios').getFullList();
   return records
 }
-
-
 
 
 
