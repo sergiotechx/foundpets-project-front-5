@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <title>Found Pets 🐶</title>
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico"></link>
+        <link rel="icon" type="image/x-icon" href="/images/footPrint.ico"></link>
       </head>
       <body className={roboto.className}>
         
