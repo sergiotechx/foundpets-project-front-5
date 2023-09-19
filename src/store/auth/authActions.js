@@ -28,10 +28,10 @@ export const startLoginWithGoogle = () => {
 
     console.log("resultado:", result);
 
-    if (result.meta.isNew = false ) {
+    if (result.meta.id != null ) {
       dispatch(loging(result));
       // Redirige al usuario a la página de inicio
-       router.push("/");
+      //  router.push("/");
     } else {
       alert("No estás registrado. Por favor, regístrate primero.");
       dispatch(logout(result.errorMessage));
@@ -101,13 +101,38 @@ export const startLoginWithEmailPassword = (data2) => {
 
     try {
       const valitation = await authWithEmail(data2);
+      const userloged = {
+        id:valitation.record.id,
+        email:valitation.record.email,
+        name:valitation.record.name,
+        avatar:valitation.record.avatar,
+        adress:valitation.record.adress,
+        ciudad:valitation.record.ciudad,
+        barrio:valitation.record.barrio,
+        mobile:valitation.record.mobile,
+      }
       console.log("valitation:", valitation);
-      if(valitation === true){
-        dispatch(loging(valitation))
-        router.push("/");
+      if(valitation.record.id != null){
+        <Button
+        onClick={() =>
+          modals.openContextModal({
+            modal: 'demonstration',
+            title: 'Bien hecho',
+            innerProps: {
+              modalBody:
+                'Has iniciado correctamente',
+            },
+          })
+        }
+      >
+        OK!
+      </Button>
+        dispatch(loging(userloged))
+      }else{
+        alert("usuario no encontrado verifica las credenciales")
       }
     } catch (error) {
-      
+      console.log("Este:",error);
     }
 
 }

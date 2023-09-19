@@ -29,19 +29,34 @@ export const createUser = async (data) => {
   
   export const authWithEmail = async (data2) => {
 
-    try {
+    // try {
          
-        const validate = await client.collection('users').requestVerification(email === data2.email);
-        console.log("Validacion:", validate);
-        return validate;
-    } catch (error) {
-        console.error("Usuario no encontrado:", error);
-    }
+    //     // const validate = await client.collection('users').requestVerification(email === data2.email);
+    //     const validate = await client.collection('users').getFirstListItem(`email=${data2.email}`, {
+    //         expand: 'relField1,relField2.subRelField',
+    //     });
+
+
+    //     console.log("Validacion:", validate);
+    //     return validate;
+    // } catch (error) {
+    //     console.error("Usuario no encontrado:", error);
+    // }
+
+    const authData = await client.collection('users').authWithPassword(data2.email, data2.password);
+
+    // after the above you can also access the auth data from the authStore
+    console.log(client.authStore.isValid);
+    console.log(client.authStore.token);
+    console.log(client.authStore.model.id);
+    
+    // "logout" the last authenticated model
+    // pb.authStore.clear();
+   console.log(authData); 
+    return authData;
   } 
   
   
- 
-
   
 export const authWithPassword = async (data)=>{
        const authData = await client.collection('users').authWithPassword(

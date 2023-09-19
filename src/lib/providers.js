@@ -26,6 +26,7 @@ export const loginWithGoogle = async () => {
     return authData2;
 
    } catch (error) {
+    console.log("este es el error: ",error);
     if(error.message == "Failed to authenticate");{
     const user = {
       meta: {

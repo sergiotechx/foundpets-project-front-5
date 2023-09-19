@@ -4,21 +4,13 @@ export const authActions = createSlice({
     name: 'auth',
     initialState: {
       status: 'not-authenticated', // checking
-      id: null,
-      email: null,
-      username: null,
-      date: null,
-      celphone: null,
-      photoURL: null,
+      user: null,
       errorMessage: null, 
     },
     reducers: {
         loging: (state, {payload}) => {
             state.status = 'authenticated';
-            state.id = payload.id;
-            state.email = payload.email;
-            state.username = payload.name; 
-            state.photoURL = payload.avatarUrl;
+            state.user = payload;
             state.errorMessage = null;
         },
         addNewUser:(state,{payload}) =>{
