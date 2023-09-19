@@ -24,7 +24,7 @@ const CardFound = ({ petsLost }) => {
           style={{ width: "300px", height: "auto" }}
         >
           <Card.Section>
-            <Image src={lost.image2} height={160} alt="Norway" />
+            <Image src={lost.image1} height={160} alt="Norway" />
           </Card.Section>
 
           <Group position="apart" mt="md" mb="xs">
