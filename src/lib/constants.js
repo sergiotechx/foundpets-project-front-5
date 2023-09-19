@@ -9,4 +9,4 @@ export const species =
 export const genre =
 [
     {label:'Macho' , value:1},{label:'Hembra' , value:2}
-]
+] 
