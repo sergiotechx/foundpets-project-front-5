@@ -1,13 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Select } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
+import { filterDataHomeBd, fullDataHomeBd } from "@/lib/pocketbase";
 
 const Page = () => {
   const [searchValue, onSearchChange] = useState("");
+ const loadData = async ()=>{
+  const temp =  await fullDataHomeBd()
+  console.log(temp)
+ }
+   useEffect(() => {
+    loadData();
+   
+    
+   }, [])
+   
   return (
     <div className="home p-3">
       <Carrusel />
