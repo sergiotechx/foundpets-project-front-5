@@ -121,26 +121,14 @@ const Page = () => {
           />
           {errors.password && <span>{errors.password.message} </span>}
         </div>
-
-        {/* <div className="form-floating">
-          <p>Avatar</p>
-          <input 
-          type="file" 
-          onChange={(e) =>{
-            console.log(e.target.files[0]);
-            setValue('fotoAvatar',e.target.files[0].name)
-          }}
-          />
-        </div> */}
         <button className="btn" type="submit" >
           Registrarse
         </button>
-        <div className="social" onClick={onGoogleLogin}>
+        {/* <div className="social" onClick={onGoogleLogin}>
           <figure>
             <img className="googleR" src="/images/google.png" alt="" />
           </figure>
-          {/* <i className="bi bi-google"></i> */}
-        </div>
+        </div> */}
         <div className="redireccion">
           <p>¿Ya tienes cuenta?</p>
           <span className="redireccion__link" onClick={handleClik}>
