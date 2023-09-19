@@ -2,11 +2,20 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.scss";
+import { motion, useScroll, useSpring } from "framer-motion";
+
 const Header = () => {
+  const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(false);
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   return (
     <div className="Header__primary">
+      <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">
         <img src="/images/logo.png" />
         {isLogin ? (
@@ -18,16 +27,36 @@ const Header = () => {
           </div>
         ) : (
           <section className="Options">
-            <button type="button" className="btn btn1 ">
+            <motion.button
+              whileHover={{ scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              type="button"
+              className="btn btn1 "
+            >
               Acceder
-            </button>
-            <button type="button" className="btn btn2">
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              type="button"
+              className="btn btn2"
+            >
               Registro
-            </button>
+            </motion.button>
           </section>
         )}
       </div>
-      <nav className="navbar navbar-expand-md center">
+      <motion.nav
+        initial={{ scale: 0 }}
+        animate={{ rotate: 360, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          delay: 1,
+        }}
+        className="navbar navbar-expand-md center"
+      >
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -43,44 +72,61 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <a className="nav-link color" href="#">
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="nav-link color"
+                  href="#"
+                >
                   Inicio
-                </a>
+                </motion.a>
               </li>
               <li className="nav-item">
-                <a className="nav-link color" href="#">
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="nav-link color"
+                  href="#"
+                >
                   Como funciona
-                </a>
+                </motion.a>
               </li>
               <li className="nav-item">
-                <a className="nav-link color" href="#">
-                  Tienda
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link color" href="#">
-                  Registro
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link color" href="#">
-                  Tienda
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link color" href="#">
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="nav-link color"
+                  href="#"
+                >
                   Acerca de nosotros
-                </a>
+                </motion.a>
               </li>
               <li className="nav-item">
-                <a className="nav-link color" href="#">
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="nav-link color"
+                  href="#"
+                >
                   Comunidad
-                </a>
+                </motion.a>
               </li>
+              {isLogin && (
+                <li className="nav-item">
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="nav-link color"
+                    href="#"
+                  >
+                    Perfil
+                  </motion.a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
-      </nav>
+      </motion.nav>
     </div>
   );
 };
