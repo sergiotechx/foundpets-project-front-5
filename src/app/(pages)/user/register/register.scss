@@ -21,7 +21,6 @@
         height: 50%;
         padding: 0;
     }
-    
 }
 span{
     display: block;
@@ -38,6 +37,7 @@ span{
 .redireccion{
     display: flex;
     gap: 15px;
+    margin-top: 20px;
     text-align: center;
     justify-content: center;
 }
@@ -69,17 +69,29 @@ span{
     }
     .logoR{
         margin-top: 7%;
+        width: 50%;
         height: auto;
         .imagesR{     
             display: flex;
             flex-direction: row;
             &__f1r{
-                width: 300px;
+                width: 200px;
                 height: auto;
             }
             &__f2r{
                 display: none;
             }
         }  
+    }
+    .count{
+
+        border: 1px solid gray;
+        align-items: center;
+        input{
+            width: 90%;
+            height: 50%;
+            padding: 0;
+
+        }
     }
   }

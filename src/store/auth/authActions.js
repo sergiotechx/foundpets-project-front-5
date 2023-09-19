@@ -64,27 +64,27 @@ export const startCreatingUserWithEmailPassword = (data) => {
       const result = await createUser(data);
       console.log("prueba:", result);
 
-      if (result && result.id) {
-        <Button
-      onClick={() =>
-        modals.openContextModal({
-          modal: 'demonstration',
-          title: 'Genial',
-          innerProps: {
-            modalBody:
-              'Has creado tu cuenta exitosamente',
-          },
-        })
-      }
-    >
-      OK!
-    </Button>
+      if (result.id) {
+    //     <Button
+    //   onClick={() =>
+    //     modals.openContextModal({
+    //       modal: 'demonstration',
+    //       title: 'Genial',
+    //       innerProps: {
+    //         modalBody:
+    //           'Has creado tu cuenta exitosamente',
+    //       },
+    //     })
+    //   }
+    // >
+    //   OK!
+    // </Button>
 
-    // Swal.fire(
-    //   'Genila!',
-    //   'Cuenta creada Exitosamente!',
-    //   'success'
-    // )
+    Swal.fire(
+      'Genila!',
+      'Cuenta creada Exitosamente!',
+      'success'
+    )
         dispatch(
           loging(result)
         );
@@ -113,26 +113,38 @@ export const startLoginWithEmailPassword = (data2) => {
       }
       console.log("valitation:", valitation);
       if(valitation.record.id != null){
-        <Button
-        onClick={() =>
-          modals.openContextModal({
-            modal: 'demonstration',
-            title: 'Bien hecho',
-            innerProps: {
-              modalBody:
-                'Has iniciado correctamente',
-            },
-          })
-        }
-      >
-        OK!
-      </Button>
+      //   <Button
+      //   onClick={() =>
+      //     modals.openContextModal({
+      //       modal: 'demonstration',
+      //       title: 'Bien hecho',
+      //       innerProps: {
+      //         modalBody:
+      //           'Has iniciado correctamente',
+      //       },
+      //     })
+      //   }
+      // >
+      //   OK!
+      // </Button>
+       Swal.fire(
+       'Genila!',
+       'Has iniciado secion correptamente!',
+       'success'
+     )
         dispatch(loging(userloged))
-      }else{
-        alert("usuario no encontrado verifica las credenciales")
       }
     } catch (error) {
       console.log("Este:",error);
+      if(error.message === "Failed to authenticate."){
+        Swal.fire({
+          title: 'Ooops!',
+          text: 'Credenciales incorreptas',
+          icon: 'error',
+          confirmButtonText: 'Intentar de nuevo'
+        })
+        dispatch(logout())
+      }
     }
 
 }
