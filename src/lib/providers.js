@@ -17,9 +17,7 @@ export const loginWithGoogle = async () => {
        id: authData2.meta.id,
        name: authData2.meta.name,
        avatarUrl: authData2.meta.avatarUrl,
-       
      },
-
    };
     
     return authData2;

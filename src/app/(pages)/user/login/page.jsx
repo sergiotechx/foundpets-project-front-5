@@ -80,6 +80,7 @@ const Page = () => {
     dispatch(chekingCredentials());
     dispatch(startLoginWithGoogle());
   };
+  
   if (isLogin) {
     router.push("/");
   }
