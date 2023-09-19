@@ -63,3 +63,23 @@ span{
       display: none;
     }
   }
+@media(max-width: 415px){
+    .main{
+      flex-direction: column;
+    }
+    .logoR{
+        margin-top: 7%;
+        height: auto;
+        .imagesR{     
+            display: flex;
+            flex-direction: row;
+            &__f1r{
+                width: 300px;
+                height: auto;
+            }
+            &__f2r{
+                display: none;
+            }
+        }  
+    }
+  }

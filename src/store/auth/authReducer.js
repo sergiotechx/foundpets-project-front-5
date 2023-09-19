@@ -15,10 +15,10 @@ export const authActions = createSlice({
     reducers: {
         loging: (state, {payload}) => {
             state.status = 'authenticated';
-            state.id = payload.meta.id;
-            state.email = payload.meta.email;
-            state.username = payload.meta.name; 
-            state.photoURL = payload.meta.avatarUrl;
+            state.id = payload.id;
+            state.email = payload.email;
+            state.username = payload.name; 
+            state.photoURL = payload.avatarUrl;
             state.errorMessage = null;
         },
         addNewUser:(state,{payload}) =>{
