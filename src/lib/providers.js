@@ -11,7 +11,6 @@ export const loginWithGoogle = async () => {
     
    try {
     const authData2 = await pb.collection('users').authWithOAuth2({ provider: 'google' });
-    console.log("info",authData2);
     const user = {
      meta: {
        email: authData2.meta.email,
