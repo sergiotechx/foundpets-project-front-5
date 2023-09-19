@@ -52,6 +52,9 @@
             td {
               border: 0.1rem solid #ccc;
               padding: 1rem;
+              .bi-trash3-fill{
+                cursor: pointer; 
+            }
             }
           }
         }

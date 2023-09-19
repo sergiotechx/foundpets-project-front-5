@@ -15,7 +15,7 @@ import { chekingCredentials } from "../../../../store/auth/authReducer";
 const formData = {
   email: "",
   password: "",
-  username: "",
+  name: "",
   celphone: "",
   photoURL: "",
 };
@@ -73,7 +73,7 @@ const Page = () => {
           <p>Nombre completo</p>
           <input
             type="text"
-            {...register("username", {
+            {...register("name", {
               required: {
                 value: true,
                 message: "Nombre requerido",

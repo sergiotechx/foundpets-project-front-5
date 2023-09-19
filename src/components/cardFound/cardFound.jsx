@@ -26,6 +26,7 @@ const CardFound = ({ petsLost }) => {
           <Card.Section>
             <Image src={lost.image1} height={160} alt="Norway" />
           </Card.Section>
+          
 
           <Group position="apart" mt="md" mb="xs">
             <Text weight={500}>{lost.petName}</Text>

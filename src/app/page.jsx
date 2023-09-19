@@ -8,6 +8,7 @@ import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
 import { fullDataHomeBd } from "@/lib/pocketbase";
 
+
 const Page = () => {
   const [petsLost, setPetsLost] = useState(null);
   const [animal, setAnimal] = useState("");

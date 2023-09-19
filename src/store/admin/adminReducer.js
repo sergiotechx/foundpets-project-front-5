@@ -11,15 +11,16 @@ export const adminSlice = createSlice({
     name: 'admin',
     initialState,
     reducers: {
-        setData: (state, {payload}) => {
-            console.log('payload', payload)
-            state.users= payload.users   
-            // state.errorMessage= null
+        setData: (state, action) => {
+            state.users= action.payload.users   
+            state.errorMessage= null
+           
         },
-
-        deleteUser: (state, { payload }) => {
-            state.users = state.users.filter((user) => user.id = !action.payload.id)
-            state.errorMessage = null
+        deleteUser: (state, action) => {
+            const usersCopy = JSON.parse(JSON.stringify(state.users));
+            const filteredUsers = usersCopy.filter(user => user.id != action.payload.id)
+            state.users= filteredUsers   
+            state.errorMessage= null
         }
     }
 });

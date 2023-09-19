@@ -3,10 +3,11 @@
 }
 
 .left{
-    width: 45%;
-    padding-right: 5%;
-    padding-left: 5%;
-    padding-top: 3%; 
+    margin: 2rem;
+    width: 40%;
+    padding: 5rem;
+    border-radius: 2rem;
+    border: .2rem solid #333;
 }
 .logoC1{
     width: 30%;
@@ -17,7 +18,7 @@
     height: auto;
 }
 .right{
- margin-top: 3%;
+ margin: 2rem;
 }
 .btnTop{
     display: flex;
@@ -61,10 +62,6 @@
 }
 .figures{
     width: 100%;
-    background-color: rgb(51, 232, 10);
-    display: flex;
-    flex-direction: column;
-    margin-left: 30%;
     position: relative;   
 }
 .image1{
@@ -92,3 +89,60 @@
     width: 150px;
         height: 150px;
 }
+@media (max-width: 768px) {
+    .mainC {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .left {
+      width: 90%;
+      padding: 2rem;
+      text-align: center;
+    }
+  
+    .right {
+      width: 90%;
+    }
+  
+    .btnTop {
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+  
+    .btnTop button {
+      width: 100%;
+    }
+  
+    .btnbotton {
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+  
+    .btnbotton button {
+      width: 100%;
+    }
+  
+    .form {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .countC {
+      width: 100%;
+    }
+  
+    .N {
+      width: 100%;
+    }
+  
+    .figures {
+      display: none;
+      
+    }
+  }
+  
