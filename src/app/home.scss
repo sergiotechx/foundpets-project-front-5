@@ -7,11 +7,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 30px 30px 50px 50px;
     &__section1 {
       display: flex;
       width: 100%;
       justify-content: space-between;
+      flex-wrap: wrap;
+      .container__divSearch {
+        display: flex;
+        flex-direction: column;
+        width: 190px;
+      }
+      .container__CardFound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+      }
     }
   }
 }
