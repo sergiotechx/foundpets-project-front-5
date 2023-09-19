@@ -13,6 +13,8 @@ const Page = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const users = useSelector((store) => store.admin.users);
+  const status = useSelector((store) => store.auth.status);
+  console.log('status',status)
   const dispatch = useDispatch();
 
   useEffect(() => {

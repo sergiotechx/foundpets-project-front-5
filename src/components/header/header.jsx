@@ -1,10 +1,17 @@
 "use client";
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+//import "bootstrap/dist/css/bootstrap.min.css";
+import { useDispatch, useSelector } from 'react-redux';
 import "./header.scss";
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
-
+  const status = useSelector((store) => store.auth.status);
+  console.log(status)
+  useEffect(() => {
+    if(status==='authentucated'){}
+    setIsLogin(true)
+  }, [])
+  
   return (
     <div className="Header__primary">
       <div className="HeaderC">
