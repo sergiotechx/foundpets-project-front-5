@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background: linear-gradient(to right, #8fd14f, #ffd16d);
+    transform-origin: 0%;
+    z-index: 1;
+  }
   .HeaderC {
     padding: 1em 1em 0 1em;
     display: flex;

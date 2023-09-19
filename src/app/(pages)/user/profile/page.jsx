@@ -1,7 +1,9 @@
 'use client'
 import Header from '@/components/header/header'
 import React from 'react'
-import { Tabs } from '@mantine/core';
+import { TextInput, PasswordInput, Button, Modal, Loader, Select, NumberInput, Tabs } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 import { IconPawFilled, IconUserCircle, IconMail, IconMapPinHeart } from '@tabler/icons-react';
 import { RichTextEditor, Link } from '@mantine/tiptap';
 import { useEditor } from '@tiptap/react';
@@ -12,6 +14,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import './profile.scss'
+import { species, genre } from '../../../../lib/constants'
 
 const Page = () => {
   let content = '<h2>Hola mundo Found Pet!</h2>'
@@ -28,6 +31,38 @@ const Page = () => {
     ],
     content,
   });
+  const userForm = useForm({
+    initialValues: {
+      name: '',
+      email: '',
+      mobile: '',
+      address: ''
+    },
+    validate: {
+      name: (value) => (value.length < 5 ? 'Debe tener almenos 5 digitos' : null),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Correo invalido'),
+      mobile: (value) => (value.length < 9 ? 'Debe tener almenos 10 digitos' : null),
+      address: (value) => (value.length < 9 ? 'Debe tener almenos 10 digitos' : null),
+    },
+  });
+  const updateUserData = async (values) => {
+  }
+  const petForm = useForm({
+    initialValues: {
+      name: '',
+      species: '',
+      genre: '',
+      age: 0
+    },
+    validate: {
+      name: (value) => (value.length < 5 ? 'Debe tener almenos 5 digitos' : null),
+      // specie: (value) => (/^\S+@\S+$/.test(value) ? null : 'Correo invalido'),
+      // mobile: (value) => (value.length < 9 ? 'Debe tener almenos 10 digitos' : null),
+      //  address: (value) => (value.length < 9 ? 'Debe tener almenos 10 digitos' : null),
+    },
+  });
+  const updatePetData = async (values) => {
+  }
 
   return (
     <>
@@ -52,77 +87,65 @@ const Page = () => {
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                   </i>
                 </figure>
-
-                <form>
+                <form onSubmit={userForm.onSubmit((values) => updateUserData(values))}>
                   < table>
+                    <thead>
+                      <tr>
+                        <th className="col-md-1 invisible" scope="col">Items</th>
+                        <th className="col-md-9 invisible" scope="col">Expenditure</th>
+                        <th className="col-md-1 invisible" scope="col">Items</th>
+                        <th className="col-md-1 " scope="col">Visible</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       <tr>
-                        <td className="col-md-11 invisible">a</td>
-                        <td className="col-md-1 text-center">Visible</td>
+                        <td>Nombre</td>
+                        <td ><TextInput
+                          label=""
+                          placeholder="Nombre completo"
+                          {...userForm.getInputProps('name')}
+                        /></td>
+                        <td><i className="bi bi-pencil " /></td>
+                        <td><input className="form-check-input   invisible" type="checkbox" id="checkboxNoLabel" value="" /></td>
+                      </tr>
+                      <tr>
+                        <td>Correo</td>
+                        <td ><TextInput
+                          label=""
+                          placeholder="Correo electrónico"
+                          {...userForm.getInputProps('email')}
+                        /></td>
+                        <td><i className="bi bi-pencil " /></td>
+                        <td><input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" /></td>
+                      </tr>
+                      <tr>
+                        <td>Celular</td>
+                        <td ><TextInput
+                          label=""
+                          placeholder="Número celular"
+                          {...userForm.getInputProps('mobile')}
+                        /></td>
+                        <td><i className="bi bi-pencil" /></td>
+                        <td><input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" /></td>
+                      </tr>
+                      <tr>
+                        <td>Dirección</td>
+                        <td ><TextInput
+                          label=""
+                          placeholder="Dirección"
+                          {...userForm.getInputProps('address')}
+                        /></td>
+                        <td><i className="bi bi-pencil " /></td>
+                        <td><input className="form-check-input" type="checkbox" id="checkboxNoLabel" value="" /></td>
                       </tr>
                     </tbody>
                   </table>
-
-
-                  <div className="input-group  mt-1">
-                    <span className="input-group-text col-md-1" >Usuario</span>
-                    <div className="col-md-9" >
-                      <input type="text" className="form-control" placeholder="Usuario" />
-                    </div>
-
-                    <div className='Operations col-md-2 '>
-                      <i className="bi bi-pencil col-md-1" />
-                      <input className="form-check-input col-md-1" type="checkbox" id="checkboxNoLabel" value="" />
-                    </div>
-
-                  </div>
-                  <div className="input-group col-md-12 mt-1">
-                    <span className="input-group-text col-md-1" >Nombre</span>
-                    <div className="col-md-9" >
-                      <input type="text" className="form-control" placeholder="nombre" />
-                    </div>
-                    <div className='Operations col-md-2 '>
-                      <i className="bi bi-pencil col-md-1" />
-                      <input className="form-check-input col-md-1" type="checkbox" id="checkboxNoLabel" value="" />
-                    </div>
-                  </div>
-                  <div className="input-group col-md-12 mt-1">
-                    <span className="input-group-text col-md-1" >Correo</span>
-                    <div className="col-md-9" >
-                      <input type="email" className="form-control" placeholder="Correo" />
-                    </div>
-                    <div className='Operations col-md-2 '>
-                      <i className="bi bi-pencil col-md-1" />
-                      <input className="form-check-input col-md-1" type="checkbox" id="checkboxNoLabel" value="" />
-                    </div>
-                  </div>
-                  <div className="input-group col-md-12 mt-1">
-                    <span className="input-group-text col-md-1" >Celular</span>
-                    <div className="col-md-9" >
-                      <input type="text" className="form-control" placeholder="Celular" />
-                    </div>
-                    <div className='Operations col-md-2 '>
-                      <i className="bi bi-pencil col-md-1" />
-                      <input className="form-check-input col-md-1" type="checkbox" id="checkboxNoLabel" value="" />
-                    </div>
-                  </div>
-                  <div className="input-group col-md-12 mt-1">
-                    <span className="input-group-text col-md-1" >Dirección</span>
-                    <div className="col-md-9" >
-                      <input type="text" className="form-control" placeholder="Dirección" />
-                    </div>
-                    <div className='Operations col-md-2 '>
-                      <i className="bi bi-pencil col-md-1" />
-                      <input className="form-check-input col-md-1" type="checkbox" id="checkboxNoLabel" value="" />
-                    </div>
-                  </div>
                   <div className="form-check form-switch mt-4">
                     <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                     <label className="form-check-label" for="flexSwitchCheckDefault">Habilitar búsqueda</label>
                   </div>
-                  <button >Actualizar</button>  
+                  <button >Actualizar</button>
                 </form>
-
               </div>
             </Tabs.Panel>
 
@@ -155,67 +178,59 @@ const Page = () => {
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                   </figure>
                 </div>
-                <form>
-                  <div className="input-group col-md-12 mt-2">
-                    <span className="input-group-text col-md-1" >Nombre</span>
-                    <div className="col-md-9" >
-                      <input type="text" className="form-control" placeholder="Nombre" />
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
-                  <div className="input-group col-md-11 mt-1">
-                    <span className="input-group-text col-md-1" >Especie</span>
-                    <div className="col-md-9" >
-                      <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Especie</option>
-                        <option value="1">Gato</option>
-                        <option value="2">Perro</option>
-                      </select>
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
-                  <div className="input-group col-md-11 mt-1">
-                    <span className="input-group-text col-md-1" >Raza</span>
-                    <div className="col-md-9" >
-                      <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Raza</option>
-                        <option value="1">Gato</option>
-                        <option value="2">Perro</option>
-                      </select>
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
-                  <div className="input-group col-md-11 mt-1">
-                    <span className="input-group-text col-md-1" >Género</span>
-                    <div className="col-md-9" >
-                      <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Género</option>
-                        <option value="1">Macho</option>
-                        <option value="2">Hembra</option>
-                      </select>
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
-                  <div className="input-group col-md-11 mt-1">
-                    <span className="input-group-text col-md-1" >Edad</span>
-                    <div className="col-md-1" >
-                      <input type="number" className="form-control" placeholder="Edad" />
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
-                  <div className="input-group col-md-11 mt-1">
-                    <span className="input-group-text col-md-1" >Color</span>
-                    <div className="col-md-9" >
-                      <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Color</option>
-                        <option value="1">Amarillo</option>
-                        <option value="2">Negro</option>
-                      </select>
-                    </div>
-                    <i className="bi bi-pencil col-md-1 text-center" />
-                  </div>
+                <form onSubmit={petForm.onSubmit((values) => updatePetData(values))}>
+                  < table>
+                    <thead>
+                      <tr>
+                        <th className="col-md-1 invisible" scope="col">Items</th>
+                        <th className="col-md-9 invisible" scope="col">Expenditure</th>
+                        <th className="col-md-1 invisible" scope="col">Items</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Nombre</td>
+                        <td ><TextInput
+                          label=""
+                          placeholder="Nombre mascota"
+                          {...petForm.getInputProps('name')}
+                        /></td>
+                        <td><i className="bi bi-pencil " /></td>
+                      </tr>
+                      <tr>
+                        <td>Especie</td>
+                        <td >
+                          <Select
+                            data={species}
+                          />
+                        </td>
+                        <td><i className="bi bi-pencil " /></td>
+                      </tr>
+                      <tr>
+                        <td>Género</td>
+                        <td >
+                          <Select
+                            data={genre}
+                          />
+                        </td>
+                        <td><i className="bi bi-pencil " /></td>
+                      </tr>
+                      <tr>
+                        <td>Edad</td>
+                        <td >
+                          <NumberInput
+                            //label="Enter value between 10 and 20"
+                            placeholder="El rang de edad va de 0 a 30 años"
+                            min={0}
+                            max={30}
+                          />
+                        </td>
+                        <td><i className="bi bi-pencil " /></td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <div className="col-md-10">
-                    <span className="input-group-text col-md-2" >Otras descripciones</span>
+                    <span className="col-md-2" >Otras descripciones</span>
                     <RichTextEditor editor={editor}>
                       <RichTextEditor.Toolbar sticky stickyOffset={60}>
                         <RichTextEditor.ControlsGroup>
@@ -260,8 +275,9 @@ const Page = () => {
                       <RichTextEditor.Content />
                     </RichTextEditor>
                   </div>
-                  <button  id='BtnActualizar'>Actualizar</button> 
+                  <button id='BtnActualizar'>Actualizar</button>
                 </form>
+             
 
 
               </div>

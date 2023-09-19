@@ -19,19 +19,10 @@ const Page = () => {
   return (
     <main className="mainC">
       <article className="left">
-        <figure>
-          <img className="logoC1" src="/images/logo.png" alt="" />
-          <img className="logoC2" src="/images/huellas3.png" alt="" />
-        </figure>
+        <h2>contactanos</h2>
+        <hr />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla,
-          accusantium sunt. Neque vel expedita nulla! Est, iusto illum ex
-          cupiditate dolore veniam alias officia laudantium harum, a placeat
-          dolores quasi? <br />
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-          nulla, at totam, repellendus illum dolorem qui, animi architecto
-          cupiditate voluptatem praesentium fugiat vel expedita neque
-          consectetur! Quo, itaque? Totam, laboriosam!
+        En Found Pets, valoramos tus comentarios, preguntas y sugerencias. Nuestro equipo está siempre dispuesto a escuchar y ayudarte en todo lo que necesites. Ya sea que desees informarnos sobre una mascota perdida, obtener más información sobre nuestros servicios o simplemente saludarnos, estamos aquí para ti. No dudes en ponerte en contacto con nosotros a través de los métodos que te ofrecemos a continuación. Tu interacción es fundamental para seguir mejorando y brindando un servicio excepcional para el bienestar de las mascotas y sus dueños. ¡Esperamos con ansias escuchartez!
         </p>
       </article>
       <article className="right">
