@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(null);
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -15,12 +15,15 @@ const Header = () => {
   });
 
   const status = useSelector((store) => store.auth.status);
-  console.log(status)
+  console.log(status);
   useEffect(() => {
-    if(status==='authentucated'){}
-    setIsLogin(true)
-  }, [])
-  
+    if (status === "authenticated") {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
+
   return (
     <div className="Header__primary">
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
@@ -63,7 +66,7 @@ const Header = () => {
           damping: 20,
           delay: 1,
         }}
-        className="navbar navbar-expand-md center"
+        className="navbar navbar-expand-md "
       >
         <div className="container-fluid">
           <button
@@ -83,7 +86,7 @@ const Header = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="nav-link color"
+                  className="nav-link colorMia"
                   href="#"
                 >
                   Inicio
@@ -93,7 +96,7 @@ const Header = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="nav-link color"
+                  className="nav-link colorMia"
                   href="#"
                 >
                   Como funciona
@@ -103,7 +106,7 @@ const Header = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="nav-link color"
+                  className="nav-link colorMia"
                   href="#"
                 >
                   Acerca de nosotros
@@ -113,7 +116,7 @@ const Header = () => {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  className="nav-link color"
+                  className="nav-link colorMia"
                   href="#"
                 >
                   Comunidad
@@ -124,7 +127,7 @@ const Header = () => {
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="nav-link color"
+                    className="nav-link colorMia"
                     href="#"
                   >
                     Perfil
