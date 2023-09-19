@@ -68,10 +68,7 @@ const Page = () => {
   const handleClik = () => {
     router.push("register");
   };
-
   // const handleLogin = (data) => {
-    
-
   // };
   const onSubmit = handleSubmit((data) => {
     const data2 = data
