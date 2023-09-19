@@ -12,6 +12,12 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
+      flex-wrap: wrap;
+      .container__divSearch {
+        display: flex;
+        flex-direction: column;
+        width: 190px;
+      }
       .container__CardFound {
         display: flex;
         flex-direction: column;

@@ -34,7 +34,7 @@ const Page = () => {
       <div className="search">
         <h1 className="mb-5">Huellitas Perdidas</h1>
         <section className="search__section1">
-          <div>
+          <div className="container__divSearch">
             <h3>Peludito</h3>
             <Select
               className="mb-4"
