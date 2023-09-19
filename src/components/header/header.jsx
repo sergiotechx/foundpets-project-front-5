@@ -40,7 +40,7 @@ const Header = () => {
         {isLogin ? (
           <div className="Options">
             <h5>Bienvenido: </h5>
-            <span>Firulais</span>
+            <span>{auth.user.meta.name}</span>
             <i className="bi bi-house-door-fill fs-3"></i>
             <i className="bi bi-person-circle fs-3"></i>
           </div>
