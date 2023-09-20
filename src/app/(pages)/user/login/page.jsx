@@ -5,7 +5,7 @@ import "./login.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { startLoginWithEmailPassword, startLoginWithGoogle } from "../../../../store/auth/authActions";
+import { logoutAction, startLoginWithEmailPassword, startLoginWithGoogle } from "../../../../store/auth/authActions";
 import { chekingCredentials, loging } from "../../../../store/auth/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "@/store/store";
@@ -29,9 +29,11 @@ const Page = () => {
     reset,
   } = useForm();
 
+   const logout = ()=>{
+    dispatch(logoutAction())
+   }
   useEffect(() => {
     logout();
-    // alert("Operacion realizada")
   }, []);
 
 

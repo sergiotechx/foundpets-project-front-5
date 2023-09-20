@@ -1,28 +1,59 @@
 "use client";
-import React, { useEffect, useState } from "react";
-//import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { Avatar, Menu, Button, Text, rem } from '@mantine/core';
+import { IconSettings, IconLogout, IconUserCircle } from '@tabler/icons-react';
+import { logoutAction } from "@/store/auth/authActions";
+import Link from 'next/link'
+
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
+  const router = useRouter();
+  const dispatch = useDispatch();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
-  const status = useSelector((store) => store.auth.status);
-  console.log(status);
+  const auth = useSelector((store) => store.auth);
+
+  const goLogin = () => {
+    router.push("/user/login");
+  }
+  const goRegister = () => {
+    router.push("/user/register");
+  }
+
+
   useEffect(() => {
-    if (status === "authenticated") {
+    if (auth.status === "authenticated") {
       setIsLogin(true);
     } else {
       setIsLogin(false);
     }
   }, []);
+
+  useEffect(() => {
+
+  }, [isLogin]);
+
+  const goProfile = () => {
+    router.push("/user/profile");
+  }
+  const logout = () => {
+    dispatch(logoutAction())
+    setIsLogin(false);
+    router.push("/");
+  }
+  const goAdmin = () => {
+    router.push("/admin");
+  }
 
   return (
     <div className="Header__primary">
@@ -32,9 +63,36 @@ const Header = () => {
         {isLogin ? (
           <div className="Options">
             <h5>Bienvenido: </h5>
-            <span>Firulais</span>
-            <i className="bi bi-house-door-fill fs-3"></i>
-            <i className="bi bi-person-circle fs-3"></i>
+            <span id='name'>{auth.user.record?.name}</span>
+
+            {!isLogin ? <i className="bi bi-person-circle fs-3"></i> :
+              <Menu shadow="md" width={200}>
+                <Menu.Target>
+                  <img src={auth.user.record?.userImage} />
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item rightSection={<IconUserCircle style={{ width: rem(14), height: rem(14) }} />}
+                    onClick={() => goProfile()}
+                  >
+                    Perfil
+                  </Menu.Item >
+                  <Menu.Item rightSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+                    onClick={() => logout()}>
+                    Salir
+                  </Menu.Item>
+                  {auth.user.record.role == 2 &&
+                    <>
+                      <Menu.Label>Sistema administrativo</Menu.Label>
+                      <Menu.Item rightSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
+                        onClick={() => goAdmin()}  >
+                        Usuarios
+                      </Menu.Item >
+                    </>
+                  }
+                </Menu.Dropdown>
+              </Menu>
+            }
+
           </div>
         ) : (
           <section className="Options">
@@ -43,6 +101,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn1 "
+              onClick={goLogin}
             >
               Acceder
             </motion.button>
@@ -51,6 +110,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn2"
+              onClick={goRegister}
             >
               Registro
             </motion.button>
@@ -82,7 +142,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => { router.push("/") }}>
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -102,7 +162,7 @@ const Header = () => {
                   Como funciona
                 </motion.a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={() => { router.push("/aboutUS") }}>
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -112,28 +172,22 @@ const Header = () => {
                   Acerca de nosotros
                 </motion.a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" >
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className="nav-link colorMia"
                   href="#"
                 >
-                  Comunidad
+
+                  <Link id='forum'  href="https://foundpets.freeforums.net/" target="_blank">
+                    Comunidad
+                  </Link>
+
+
                 </motion.a>
               </li>
-              {isLogin && (
-                <li className="nav-item">
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="nav-link colorMia"
-                    href="#"
-                  >
-                    Perfil
-                  </motion.a>
-                </li>
-              )}
+
             </ul>
           </div>
         </div>

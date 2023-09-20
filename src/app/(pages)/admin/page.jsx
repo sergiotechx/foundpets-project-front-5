@@ -6,7 +6,7 @@ import { IconSearch } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDataAction, deleDataAction } from '@/store/admin/adminActions';
 import { Button, Text } from '@mantine/core';
-import { modals } from '@mantine/modals';
+import Swal from "sweetalert2";
 
 const Page = () => {
 
@@ -14,7 +14,7 @@ const Page = () => {
 
   const users = useSelector((store) => store.admin.users);
   const status = useSelector((store) => store.auth.status);
-  console.log('status',status)
+  console.log('status', status)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,27 +29,22 @@ const Page = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const handleDeleteUser = (userId) => { 
-    openModal(userId);
-  };
+  const handleDeleteUser = async (userId) => {
+    const answer = await Swal.fire({
 
-  const openModal = (userId) => modals.openConfirmModal({
-  
-    title: '¿Está seguro de realizar esta operación?',
-    children: (
-      <Text size="sm">
-        Esta acción, borrará de manera permanente al usuario.
-      </Text>
-    ),
-    labels: { confirm: 'Confirmar', cancel: 'Cancelar' },
-    confirmProps: { color: 'green' },
-    onCancel: () => console.log('Cancel'),
-    onConfirm: () =>deleteUser(userId),
-  });
-  
-  const deleteUser= (userId)=>{
-    dispatch(deleDataAction(userId));
-  }
+      title: "¿Estás seguro?",
+      text: "¿Quieres eliminar este usuario?",
+      icon: "warning",
+      confirmButtonText: "Sí",
+      confirmButtonColor: "#7FD161",
+      cancelButtonText: "No",
+      cancelButtonColor: "#CDD4DA",
+      showCancelButton: true,
+    })
+    if(answer.isConfirmed){
+      dispatch(deleDataAction(userId));
+    }
+  };
 
   return (
     <div className='AdminM'>

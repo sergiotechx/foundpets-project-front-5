@@ -6,11 +6,10 @@ import {
   logout,
   updateUser,
 } from "./authReducer";
-import { authWithEmail, createUser } from "../../lib/pocketbase";
-import { modals } from "@mantine/modals";
-import { Button } from "@mantine/core";
+import { authWithEmail, createUser, logoutPb } from "../../lib/pocketbase";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+
 
 export const checkingAuthetication = (email, password) => {
   return async (dispatch) => {
@@ -18,7 +17,9 @@ export const checkingAuthetication = (email, password) => {
   };
 };
 
- 
+
+
+
 
 export const startLoginWithGoogle = () => {
   return async (dispatch) => {
@@ -26,13 +27,19 @@ export const startLoginWithGoogle = () => {
 
     const result = await loginWithGoogle();
 
+
     console.log("resultado:", result);
 
-    if (result.meta.id != null ) {
-      dispatch(loging(result));
-      // Redirige al usuario a la página de inicio
-      //  router.push("/");
-    } else {
+
+    if (result.meta.id != null) {
+      let record = result.record;
+      let token = result.token;
+      if (record.userImage == '') {
+        record.userImage = result.meta.avatarUrl
+      }
+      dispatch(loging({ record, token }));
+    }
+    else {
       alert("No estás registrado. Por favor, regístrate primero.");
       dispatch(logout(result.errorMessage));
       return { ok: false };
@@ -48,9 +55,8 @@ export const startGoogleSignIn = () => {
       const authData2 = await loginWithGoogle();
 
       dispatch(loging(authData2));
-
-      // dispatch(addNewUser(authData2));
-    } catch (error) {
+    }
+    catch (error) {
       dispatch(logout(error.message));
     }
   };
@@ -65,29 +71,15 @@ export const startCreatingUserWithEmailPassword = (data) => {
       console.log("prueba:", result);
 
       if (result.id) {
-    //     <Button
-    //   onClick={() =>
-    //     modals.openContextModal({
-    //       modal: 'demonstration',
-    //       title: 'Genial',
-    //       innerProps: {
-    //         modalBody:
-    //           'Has creado tu cuenta exitosamente',
-    //       },
-    //     })
-    //   }
-    // >
-    //   OK!
-    // </Button>
+        const answer = await Swal.fire({
 
-    Swal.fire(
-      'Genila!',
-      'Cuenta creada Exitosamente!',
-      'success'
-    )
-        dispatch(
-          loging(result)
-        );
+          title: "Operación exitosa",
+          text: "Usuario creado",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#7FD161"
+        })
+        dispatch(loging(result));
       }
     } catch (error) {
       console.log(error.message);
@@ -100,46 +92,21 @@ export const startLoginWithEmailPassword = (data2) => {
     dispatch(chekingCredentials());
 
     try {
-      const valitation = await authWithEmail(data2);
-      const userloged = {
-        id:valitation.record.id,
-        email:valitation.record.email,
-        name:valitation.record.name,
-        avatar:valitation.record.avatar,
-        adress:valitation.record.adress,
-        ciudad:valitation.record.ciudad,
-        barrio:valitation.record.barrio,
-        mobile:valitation.record.mobile,
+
+      const validation = await authWithEmail(data2);
+      
+      if (validation.record.id != null) {
+        let record = validation.record;
+        let token = validation.token;
+        dispatch(loging({ record, token }))
       }
-      console.log("valitation:", valitation);
-      if(valitation.record.id != null){
-      //   <Button
-      //   onClick={() =>
-      //     modals.openContextModal({
-      //       modal: 'demonstration',
-      //       title: 'Bien hecho',
-      //       innerProps: {
-      //         modalBody:
-      //           'Has iniciado correctamente',
-      //       },
-      //     })
-      //   }
-      // >
-      //   OK!
-      // </Button>
-       Swal.fire(
-       'Genila!',
-       'Has iniciado secion correptamente!',
-       'success'
-     )
-        dispatch(loging(userloged))
-      }
-    } catch (error) {
-      console.log("Este:",error);
-      if(error.message === "Failed to authenticate."){
+    }
+    catch (error) {
+
+      if (error.message === "Failed to authenticate.") {
         Swal.fire({
-          title: 'Ooops!',
-          text: 'Credenciales incorreptas',
+          title: 'Falla de validación',
+          text: 'Credenciales incorrectas',
           icon: 'error',
           confirmButtonText: 'Intentar de nuevo'
         })
@@ -147,5 +114,11 @@ export const startLoginWithEmailPassword = (data2) => {
       }
     }
 
+  }
 }
-}
+export const logoutAction = () => {
+  return async (dispatch) => {
+    logoutPb()
+    dispatch(logout());
+  };
+};

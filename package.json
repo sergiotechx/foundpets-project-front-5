@@ -15,7 +15,6 @@
     "@mantine/core": "^6.0.20",
     "@mantine/form": "^7.0.0",
     "@mantine/hooks": "^6.0.20",
-    "@mantine/modals": "^6.0.20",
     "@mantine/next": "^6.0.20",
     "@mantine/tiptap": "^6.0.20",
     "@reduxjs/toolkit": "^1.9.5",
