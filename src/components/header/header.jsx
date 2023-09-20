@@ -4,11 +4,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { Avatar, Menu, Button, Text, rem } from '@mantine/core';
+import {IconSettings,IconLogout,IconUserCircle} from '@tabler/icons-react';
+import { logoutAction } from "@/store/auth/authActions";
+
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
   const router = useRouter();
+  const dispatch = useDispatch();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -23,7 +28,8 @@ const Header = () => {
   const goRegister = () => {
     router.push("/user/register");
   }
-  console.log(auth);
+
+  
   useEffect(() => {
     if (auth.status === "authenticated") {
       setIsLogin(true);
@@ -31,6 +37,19 @@ const Header = () => {
       setIsLogin(false);
     }
   }, []);
+  
+  useEffect(() => {
+  
+  }, [isLogin]);
+  
+  const goProfile = ()=>{
+    router.push("/user/profile");
+  }
+  const logout = ()=>{
+    dispatch(logoutAction())
+    setIsLogin(false);
+    router.push("/");
+  }
 
   return (
     <div className="Header__primary">
@@ -40,9 +59,27 @@ const Header = () => {
         {isLogin ? (
           <div className="Options">
             <h5>Bienvenido: </h5>
-            <span>{auth.user.meta.name}</span>
-            <i className="bi bi-house-door-fill fs-3"></i>
-            <i className="bi bi-person-circle fs-3"></i>
+            <span id='name'>{auth.user.record?.name}</span>
+            
+            {auth.user.record?.userImage == '' ? <i className="bi bi-person-circle fs-3"></i> :
+              <Menu shadow="md" width={200}>
+                <Menu.Target>
+                  <img src={auth.user.record?.userImage} />
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item rightSection={<IconUserCircle style={{ width: rem(14), height: rem(14) }} />}
+                   onClick={()=>goProfile()}
+                  >
+                        Perfil
+                  </Menu.Item >
+                  <Menu.Item rightSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
+                  onClick={()=>logout()}>
+                    Salir
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            }
+
           </div>
         ) : (
           <section className="Options">
@@ -132,18 +169,7 @@ const Header = () => {
                   Comunidad
                 </motion.a>
               </li>
-              {isLogin && (
-                <li className="nav-item">
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="nav-link colorMia"
-                    href="#"
-                  >
-                    Perfil
-                  </motion.a>
-                </li>
-              )}
+
             </ul>
           </div>
         </div>

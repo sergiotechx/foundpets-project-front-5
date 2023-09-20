@@ -7,34 +7,35 @@ const pb = new PocketBase('https://foundpets.pockethost.io');
 
 
 export const loginWithGoogle = async () => {
-  
-    
-   try {
-    const authData2 = await pb.collection('users').authWithOAuth2({ provider: 'google' });
-    const user = {
-     meta: {
-       email: authData2.meta.email,
-       id: authData2.meta.id,
-       name: authData2.meta.name,
-       avatarUrl: authData2.meta.avatarUrl,
-     },
-   };
-    
-    return authData2;
 
-   } catch (error) {
-    console.log("este es el error: ",error);
-    if(error.message == "Failed to authenticate");{
+
+  try {
+    const authData2 = await pb.collection('users').authWithOAuth2({ provider: 'google' });
+    console.log('don google', authData2)
     const user = {
       meta: {
-        email: null,
-        id: null,
-        name: null,
-        avatarUrl: null,   
-      },    
-   }     
-   return user;
-  }
-  throw error;
-     }
+        email: authData2.meta.email,
+        id: authData2.meta.id,
+        name: authData2.meta.name,
+        avatarUrl: authData2.meta.avatarUrl,
+      },
+    };
+
+    return authData2;
+
+  } catch (error) {
+    console.log("este es el error: ", error);
+    if (error.message == "Failed to authenticate"); {
+      const user = {
+        meta: {
+          email: null,
+          id: null,
+          name: null,
+          avatarUrl: null,
+        },
+      }
+      return user;
     }
+    throw error;
+  }
+}

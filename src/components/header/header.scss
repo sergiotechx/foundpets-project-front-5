@@ -21,6 +21,7 @@
     img {
       width: 10em;
     }
+   
 
     .Options {
       display: flex;
@@ -39,6 +40,20 @@
         padding: 2px;
         background-color: #ffd16d;
       }
+      #name{
+        color: #848E95;
+        font-weight: 300;
+        font-size: 0.8em;
+      }
+      img{
+        width: 3.125em;
+        height: 3.125em;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+      }
+   
+     
     }
     .center {
       display: flex;
