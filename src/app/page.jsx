@@ -6,28 +6,84 @@ import { Select } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
-import { fullDataHomeBd } from "@/lib/pocketbase";
-
+import { fullDataHomeBd, getBarrios } from "@/lib/pocketbase";
+import { cities, species } from "@/lib/constants";
 
 const Page = () => {
+  const [barriospetsLost, setBarriosPetsLost] = useState(null);
+  const [copybarriospetsLost, setCopyBarriosPetsLost] = useState([]);
   const [petsLost, setPetsLost] = useState(null);
+  const [petsLostprops, setPetsLostprops] = useState(null);
+
   const [animal, setAnimal] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [barrio, setBarrio] = useState("");
+  const [formatedBarrio, setFormatedBarrio] = useState([]);
+
+  const makeFormatedBarriosData = (barrios) => {
+    let formatedBarrios = [];
+    barrios.forEach((barrio) => {
+      formatedBarrios.push({
+        label: barrio.descripcion,
+        value: barrio.id,
+      });
+    });
+    return formatedBarrios;
+  };
+  const fetchData = async () => {
+    try {
+      const response = await fullDataHomeBd();
+      const barrios = await getBarrios();
+      let formatedBarrios = makeFormatedBarriosData(barrios);
+      setPetsLost(response);
+      setPetsLostprops(response);
+      setBarriosPetsLost(barrios);
+      setCopyBarriosPetsLost(barrios);
+      //setFormatedBarrio(formatedBarrios);
+      console.log(barrios);
+      console.log("formatedBarrios", formatedBarrios);
+    } catch (error) {
+      console.error("Error al obtener datos:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fullDataHomeBd();
-        setPetsLost(response);
-        console.log(response);
-      } catch (error) {
-        console.error("Error al obtener datos:", error);
-      }
-    };
-
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log("animales perdidos", petsLost?.records);
+    const objetosFiltrados = petsLost?.records.filter(
+      (objeto) => objeto.type === animal
+    );
+    const setdata = {
+      records: objetosFiltrados,
+      length: objetosFiltrados?.length,
+    };
+    console.log(setdata);
+    setPetsLostprops(setdata);
+  }, [animal]);
+
+  useEffect(() => {
+    console.log("animales perdidos", petsLost?.records);
+    console.log("barrios", barriospetsLost);
+    const barriosFiltrados = barriospetsLost?.filter(
+      (objeto) => objeto.ciudad === ciudad
+    );
+    setCopyBarriosPetsLost(barriosFiltrados);
+    let formatedBarriosFilter = makeFormatedBarriosData(copybarriospetsLost);
+    setFormatedBarrio(formatedBarriosFilter);
+    console.log(barriosFiltrados);
+    const objetosFiltrados = petsLost?.records.filter(
+      (objeto) => objeto.type === animal && objeto.ciudad === ciudad
+    );
+    const setdata = {
+      records: objetosFiltrados,
+      length: objetosFiltrados?.length,
+    };
+    console.log(setdata);
+    setPetsLostprops(setdata);
+  }, [ciudad]);
 
   return (
     <div className="home p-3">
@@ -41,10 +97,10 @@ const Page = () => {
               className="mb-4"
               placeholder="Peludito"
               searchable
-              onSearchChange={setAnimal}
-              searchValue={animal}
+              value={animal}
+              onChange={setAnimal}
               nothingFound={`No encontramos "${animal}" `}
-              data={["Perro", "Gato"]}
+              data={species}
             />
             <h3>Ubicación</h3>
             <h5>Ciudad</h5>
@@ -52,24 +108,26 @@ const Page = () => {
               className="mb-4"
               placeholder="Ciudad"
               searchable
-              onSearchChange={setCiudad}
-              searchValue={ciudad}
+              value={ciudad}
+              onChange={setCiudad}
               nothingFound={`No encontramos "${ciudad}" `}
-              data={["Medellin", "Bello", "Itagui", "Barbosa"]}
+              data={cities}
+              disabled={!animal}
             />
             <h5>Barrio</h5>
             <Select
               className="mb-4"
               placeholder="Barrio"
               searchable
-              onSearchChange={setBarrio}
-              searchValue={barrio}
+              value={barrio}
+              onChange={setBarrio}
+              disabled={!ciudad}
               nothingFound={`No encontramos "${barrio}" `}
-              data={["Manrique", "Robledo", "picacho", "los colores"]}
+              data={formatedBarrio}
             />
           </div>
           <div className="container__CardFound">
-            <CardFound petsLost={petsLost} />
+            <CardFound petsLostprops={petsLostprops} />
             <Pagination className="pt-5" total={10} color="lime" />
           </div>
         </section>
