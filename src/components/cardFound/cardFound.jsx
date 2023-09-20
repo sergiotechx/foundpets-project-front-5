@@ -3,18 +3,18 @@ import React, { useEffect } from "react";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import "./cardFound.scss";
 
-const CardFound = ({ petsLost }) => {
+const CardFound = ({ petsLostprops }) => {
   const cardStyle = {
     width: "18rem",
   };
 
   useEffect(() => {
-    console.log(petsLost);
-  }, [petsLost]);
+    console.log(petsLostprops);
+  }, [petsLostprops]);
 
   return (
     <div className="grid">
-      {petsLost?.records.map((lost, index) => (
+      {petsLostprops?.records?.map((lost, index) => (
         <Card
           key={index}
           shadow="sm"
@@ -26,7 +26,6 @@ const CardFound = ({ petsLost }) => {
           <Card.Section>
             <Image src={lost.image1} height={160} alt="Norway" />
           </Card.Section>
-          
 
           <Group position="apart" mt="md" mb="xs">
             <Text weight={500}>{lost.petName}</Text>
