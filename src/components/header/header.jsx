@@ -8,6 +8,7 @@ import { Avatar, Menu, Button, Text, rem } from '@mantine/core';
 import { IconSettings, IconLogout, IconUserCircle } from '@tabler/icons-react';
 import { logoutAction } from "@/store/auth/authActions";
 import Link from 'next/link'
+import { clearUserDataAction } from "@/store/user/userActions";
 
 
 const Header = () => {
@@ -47,6 +48,7 @@ const Header = () => {
     router.push("/user/profile");
   }
   const logout = () => {
+    dispatch(clearUserDataAction())
     dispatch(logoutAction())
     setIsLogin(false);
     router.push("/");
@@ -80,7 +82,8 @@ const Header = () => {
                     onClick={() => logout()}>
                     Salir
                   </Menu.Item>
-                  {auth.user.record.role == 2 &&
+                  
+                  {auth.user.record?.role == 2 &&
                     <>
                       <Menu.Label>Sistema administrativo</Menu.Label>
                       <Menu.Item rightSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}

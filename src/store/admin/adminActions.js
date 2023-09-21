@@ -1,7 +1,4 @@
-'use client'
 import { setData, deleteUser } from "./adminReducer";
-import PocketBase from 'pocketbase';
-const pb = new PocketBase('https://foundpets.pockethost.io');
 import { getUsers,deleteUserBd } from '../../lib/pocketbase'
 
 
