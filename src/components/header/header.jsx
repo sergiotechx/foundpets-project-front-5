@@ -80,7 +80,8 @@ const Header = () => {
                     onClick={() => logout()}>
                     Salir
                   </Menu.Item>
-                  {auth.user.record.role == 2 &&
+                  
+                  {auth.user.record?.role == 2 &&
                     <>
                       <Menu.Label>Sistema administrativo</Menu.Label>
                       <Menu.Item rightSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
