@@ -1,27 +1,54 @@
 "use client";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
-import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
+import { Card, Image, Text, Button, Group } from "@mantine/core";
 import "./cardFound.scss";
 
-const CardFound = ({ petsLostprops }) => {
+const CardFound = ({ currentData }) => {
   const cardStyle = {
     width: "18rem",
   };
 
   useEffect(() => {
-    console.log(petsLostprops);
-  }, [petsLostprops]);
+    console.log(currentData);
+  }, [currentData]);
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
 
   return (
-    <div className="grid">
-      {petsLostprops?.records?.map((lost, index) => (
-        <Card
+    <motion.div
+      className="grid "
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {currentData?.map((lost, index) => (
+        <motion.Card
           key={index}
           shadow="sm"
           padding="lg"
           radius="md"
           withBorder
           style={{ width: "300px", height: "auto" }}
+          variants={item}
         >
           <Card.Section>
             <Image src={lost.image1} height={160} alt="Norway" />
@@ -29,21 +56,19 @@ const CardFound = ({ petsLostprops }) => {
 
           <Group position="apart" mt="md" mb="xs">
             <Text weight={500}>{lost.petName}</Text>
-            <Badge color="pink">On Sale</Badge>
+            <span className="fs-5 text-danger">{lost.BarrioName}</span>
           </Group>
 
           <Text size="sm" color="dimmed">
-            With Fjord Tours you can explore more of the magical fjord
-            landscapes with tours and activities on and around the fjords of
-            Norway
+            {lost.petDescrription}
           </Text>
 
           <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-            Book classic tour now
+            Mas info...
           </Button>
-        </Card>
+        </motion.Card>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
