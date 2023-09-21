@@ -131,9 +131,10 @@ const Page = () => {
         </div> */}
         <div className="redireccion">
           <p>¿Ya tienes cuenta?</p>
-          <span className="redireccion__link" onClick={handleClik}>
+          <h6
+            className="redireccion__link" onClick={handleClik}>
             Ingresar
-          </span>
+          </h6>
         </div>
       </form>
       <div className="logo3R">

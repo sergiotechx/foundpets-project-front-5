@@ -459,48 +459,11 @@
       transform: rotateX(60deg);
     }
   }
-  @media(max-width: 550px){
+  @media(max-width: 768px){
     .logo3{
       display: none;
     }
-  }
-  @media(max-width: 415px){
-    .center {
-      position: relative;
-      top: 320px;
-      left: 25%;
-      display: inline-block;
-      z-index: 1;
-      margin-top: 90px;
-      width: 370px;
-      height: 600px;
-      border-radius: 3px;
-      transform: translate(-50%, -50%);
-      overflow: hidden;
-      background-image: linear-gradient(to top right, #f9a743, #f9db5f);
-    }
     .logo{
-
-      padding-left: 25%;
-      padding-top: 0;
-      figure{
-          margin: 0;
-      }
-    }
-    .images{
-      display: flex;
-      flex-direction: row;
-      &__f1{
-        padding-top: 20px;
-        margin-left: 10px;
-        display: flex;
-        width: 190px;
-        height: auto;
-        z-index: 2;
-      } 
-      &__f2{
-        display: none;
-      } 
-      
+      display: none;
     }
   }

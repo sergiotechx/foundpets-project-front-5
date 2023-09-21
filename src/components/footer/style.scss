@@ -1,23 +1,25 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-  background: linear-gradient(to right, #8FD14F, #FFD16D); /* Aplica el degradado */
-   padding: 30px; 
-  font-family: Arial, sans-serif; 
-} 
-hr{
-  width: 100%; 
-  border-top: .2rem solid #333; 
+  align-items: center;
+  background: linear-gradient(to right, #8FD14F, #FFD16D);
+  padding: 30px;
+  font-family: Arial, sans-serif;
 }
+
+hr {
+  width: 100%;
+  border-top: 0.2rem solid #333;
+}
+
 .hr {
   display: none;
-} 
+}
 
 .contanto {
   text-align: center;
-  font-size: 22px; 
-  line-height: 1.5; 
+  font-size: 22px;
+  line-height: 1.5;
 }
 
 .footer-img {
@@ -28,32 +30,46 @@ hr{
 
 .redes {
   margin: 1rem;
-  font-size: 24px; 
-  cursor: pointer; 
+  font-size: 24px;
+  cursor: pointer;
 }
-.redesc{
+
+.redesc {
+  position: relative;
   text-align: center;
 }
 
-span {
-  text-align: center;
-  font-size: 2rem; 
-}
 
-@media(max-width:768px){
-  .footer{
-      display: flex;
-      flex-direction: column;
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    text-align: center; 
   }
-  .hr {   
+  hr{
+    display: none;
+  }
+
+  .hr {
     display: block;
-    border-top: .2rem solid #333; 
-   }
-  .footer-img{
-      margin: 2rem;
-      width: 30%;
+    border-top: .1rem solid #333;
   }
-  .contanto{
-      margin: 1rem;
+
+  .footer-img {
+    width: 30%;
   }
+
+  .contanto {
+    margin-top: 6rem;
+    font-size: 18px; 
+  }
+  
+.redesc {
+  display: flex;
+  align-items: center;
+  margin-top: 7.5rem;
+  position: absolute;
+  h2{
+    font-size: xx-large;
+  }
+}
 }

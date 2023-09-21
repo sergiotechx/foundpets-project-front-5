@@ -23,7 +23,6 @@ const Footer = () => {
       © 2023 Found Pet. 
       <br />
       Todos los derechos reservados. 
-      
       </div>
 
       <div className='redesc'>
