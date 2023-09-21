@@ -1,0 +1,54 @@
+#PetTab {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .PetGallery {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: auto;
+        justify-content: space-between;
+
+        figure {
+            margin-top: 1em;
+            position: relative;
+
+            img {
+
+                max-width: 10em;
+            }
+
+            #CameraIcon {
+                position: absolute;
+                left: -1em;
+                bottom: -0.5em;
+                cursor: pointer;
+            }
+
+            #TrashIcon {
+                position: absolute;
+                right: -0.5em;
+                bottom: -0.5em;
+                cursor: pointer;
+            }
+        }
+    }
+
+    form {
+
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        align-self: center;
+
+        #BtnActualizar {
+            margin-top: 1em;
+            background-color: #7FD262;
+            border: none;
+            border-radius: 5px;
+            width: fit-content;
+        }
+    }
+}

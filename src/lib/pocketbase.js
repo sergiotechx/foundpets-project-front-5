@@ -1,9 +1,8 @@
 import PocketBase from "pocketbase";
+import { DBURL } from "./constants";
 
-const url = "https://foundpets.pockethost.io";
 
-//const url = "http://127.0.0.1:8090/"
-export const client = new PocketBase(url);
+export const client = new PocketBase(DBURL);
 
 export const createUser = async (data) => {
   const newUser = {
@@ -59,18 +58,56 @@ export const logoutPb = () => {
   const result = client.authStore.clear();
 }
 
+export const getUser = async (id) => {
+  const record = await client.collection('users').getOne(id);
+  return record;
+}
+
 export const getUsers = async () => {
-  const records = await client.collection('users').getFullList({
-    sort: '-created',
-  });
-  return records;
+  try {
+    const records = await client.collection('users').getFullList({
+      sort: '-created',
+    });
+    return records;
+  }
+  catch (error) {
+    return {}
+  }
+
 }
 
 export const deleteUserBd = async (id) => {
   const operation = await client.collection('users').delete(id);
   return operation;
 }
+export const updateUserBd = async (id, name, email, mobile,
+  address, userImage, lost, publicAddress,
+  publicEmail, publicMobile) => {
 
+  const data = {
+    name,
+    email,
+    mobile,
+    address,
+    userImage,
+    lost,
+    publicAddress,
+    publicEmail,
+    publicMobile
+  }
+  const record = await pb.collection('users').update(id, data);
+  return record
+}
+
+export const getPet = async (ownerId) => {
+  try {
+    const record = await client.collection('pets').getFirstListItem(`owner="${ownerId}"`);
+    return record;
+  }
+  catch (error) {
+    return {}
+  }
+}
 
 export const fullDataHomeBd = async () => {
   const records = await client.collection('lostPets').getFullList();
@@ -82,6 +119,8 @@ export const getBarrios = async () => {
   const records = await client.collection('barrios').getFullList();
   return records
 }
+
+
 
 
 

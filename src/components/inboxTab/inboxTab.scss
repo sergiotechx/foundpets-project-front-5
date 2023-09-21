@@ -1,0 +1,27 @@
+#InboxTab {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .InboxTabH {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+
+        img {
+            max-width: 7em;
+        }
+    }
+
+    table {
+        width: 90%;
+        margin: auto;
+
+        i {
+            cursor: pointer;
+        }
+    }
+}

@@ -23,11 +23,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const currentPath = usePathname();
-  const hiddenHeader = !(
+  let hiddenHeader = !(
     currentPath === "/user/login" ||
-    currentPath === "/user/register" ||
-    currentPath === "/user/profile"
+    currentPath === "/user/register" //||
+   // currentPath === "/user/profile"
   );
+ 
   return (
     <html lang="es">
       <head>
