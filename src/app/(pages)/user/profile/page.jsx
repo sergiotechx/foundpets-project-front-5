@@ -1,23 +1,41 @@
 'use client'
-import React from 'react'
-import { TextInput, PasswordInput, Button, Modal, Loader, Select, NumberInput, Tabs } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { useForm } from '@mantine/form';
+import React, { useEffect } from 'react'
+import { Tabs } from '@mantine/core';
 import { IconPawFilled, IconUserCircle, IconMail, IconMapPinHeart } from '@tabler/icons-react';
-import { RichTextEditor, Link } from '@mantine/tiptap';
-import { useEditor } from '@tiptap/react';
-import Highlight from '@tiptap/extension-highlight';
-import StarterKit from '@tiptap/starter-kit';
-import Underline from '@tiptap/extension-underline';
-import TextAlign from '@tiptap/extension-text-align';
-import Superscript from '@tiptap/extension-superscript';
-import SubScript from '@tiptap/extension-subscript';
 import UserTab from '@/components/userTab/userTab';
 import PetTab from '@/components/petTab/petTab';
 import InboxTab from '@/components/inboxTab/inboxTab';
 import MapTab from '@/components/mapTab/mapTab';
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import './profile.scss'
+import { getUserDataAction } from '@/store/user/userActions';
+
 const Page = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth);
+  const user = useSelector((store) => store.user);
+  const router = useRouter();
+  const loadData = () => {
+    if (Object.entries(user.user).length === 0) {
+        console.log(auth)
+       dispatch(getUserDataAction(auth.user.record.id))
+    }
+    else{
+      if(auth.user.id !=user.user.id){
+        dispatch(getUserDataAction(auth.user.record.id))
+      }
+    }
+  }
+  useEffect(() => {
+   
+    if (auth.status != "not-authenticated") {
+      loadData()
+    }
+    else{
+      router.push('/')
+    }
+  }, [])
 
 
   return (

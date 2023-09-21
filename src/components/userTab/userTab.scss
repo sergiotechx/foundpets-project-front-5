@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100%;
     margin-top: 0.5em;
+
     figure {
         display: flex;
         flex-direction: row;
@@ -10,19 +11,30 @@
         width: fit-content;
         position: relative;
         align-self: center;
-        img{
+
+        img {
             width: 3.125em;
             height: 3.125em;
             border-radius: 50%;
             object-fit: cover;
         }
-               #CameraIcon {
+
+        #cloudinary {
+            position: absolute;
+            border: none;
+            background-color: transparent;
+            margin: 0;
+            top: 3em;
+            left: -1em;
+            #CameraIcon {
                 position: absolute;
                 left: -1em;
                 bottom: 0;
                 cursor: pointer;
-            
+            }
         }
+
+        
     }
 
     form {
@@ -36,12 +48,12 @@
             flex-direction: row;
             justify-content: space-around;
         }
-        
-        .bi-pencil{
+
+        .bi-pencil {
             cursor: pointer;
             margin-left: 0.3em;
         }
-       
+
 
         button {
             margin-top: 1em;

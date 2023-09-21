@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, PasswordInput, Button, Modal, Loader, Select, NumberInput, Tabs, Switch } from '@mantine/core';
+import { TextInput, Switch } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { CldUploadButton } from "next-cloudinary";
+import Swal from "sweetalert2";
 import './userTab.scss';
+import { updateUserDataAction } from "@/store/user/userActions";
 
 const UserTab = () => {
+  const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
+  const user = useSelector((store) => store.user);
   const router = useRouter();
 
   const [usrName, setUsrName] = useState('');
@@ -25,34 +30,54 @@ const UserTab = () => {
 
   const updateUserData = async (event) => {
     event.preventDefault();
-    console.log('lo que va a enviar')
+
+    const answer = await Swal.fire({
+      title: "Operación de sistema",
+      text: "¿Desea actualizar los datos?",
+      icon: "question",
+      confirmButtonText: "Sí",
+      confirmButtonColor: "#7FD161",
+      cancelButtonText: "No",
+      cancelButtonColor: "#CDD4DA",
+      showCancelButton: true,
+    })
+    if (answer.isConfirmed) {
+  
+      
+      dispatch(updateUserDataAction(auth.user.record.id,usrName,usrEmail,usrMobile,
+                                   usrAddress,usrImage,usrLost,usrAddressVisible,
+                                   usrEmailVisible,usrMobileVisible ));
+    }
 
   }
   const loadData = () => {
-    setUsrImage(auth.user.record?.userImage)
-    setUsrName(auth.user.record?.name)
-    setUsrEmail(auth.user.record?.email)
-    setUsrMobile(auth.user.record?.mobile)
-    setUsrAddress(auth.user.record?.address)
-    setUsrLost(auth.user.record?.lost)
-    setUsrEmailVisible(auth.user.record?.publicEmail)
-    setUsrMobileVisible(auth.user.record?.publicMobile)
-    setUsrAddressVisible(auth.user.record?.publicAddress)
+    console.log(user.user)
+    setUsrImage(user.user?.userImage)
+    setUsrName(user.user?.name)
+    setUsrEmail(user.user?.email)
+    setUsrMobile(user.user?.mobile)
+    setUsrAddress(user.user?.address)
+    setUsrLost(user.user?.lost)
+    setUsrEmailVisible(user.user?.publicEmail)
+    setUsrMobileVisible(user.user?.publicMobile)
+    setUsrAddressVisible(user.user?.publicAddress)
+   }
 
-    console.log(auth.user.record)
-  }
 
   useEffect(() => {
-
-    if (auth.status === "not-authenticated") {
-      // router.push('/')
+    if (auth.status != "not-authenticated") {
+        loadData()
     }
-    else {
-      loadData()
+ }, [user])
+
+
+  function handleOnUpload(result, operations) {
+    if (!result.event === "success") {
+      updateError(result?.info);
+      return;
     }
-
-
-  }, [])
+    setUsrImage(result?.info.secure_url);
+  }
 
 
   return (
@@ -61,7 +86,14 @@ const UserTab = () => {
 
         {usrImage ? <img src={usrImage} /> : <i className="bi bi-person-circle fs-1"></i>}
 
-        <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
+
+        <CldUploadButton
+          uploadPreset="FoundPets"
+          onUpload={handleOnUpload}
+          id="cloudinary"
+        >
+          <i className="bi bi-camera fs-5" id='CameraIcon' />
+        </CldUploadButton>
 
       </figure>
       <form onSubmit={(event) => updateUserData(event)}>
