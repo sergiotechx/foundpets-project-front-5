@@ -6,7 +6,7 @@ import { Select } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
-import { fullDataHomeBd, getBarrios } from "@/lib/pocketbase";
+import { fullDataHomeBd, getBarrios, getOneLostPet } from "@/lib/pocketbase";
 import { cities, species } from "@/lib/constants";
 import { imagesHome } from "@/lib/constants";
 
@@ -41,13 +41,14 @@ const Page = () => {
     try {
       const response = await simulateDelayedFetch(fullDataHomeBd, 3000);
       const barrios = await getBarrios();
+      const oneResponde = await getOneLostPet();
       let formatedBarrios = makeFormatedBarriosData(barrios);
       setPetsLost(response);
       setPetsLostprops(response);
       setBarriosPetsLost(barrios);
       //setCopyBarriosPetsLost(barrios);
-      console.log(response);
-      console.log("formatedBarrios", formatedBarrios);
+
+      console.log("un solo animal perdido", oneResponde);
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
