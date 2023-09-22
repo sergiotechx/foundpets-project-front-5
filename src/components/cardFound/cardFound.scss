@@ -11,3 +11,21 @@
 }
 
 
+
+.contactOwner{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  input{
+    border-radius: 8px;
+    border: 1px solid black;
+    padding-left: 8px;
+   
+  }
+}
+
+textarea{
+  border-radius: 8px;
+  resize: none;
+  padding: 6px;
+}

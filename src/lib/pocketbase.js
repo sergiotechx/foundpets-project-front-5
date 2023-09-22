@@ -120,6 +120,34 @@ export const getBarrios = async () => {
   return records;
 };
 
+
+
+
+
+
+export const newMessage = async (dataC) => {
+
+  const messageNew = {
+    
+    message: dataC.description,
+    contactName: dataC.name,
+    contactData: dataC.email
+  };
+
+    try {
+      const record = await client.collection('messages').create(messageNew);
+      return record;
+    } catch (error) {
+      console.log("error aca:", error);
+    }
+}
+
+
+
+
+
+
+
 export const getOneLostPet = async (id) => {
   console.log(id);
   const record = await client.collection("lostPets").getOne(id, {

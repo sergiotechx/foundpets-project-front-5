@@ -147,6 +147,8 @@ const Page = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = petsLostprops?.records.slice(startIndex, endIndex);
 
+  
+
   return (
     <div className="home p-3">
       <Carrusel imagesHome={imagesHome} />
@@ -208,6 +210,7 @@ const Page = () => {
                 total={totalPages}
                 value={currentPage}
                 onChange={handlePageChange}
+                
               />
             </div>
           </section>
