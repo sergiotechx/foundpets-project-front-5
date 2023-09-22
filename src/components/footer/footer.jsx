@@ -26,7 +26,7 @@ const Footer = () => {
       </div>
 
       <div className='redesc'>
-        <h2>
+        <h2 className='h2'>
         Siguenos
         </h2>
         <hr  />

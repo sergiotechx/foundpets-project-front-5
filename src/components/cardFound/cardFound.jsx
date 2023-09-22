@@ -46,6 +46,7 @@ const CardFound = ({ currentData }) => {
           shadow="sm"
           padding="lg"
           radius="md"
+          className="card"
           withBorder
           style={{ width: "300px", height: "auto" }}
           variants={item}
