@@ -120,6 +120,7 @@ const Header = () => {
           </section>
         )}
       </div>
+      <div className="div">
       <motion.nav
         initial={{ scale: 0 }}
         animate={{ rotate: 360, scale: 1 }}
@@ -195,6 +196,8 @@ const Header = () => {
           </div>
         </div>
       </motion.nav>
+      </div>
+     
     </div>
   );
 };

@@ -75,7 +75,26 @@
       text-decoration: none;
       color: #ffff;
     }
-   
   }
- 
+}
+@media(max-width:768px){
+  .div{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    margin-right: 2rem !important;
+    .container-fluid{
+      padding: 0 !important;
+      display: flex !important;
+      justify-content: end !important;
+    }
+    .navbar{
+      border-radius: .5rem !important;
+      padding: 0 !important;
+    }
+    .nav-item {
+      margin-left: 1.2rem !important;
+    }
+  }
+  
 }
