@@ -1,9 +1,13 @@
 .grid {
   display: flex;
-  padding: 0px;
   width: 100%;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
   overflow: hidden;
 }
+.card{
+  padding: 1rem;
+}
+
+
