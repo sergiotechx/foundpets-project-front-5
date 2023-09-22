@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './inboxTab.scss'
+import { useSelector } from 'react-redux'
+import { ownerMessages } from '@/lib/pocketbase';
 
 const InboxTab = () => {
+
+  const user = useSelector((store) => store.user);
+
+  const userMessageId = user.user.id
+
+  console.log("entro", userMessageId);
+
+useEffect(() => {
+  ownerMessages(userMessageId)
+    
+  }, []);
+
+  // ownerMessages("9eslkd9relyqzgh");
+
   return (
     <div id='InboxTab'>
     <div className='InboxTabH'>

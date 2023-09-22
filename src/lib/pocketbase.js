@@ -142,9 +142,16 @@ export const newMessage = async (dataC) => {
     }
 }
 
+export const ownerMessages = async (userMessageId) => {
+  const records3 = await client.collection('messages').getFullList({
+      filter: `petOwner="${userMessageId}"`,
+  });
+  console.log("mesajes:", records3);
+  return records3;
+  
+}
 
-
-
+// ownerMessages("9eslkd9relyqzgh");
 
 
 
