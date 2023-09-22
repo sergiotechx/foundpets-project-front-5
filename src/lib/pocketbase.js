@@ -28,12 +28,6 @@ export const createUser = async (data) => {
 
 export const authWithEmail = async (data2) => {
   const authData = await client.collection('users').authWithPassword(data2.email, data2.password);
-
-  // after the above you can also access the auth data from the authStore
-  console.log(client.authStore.isValid);
-  console.log(client.authStore.token);
-  console.log(client.authStore.model.id);
-  console.log(authData);
   return authData;
 }
 
@@ -81,22 +75,32 @@ export const deleteUserBd = async (id) => {
   return operation;
 }
 export const updateUserBd = async (id, name, email, mobile,
-  address, userImage, lost, publicAddress,
-  publicEmail, publicMobile) => {
+  address, ciudad, barrio, userImage, lost, publicAddress,
+  publicEmail, publicMobile,publicCiudad, publicBarrio) => {
 
   const data = {
     name,
     email,
     mobile,
     address,
+    ciudad,
+    barrio,
     userImage,
     lost,
     publicAddress,
     publicEmail,
-    publicMobile
+    publicMobile,
+    publicCiudad, 
+    publicBarrio
   }
-  const record = await pb.collection('users').update(id, data);
-  return record
+  try {
+    const record = await client.collection('users').update(id, data);
+    return record
+  }
+  catch (error) {
+
+    throw error;
+  }
 }
 
 export const getPet = async (ownerId) => {

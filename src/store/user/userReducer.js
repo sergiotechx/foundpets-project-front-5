@@ -18,7 +18,12 @@ export const userSlice = createSlice({
             state.user = {}
             state.pet = {}
             state.errorMessage = null
+        },
+        updateUser:(state, action) => {
+           console.log(action.payload)
+            state.user = action.payload.user
+            state.errorMessage = null
         }
     }
 });
-export const { setData } = userSlice.actions;
+export const { setData,clearData, updateUser } = userSlice.actions;

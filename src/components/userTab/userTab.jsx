@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, Switch } from '@mantine/core';
+import { TextInput, Switch, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { CldUploadButton } from "next-cloudinary";
 import Swal from "sweetalert2";
 import './userTab.scss';
 import { updateUserDataAction } from "@/store/user/userActions";
+import { cities } from "@/lib/constants";
+import { getBarrios } from "@/lib/pocketbase";
 
 const UserTab = () => {
   const dispatch = useDispatch();
@@ -18,14 +20,22 @@ const UserTab = () => {
   const [usrMobile, setUsrMobile] = useState('');
   const [usrAddress, setUsrAddress] = useState('');
   const [usrNameDisabled, setUsrNameDisabled] = useState(true);
-  const [usrEmailDisabled, setUsrEmailDisabled] = useState(true);
+
   const [usrMobileDisabled, setUsrMobileDisabled] = useState(true);
   const [usrAddressDisabled, setUsrAddressDisabled] = useState(true);
   const [usrEmailVisible, setUsrEmailVisible] = useState(true);
   const [usrMobileVisible, setUsrMobileVisible] = useState(true);
   const [usrAddressVisible, setUsrAddressVisible] = useState(true);
+  const [usrCityVisible, setUsrCityVisible] = useState(true);
+  const [usrBarrioVisible, setUsrBarrioVisible] = useState(true);
   const [usrLost, setUsrLost] = useState('');
   const [usrImage, setUsrImage] = useState('');
+  const [usrCity, setUsrCity] = useState('');
+  const [usrCityDisabled, setUsrCityDisabled] = useState(true);
+  const [usrBarrioDisabled, setUsrBarrioDisabled] = useState(true);
+  const [usrBarrio, setUsrBarrio] = useState('');
+  const [formatedBarrios, setFormatedBarrios] = useState('');
+  const [barrios, setBarrios] = useState([])
 
 
   const updateUserData = async (event) => {
@@ -42,33 +52,64 @@ const UserTab = () => {
       showCancelButton: true,
     })
     if (answer.isConfirmed) {
-  
-      
-      dispatch(updateUserDataAction(auth.user.record.id,usrName,usrEmail,usrMobile,
-                                   usrAddress,usrImage,usrLost,usrAddressVisible,
-                                   usrEmailVisible,usrMobileVisible ));
+
+
+      dispatch(updateUserDataAction(auth.user.record.id, usrName, usrEmail, usrMobile,
+        usrAddress, usrCity, usrBarrio, usrImage, usrLost, usrAddressVisible,
+        usrEmailVisible, usrMobileVisible, usrCityVisible, usrBarrioVisible));
     }
 
   }
   const loadData = () => {
-    console.log(user.user)
-    setUsrImage(user.user?.userImage)
+
+    let usrImage = user.user?.userImage;
+    if (usrImage == '') {
+      usrImage = auth.user.record.userImage;
+    }
+
+    setUsrImage(usrImage)
     setUsrName(user.user?.name)
     setUsrEmail(user.user?.email)
     setUsrMobile(user.user?.mobile)
     setUsrAddress(user.user?.address)
+    setUsrCity(user.user?.ciudad)
+    setUsrBarrio(user.user?.barrio)
     setUsrLost(user.user?.lost)
     setUsrEmailVisible(user.user?.publicEmail)
     setUsrMobileVisible(user.user?.publicMobile)
     setUsrAddressVisible(user.user?.publicAddress)
-   }
+    setUsrCityVisible(user.user?.publicCiudad) 
+    setUsrBarrioVisible(user.user?.publicBarrio)
+  }
 
+  const loadBarrios = async () => {
+    if (barrios.length == 0) {
+      setBarrios(await getBarrios())
+    }
+  }
+  const createFormatedBarrio = async () => {
+    let preformated = barrios.filter((barrio) => barrio.ciudad == Number(usrCity))
+
+    let temFormatedBarrios = []
+    preformated.forEach((barrio) => {
+      temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
+    })
+    setFormatedBarrios(temFormatedBarrios)
+  }
 
   useEffect(() => {
     if (auth.status != "not-authenticated") {
-        loadData()
+      loadData()
     }
- }, [user])
+  }, [user])
+
+  useEffect(() => {
+    createFormatedBarrio()
+  }, [usrCity])
+
+  useEffect(() => {
+    loadBarrios()
+  }, [])
 
 
   function handleOnUpload(result, operations) {
@@ -128,9 +169,9 @@ const UserTab = () => {
 
                 value={usrEmail}
                 onChange={(event) => setUsrEmail(event.currentTarget.value)}
-                disabled={usrEmailDisabled}
+                disabled={true}
               /></td>
-              <td><i className="bi bi-pencil " onClick={() => setUsrEmailDisabled(!usrEmailDisabled)} /></td>
+              <td><i className="bi bi-pencil invisible" /></td>
               <td><input type="checkbox" checked={usrEmailVisible} onChange={(event) => setUsrEmailVisible(event.currentTarget.checked)} /></td>
             </tr>
             <tr>
@@ -159,6 +200,28 @@ const UserTab = () => {
               <td><i className="bi bi-pencil " onClick={() => setUsrAddressDisabled(!usrAddressDisabled)} /></td>
               <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" checked={usrAddressVisible} onChange={(event) => setUsrAddressVisible(event.currentTarget.checked)} /></td>
             </tr>
+            <tr>
+              <td>Ciudad</td>
+              <td ><Select data={cities} value={usrCity} onChange={(event) => { setUsrCity(event); setUsrBarrio('') }} disabled={usrCityDisabled} /></td>
+              <td><i className="bi bi-pencil " onClick={() => setUsrCityDisabled(!usrCityDisabled)} /></td>
+              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrCityVisible} onChange={(event) => setUsrCityVisible(event.currentTarget.checked)} /></td>
+            </tr>
+            <tr>
+              <td>Barrio</td>
+
+              <td>
+                {formatedBarrios.length > 0 ?
+                  <Select data={formatedBarrios} value={usrBarrio} onChange={setUsrBarrio} disabled={usrBarrioDisabled} />
+                  : <Select placeholder='cargando datos' data={['',]} disabled={usrBarrioDisabled} />
+                }
+              </td>
+              <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
+              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrBarrioVisible} onChange={(event) => setUsrBarrioVisible(event.currentTarget.checked)}/></td>
+            </tr>
+
+
+
+
           </tbody>
         </table>
         <div className="form-check form-switch mt-4">
