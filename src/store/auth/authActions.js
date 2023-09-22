@@ -79,7 +79,8 @@ export const startCreatingUserWithEmailPassword = (data) => {
           confirmButtonText: "Aceptar",
           confirmButtonColor: "#7FD161"
         })
-        dispatch(loging(result));
+        let data ={record:result}
+        dispatch(loging(data));
       }
     } catch (error) {
       console.log(error.message);

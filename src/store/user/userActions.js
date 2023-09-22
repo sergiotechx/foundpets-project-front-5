@@ -1,5 +1,6 @@
-import { setData, deleteUser } from "./userReducer";
-import { getUser, getPet  } from '../../lib/pocketbase'
+import { setData, clearData, updateUser } from "./userReducer";
+import { getUser, getPet, updateUserBd } from '../../lib/pocketbase'
+import Swal from 'sweetalert2'
 
 
 
@@ -13,9 +14,9 @@ export const getUserDataAction = (id) => {
             if (Object.entries(userData).length > 0) {
                 petData = await getPet(id);
             }
-            
+
             dispatch(setData({ user: userData, pet: petData }))
-          
+
         }
         catch (error) {
             console.log(error)
@@ -24,21 +25,39 @@ export const getUserDataAction = (id) => {
     };
 };
 export const updateUserDataAction = (id, name, email, mobile,
-    address, userImage, lost, publicAddress,
-    publicEmail, publicMobile) => {
+    address, ciudad, barrio, userImage, lost, publicAddress,
+    publicEmail, publicMobile, publicCiudad, publicBarrio) => {
 
     return async (dispatch) => {
         try {
-           
-           console.log('uhhhh ahhh uhhh',id, name, email, mobile,
-            address, userImage, lost, publicAddress,
-            publicEmail, publicMobile)
-          // const updateRecord = updateUserBd()
-            // dispatch(clearData())
+
+
+            const updateRecord = await updateUserBd(id, name, email, mobile,
+                address, ciudad, barrio, userImage, lost, publicAddress,
+                publicEmail, publicMobile,publicCiudad, publicBarrio)
+
+            if (Object.entries(updateRecord).length > 0) {
+                dispatch(updateUser({ user: updateRecord }))
+                const answer = await Swal.fire({
+
+                    title: "Operación exitosa",
+                    text: "Modificaciones relizadas",
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                    confirmButtonColor: "#7FD161"
+                })
+            }
+
         }
         catch (error) {
-            console.log(error)
-            throw (error.message)
+            const answer = await Swal.fire({
+
+                title: "Error de sistema",
+                text: error.message,
+                icon: "error",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#7FD161"
+            })
         }
     };
 };

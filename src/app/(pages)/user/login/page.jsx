@@ -10,6 +10,7 @@ import { chekingCredentials, loging } from "../../../../store/auth/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "@/store/store";
 import { logout } from "@/lib/pocketbase";
+import { clearUserDataAction } from "@/store/user/userActions";
 
 const Page = () => {
   const [username, setUsername] = useState("");
@@ -30,6 +31,7 @@ const Page = () => {
   } = useForm();
 
    const logout = ()=>{
+    dispatch(clearUserDataAction())
     dispatch(logoutAction())
    }
   useEffect(() => {
