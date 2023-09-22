@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { TextInput, Switch, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserDataAction } from "@/store/user/userActions";
 import { useRouter } from "next/navigation";
 import { CldUploadButton } from "next-cloudinary";
 import Swal from "sweetalert2";
 import './userTab.scss';
-import { updateUserDataAction } from "@/store/user/userActions";
 import { cities } from "@/lib/constants";
 import { getBarrios } from "@/lib/pocketbase";
 
