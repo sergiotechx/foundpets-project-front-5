@@ -3,8 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
 import { Card, Image, Text, Button, Group } from "@mantine/core";
 import "./cardFound.scss";
+import { useDispatch } from "react-redux";
+import { getOnePetAction } from "@/store/lostPet/lostPetAction";
+import { useRouter } from "next/navigation";
 
 const CardFound = ({ currentData }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const cardStyle = {
     width: "18rem",
   };
@@ -33,6 +39,11 @@ const CardFound = ({ currentData }) => {
     },
   };
 
+  const handleClick = (id) => {
+    dispatch(getOnePetAction(id));
+    router.push("/lostPet");
+  };
+
   return (
     <motion.div
       className="grid "
@@ -41,13 +52,13 @@ const CardFound = ({ currentData }) => {
       animate="visible"
     >
       {currentData?.map((lost, index) => (
-        <motion.Card
+        <motion.div
+          onClick={() => handleClick(lost.id)}
           key={index}
           shadow="sm"
           padding="lg"
           radius="md"
-          className="card"
-          withBorder
+          withborder="false"
           style={{ width: "300px", height: "auto" }}
           variants={item}
         >
@@ -67,7 +78,7 @@ const CardFound = ({ currentData }) => {
           <Button variant="light" color="blue" fullWidth mt="md" radius="md">
             Mas info...
           </Button>
-        </motion.Card>
+        </motion.div>
       ))}
     </motion.div>
   );

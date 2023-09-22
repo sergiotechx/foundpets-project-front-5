@@ -17,7 +17,7 @@ const Carrusel = ({ imagesHome }) => {
           withControls={true}
         >
           {imagesHome?.map((img, index) => (
-            <Carousel.Slide>
+            <Carousel.Slide key={index}>
               <img src={img} alt={`Slide ${index + 1}`} />
             </Carousel.Slide>
           ))}
