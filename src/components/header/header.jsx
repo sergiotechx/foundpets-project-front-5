@@ -65,12 +65,16 @@ const Header = () => {
         {isLogin ? (
           <div className="Options">
             <h5>Bienvenido: </h5>
+            
             <span id='name'>{auth.user.record?.name}</span>
 
             {!isLogin ? <i className="bi bi-person-circle fs-3"></i> :
               <Menu shadow="md" width={200}>
                 <Menu.Target>
-                  <img src={auth.user.record?.userImage} />
+                  {auth.user.record?.userImage?<img src={auth.user.record?.userImage} />:
+                  <i className="bi bi-person-circle fs-3"></i>
+                  }
+                  
                 </Menu.Target>
                 <Menu.Dropdown>
                   <Menu.Item rightSection={<IconUserCircle style={{ width: rem(14), height: rem(14) }} />}
