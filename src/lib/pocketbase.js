@@ -124,5 +124,26 @@ export const getBarrios = async () => {
 
 
 
+export const newMessage = async (dataC) => {
+
+  const messageNew = {
+    
+    message: dataC.description,
+    contactName: dataC.name,
+    contactData: dataC.email
+  };
+
+    try {
+      const record = await client.collection('messages').create(messageNew);
+      return record;
+    } catch (error) {
+      console.log("error aca:", error);
+    }
+}
+
+
+
+
+
 
 
