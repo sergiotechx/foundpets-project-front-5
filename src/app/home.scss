@@ -16,7 +16,7 @@
       .container__divSearch {
         display: flex;
         flex-direction: column;
-        width: 190px;
+        width: 14rem;
       }
       .container__CardFound {
         display: flex;
@@ -88,4 +88,23 @@
   100% {
     transform: translateX(0px);
   }
+}
+
+@media (max-width: 768px) {
+  .search {
+
+    &__section1 {
+      flex-direction: column; 
+      align-items: center;
+      width: 100% !important;
+    }
+    .container__divSearch {
+      width: 100% !important; 
+      margin-bottom: 1rem;
+    }
+    .container__CardFound {
+      width: 100% !important;
+    }
+  }
+  
 }

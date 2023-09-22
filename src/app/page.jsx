@@ -6,13 +6,12 @@ import { Select } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
-import { fullDataHomeBd, getBarrios } from "@/lib/pocketbase";
+import { fullDataHomeBd, getBarrios, getOneLostPet } from "@/lib/pocketbase";
 import { cities, species } from "@/lib/constants";
 import { imagesHome } from "@/lib/constants";
 
 const Page = () => {
   const [barriospetsLost, setBarriosPetsLost] = useState(null);
-  //const [copybarriospetsLost, setCopyBarriosPetsLost] = useState([]);
   const [petsLost, setPetsLost] = useState(null);
   const [petsLostprops, setPetsLostprops] = useState({
     records: [],
@@ -39,15 +38,12 @@ const Page = () => {
   };
   const fetchData = async () => {
     try {
-      const response = await simulateDelayedFetch(fullDataHomeBd, 3000);
+      const response = await simulateDelayedFetch(fullDataHomeBd, 1000);
       const barrios = await getBarrios();
-      let formatedBarrios = makeFormatedBarriosData(barrios);
+      //let formatedBarrios = makeFormatedBarriosData(barrios);
       setPetsLost(response);
       setPetsLostprops(response);
       setBarriosPetsLost(barrios);
-      //setCopyBarriosPetsLost(barrios);
-      console.log(response);
-      console.log("formatedBarrios", formatedBarrios);
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
@@ -158,7 +154,7 @@ const Page = () => {
         <h1 className="mb-5">Huellitas perdidas</h1>
         {!petsLost ? (
           <>
-            <span class="loader "></span>
+            <span className="loader "></span>
             <h3>Buscando animalitos...</h3>
           </>
         ) : (
