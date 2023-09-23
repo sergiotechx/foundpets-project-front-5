@@ -1,3 +1,4 @@
+import './userTab.scss';
 import React, { useEffect, useState } from "react";
 import { TextInput, Switch, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
@@ -5,7 +6,6 @@ import { updateUserDataAction } from "@/store/user/userActions";
 import { useRouter } from "next/navigation";
 import { CldUploadButton } from "next-cloudinary";
 import Swal from "sweetalert2";
-import './userTab.scss';
 import { cities } from "@/lib/constants";
 import { getBarrios } from "@/lib/pocketbase";
 
@@ -53,8 +53,9 @@ const UserTab = () => {
     })
     if (answer.isConfirmed) {
 
+    
 
-      dispatch(updateUserDataAction(auth.user.record.id, usrName, usrEmail, usrMobile,
+     dispatch(updateUserDataAction(auth.user.record.id, usrName, usrEmail, usrMobile,
         usrAddress, usrCity, usrBarrio, usrImage, usrLost, usrAddressVisible,
         usrEmailVisible, usrMobileVisible, usrCityVisible, usrBarrioVisible));
     }
@@ -78,7 +79,7 @@ const UserTab = () => {
     setUsrEmailVisible(user.user?.publicEmail)
     setUsrMobileVisible(user.user?.publicMobile)
     setUsrAddressVisible(user.user?.publicAddress)
-    setUsrCityVisible(user.user?.publicCiudad) 
+    setUsrCityVisible(user.user?.publicCiudad)
     setUsrBarrioVisible(user.user?.publicBarrio)
   }
 
@@ -101,7 +102,7 @@ const UserTab = () => {
     if (auth.status != "not-authenticated") {
       loadData()
     }
-  }, [user])
+  }, [user.user])
 
   useEffect(() => {
     createFormatedBarrio()
@@ -125,118 +126,114 @@ const UserTab = () => {
     <div id='UserTab'>
       <figure>
 
-        {usrImage ? <img src={usrImage} /> : <i className="bi bi-person-circle fs-1"></i>}
+{usrImage ? <img src={usrImage} /> : <i className="bi bi-person-circle fs-1"></i>}
 
 
-        <CldUploadButton
-          uploadPreset="FoundPets"
-          onUpload={handleOnUpload}
-          id="cloudinary"
-        >
-          <i className="bi bi-camera fs-5" id='CameraIcon' />
-        </CldUploadButton>
+<CldUploadButton
+  uploadPreset="FoundPets"
+  onUpload={handleOnUpload}
+  id="cloudinary"
+>
+  <i className="bi bi-camera fs-5" id='CameraIcon' />
+</CldUploadButton>
 
-      </figure>
-      <form onSubmit={(event) => updateUserData(event)}>
-        < table>
-          <thead>
-            <tr>
-              <th className="col-md-1 invisible" scope="col">Items</th>
-              <th className="col-md-9 invisible" scope="col">Expenditure</th>
-              <th className="col-md-1 invisible" scope="col">Items</th>
-              <th className="col-md-1 " scope="col">Visible</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nombre</td>
-              <td ><TextInput
-                label=""
-                placeholder="Nombre completo"
-                value={usrName}
-                onChange={(event) => setUsrName(event.currentTarget.value)}
-                disabled={usrNameDisabled}
+</figure>
+<form onSubmit={(event) => updateUserData(event)}>
+< table>
+  <thead>
+    <tr>
+      <th className="col-md-1 invisible" scope="col">Items</th>
+      <th className="col-md-9 invisible" scope="col">Expenditure</th>
+      <th className="col-md-1 invisible" scope="col">Items</th>
+      <th className="col-md-1 " scope="col">Visible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nombre</td>
+      <td ><TextInput
+        label=""
+        placeholder="Nombre completo"
+        value={usrName}
+        onChange={(event) => setUsrName(event.currentTarget.value)}
+        disabled={usrNameDisabled}
 
-              /></td>
-              <td><i className="bi bi-pencil " onClick={() => setUsrNameDisabled(!usrNameDisabled)} /></td>
-              <td><input className="form-check-input-solid invisible" type="checkbox" id="checkboxNoLabel" value="" /></td>
-            </tr>
-            <tr>
-              <td>Correo</td>
-              <td ><TextInput
-                label=""
-                placeholder="Correo electrónico"
+      /></td>
+      <td><i className="bi bi-pencil " onClick={() => setUsrNameDisabled(!usrNameDisabled)} /></td>
+      <td><input className="form-check-input-solid invisible" type="checkbox" id="checkboxNoLabel" value="" /></td>
+    </tr>
+    <tr>
+      <td>Correo</td>
+      <td ><TextInput
+        label=""
+        placeholder="Correo electrónico"
 
-                value={usrEmail}
-                onChange={(event) => setUsrEmail(event.currentTarget.value)}
-                disabled={true}
-              /></td>
-              <td><i className="bi bi-pencil invisible" /></td>
-              <td><input type="checkbox" checked={usrEmailVisible} onChange={(event) => setUsrEmailVisible(event.currentTarget.checked)} /></td>
-            </tr>
-            <tr>
-              <td>Celular</td>
-              <td ><TextInput
-                label=""
-                placeholder="Número celular"
+        value={usrEmail}
+        onChange={(event) => setUsrEmail(event.currentTarget.value)}
+        disabled={true}
+      /></td>
+      <td><i className="bi bi-pencil invisible" /></td>
+      <td><input type="checkbox" checked={usrEmailVisible} onChange={(event) => setUsrEmailVisible(event.currentTarget.checked)} /></td>
+    </tr>
+    <tr>
+      <td>Celular</td>
+      <td ><TextInput
+        label=""
+        placeholder="Número celular"
 
-                value={usrMobile}
-                onChange={(event) => setUsrMobile(event.currentTarget.value)}
-                disabled={usrMobileDisabled}
-              /></td>
-              <td><i className="bi bi-pencil" onClick={() => setUsrMobileDisabled(!usrMobileDisabled)} /></td>
-              <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" checked={usrMobileVisible} onChange={(event) => setUsrMobileVisible(event.currentTarget.checked)} /></td>
-            </tr>
-            <tr>
-              <td>Dirección</td>
-              <td ><TextInput
-                label=""
-                placeholder="Dirección"
+        value={usrMobile}
+        onChange={(event) => setUsrMobile(event.currentTarget.value)}
+        disabled={usrMobileDisabled}
+      /></td>
+      <td><i className="bi bi-pencil" onClick={() => setUsrMobileDisabled(!usrMobileDisabled)} /></td>
+      <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" checked={usrMobileVisible} onChange={(event) => setUsrMobileVisible(event.currentTarget.checked)} /></td>
+    </tr>
+    <tr>
+      <td>Dirección</td>
+      <td ><TextInput
+        label=""
+        placeholder="Dirección"
 
-                value={usrAddress}
-                onChange={(event) => setUsrAddress(event.currentTarget.value)}
-                disabled={usrAddressDisabled}
-              /></td>
-              <td><i className="bi bi-pencil " onClick={() => setUsrAddressDisabled(!usrAddressDisabled)} /></td>
-              <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" checked={usrAddressVisible} onChange={(event) => setUsrAddressVisible(event.currentTarget.checked)} /></td>
-            </tr>
-            <tr>
-              <td>Ciudad</td>
-              <td ><Select data={cities} value={usrCity} onChange={(event) => { setUsrCity(event); setUsrBarrio('') }} disabled={usrCityDisabled} /></td>
-              <td><i className="bi bi-pencil " onClick={() => setUsrCityDisabled(!usrCityDisabled)} /></td>
-              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrCityVisible} onChange={(event) => setUsrCityVisible(event.currentTarget.checked)} /></td>
-            </tr>
-            <tr>
-              <td>Barrio</td>
+        value={usrAddress}
+        onChange={(event) => setUsrAddress(event.currentTarget.value)}
+        disabled={usrAddressDisabled}
+      /></td>
+      <td><i className="bi bi-pencil " onClick={() => setUsrAddressDisabled(!usrAddressDisabled)} /></td>
+      <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" checked={usrAddressVisible} onChange={(event) => setUsrAddressVisible(event.currentTarget.checked)} /></td>
+    </tr>
+    <tr>
+      <td>Ciudad</td>
+      <td ><Select data={cities} value={usrCity} onChange={(event) => { setUsrCity(event); setUsrBarrio('') }} disabled={usrCityDisabled} /></td>
+      <td><i className="bi bi-pencil " onClick={() => setUsrCityDisabled(!usrCityDisabled)} /></td>
+      <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrCityVisible} onChange={(event) => setUsrCityVisible(event.currentTarget.checked)} /></td>
+    </tr>
+    <tr>
+      <td>Barrio</td>
 
-              <td>
-                {formatedBarrios.length > 0 ?
-                  <Select data={formatedBarrios} value={usrBarrio} onChange={setUsrBarrio} disabled={usrBarrioDisabled} />
-                  : <Select placeholder='cargando datos' data={['',]} disabled={usrBarrioDisabled} />
-                }
-              </td>
-              <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
-              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrBarrioVisible} onChange={(event) => setUsrBarrioVisible(event.currentTarget.checked)}/></td>
-            </tr>
+      <td>
+        {formatedBarrios.length > 0 ?
+          <Select data={formatedBarrios} value={usrBarrio} onChange={setUsrBarrio} disabled={usrBarrioDisabled} />
+          : <Select placeholder='cargando datos' data={['',]} disabled={usrBarrioDisabled} />
+        }
+      </td>
+      <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
+      <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" checked={usrBarrioVisible} onChange={(event) => setUsrBarrioVisible(event.currentTarget.checked)} /></td>
+    </tr>
+  </tbody>
+</table>
+<div className="form-check form-switch mt-4">
 
-
-
-
-          </tbody>
-        </table>
-        <div className="form-check form-switch mt-4">
-
-          <Switch
-            defaultChecked
-            color="lime"
-            label="Habilitar búsqueda"
-            size="sm"
-            onLabel="ON" offLabel="OFF"
-            checked={usrLost} onChange={(event) => setUsrLost(event.currentTarget.checked)}
-          />
-        </div>
-        <button >Actualizar</button>
-      </form>
+  <Switch
+    defaultChecked
+    color="lime"
+    label="Habilitar búsqueda"
+    size="sm"
+    onLabel="ON" offLabel="OFF"
+    checked={usrLost} onChange={(event) => setUsrLost(event.currentTarget.checked)}
+  />
+</div>
+<button >Actualizar</button>
+</form>
     </div>
   )
 }
