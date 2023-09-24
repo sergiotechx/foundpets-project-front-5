@@ -137,13 +137,24 @@ export const newMessage = async (dataC) => {
 }
 
 export const ownerMessages = async (userMessageId) => {
+  console.log("userMessageId en ownerMessages:", userMessageId);
   const records3 = await client.collection('messages').getFullList({
       filter: `petOwner="${userMessageId}"`,
   });
+  
   console.log("mesajes:", records3);
-  return records3;
+   return records3;
   
 }
+
+export const deleteMessage = async (id) => {
+  try {
+    await client.collection('messages').delete(id);
+  } catch (error) {
+    console.error("Error al eliminar el mensaje:", error);
+    throw error;
+  }
+};
 
 // ownerMessages("9eslkd9relyqzgh");
 
