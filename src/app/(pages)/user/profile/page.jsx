@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { Tabs } from '@mantine/core';
-import { IconPawFilled, IconUserCircle, IconMail, IconMapPinHeart } from '@tabler/icons-react';
+import { IconPaw, IconUserCircle, IconMail, IconMapPinHeart } from '@tabler/icons-react';
 import UserTab from '@/components/userTab/userTab';
 import PetTab from '@/components/petTab/petTab';
 import InboxTab from '@/components/inboxTab/inboxTab';
@@ -17,8 +17,7 @@ const Page = () => {
   const user = useSelector((store) => store.user);
   const router = useRouter();
   const loadData = () => {
-    console.log('el user', user)
-    console.log('auth', auth)
+    
     if (Object.entries(user.user).length === 0) {
       dispatch(getUserDataAction(auth.user.record.id))
     }
@@ -45,10 +44,10 @@ return (
 
         <Tabs variant="outline" defaultValue="user">
           <Tabs.List>
-            <Tabs.Tab icon={<IconUserCircle size="1rem" />} value="user" >Usuario</Tabs.Tab>
-            <Tabs.Tab icon={<IconPawFilled size="1rem" />} value="pet" >Mascota</Tabs.Tab>
-            <Tabs.Tab icon={<IconMail size="1rem" />} value="inbox" >Mensajes</Tabs.Tab>
-            <Tabs.Tab icon={<IconMapPinHeart size="1rem" />} value="map" >Ubicación</Tabs.Tab>
+            <Tabs.Tab icon={<IconUserCircle size="1rem" color="black" />} value="user" ><span class="text-body-emphasis text-center fs-6">Usuario</span></Tabs.Tab>
+            <Tabs.Tab icon={<IconPaw size="1rem" color="black"/>} value="pet" > <span class="text-body-emphasis text-center fs-6">Mascota</span></Tabs.Tab>
+            <Tabs.Tab icon={<IconMail size="1rem" color="black" />} value="inbox" ><span class="text-body-emphasis text-center fs-6">Mensajes</span></Tabs.Tab>
+            <Tabs.Tab icon={<IconMapPinHeart  size="1rem" color="black"/>} value="map" ><span class="text-body-emphasis text-center fs-6">Ubicación</span></Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="user" >
