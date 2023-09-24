@@ -1,13 +1,11 @@
 import './petTab.scss';
 import React, { useEffect, useState } from "react";
-import { TextInput, Button, Select, NumberInput, Textarea } from '@mantine/core';
 import { genre, species } from '@/lib/constants';
 import { useDispatch, useSelector } from "react-redux";
 import { updatePetDataAction } from "@/store/user/userActions";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { CldUploadButton, CldUploadWidget } from "next-cloudinary";
+import { CldUploadButton } from "next-cloudinary";
 
 
 const PetTab = () => {

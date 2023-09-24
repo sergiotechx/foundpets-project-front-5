@@ -24,17 +24,13 @@ export const getUserDataAction = (id) => {
         }
     };
 };
-export const updateUserDataAction = (id, name, email, mobile,
-    address, ciudad, barrio, userImage, lost, publicAddress,
-    publicEmail, publicMobile, publicCiudad, publicBarrio) => {
+export const updateUserDataAction = (data) => {
 
     return async (dispatch) => {
         try {
 
 
-            const updateRecord = await updateUserBd(id, name, email, mobile,
-                address, ciudad, barrio, userImage, lost, publicAddress,
-                publicEmail, publicMobile, publicCiudad, publicBarrio)
+            const updateRecord = await updateUserBd(data)
 
             if (Object.entries(updateRecord).length > 0) {
                 dispatch(updateUser({ user: updateRecord }))

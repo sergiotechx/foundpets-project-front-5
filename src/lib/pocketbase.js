@@ -63,27 +63,11 @@ export const deleteUserBd = async (id) => {
   const operation = await client.collection("users").delete(id);
   return operation;
 }
-export const updateUserBd = async (id, name, email, mobile,
-  address, ciudad, barrio, userImage, lost, publicAddress,
-  publicEmail, publicMobile, publicCiudad, publicBarrio) => {
+export const updateUserBd = async (data) => {
 
-  const data = {
-    name,
-    email,
-    mobile,
-    address,
-    ciudad,
-    barrio,
-    userImage,
-    lost,
-    publicAddress,
-    publicEmail,
-    publicMobile,
-    publicCiudad,
-    publicBarrio
-  }
+ 
   try {
-    const record = await client.collection('users').update(id, data);
+    const record = await client.collection('users').update(data.id, data);
     return record
   }
   catch (error) {
