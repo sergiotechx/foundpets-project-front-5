@@ -29,7 +29,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="lostPest">
+    <div className="lostPest mb-4">
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
       <div>
         {animal ? (

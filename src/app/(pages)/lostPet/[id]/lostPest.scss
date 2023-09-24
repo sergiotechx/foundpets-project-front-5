@@ -26,12 +26,12 @@ circle {
 }
 
 .bg2 {
-  stroke: purple;
+  stroke: rgba(179, 191, 169, 0.669);
   opacity: 0.3;
 }
 
 #progress .indicator {
-  stroke: red;
+  stroke: rgba(130, 198, 69, 0.669);
 }
 
 .ul_card {
@@ -45,7 +45,7 @@ circle {
   //margin: 45px 30px 30px 30px;
   img {
     flex: 0 0 200px;
-    background: red;
+    background: rgba(0, 255, 64, 0.617);
     margin: 0 20px 20px 0;
     height: auto;
     width: 100%;
@@ -55,14 +55,14 @@ circle {
 ::-webkit-scrollbar {
   height: 15px;
   width: 10px;
-  background: rgba(255, 255, 255, 0.669);
+  background: rgba(220, 234, 209, 0.669);
   -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-thumb {
   height: 5px;
   width: 5px;
-  background: blue;
+  background: rgba(130, 198, 69, 0.669);
   -webkit-border-radius: 1ex;
 }
 
@@ -181,6 +181,7 @@ circle {
   border-width: 40px 60px 30px 60px;
   border-color: #3760c9 #96ddfc #96ddfc #36bbf7;
   animation: envFloating 1s ease-in infinite alternate;
+  cursor: pointer;
 }
 
 .loaderlostpets3:after {
