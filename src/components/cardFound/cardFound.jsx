@@ -157,6 +157,7 @@ const CardFound = ({ currentData }) => {
             onClick={() => handleClick(lost.id)}
             key={index}
             shadow="sm"
+            className="carta"
             padding="lg"
             radius="md"
             withborder="false"
