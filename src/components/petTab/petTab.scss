@@ -15,10 +15,10 @@
             margin-top: 1em;
             position: relative;
 
-            .img {
-                background-color: aqua;
-                max-width: 10em;
-            
+            img {
+
+                max-width: 8em;
+            }
             #cloudinary {
                position: absolute;
                 border: none;
@@ -65,13 +65,4 @@
             width: fit-content;
         }
     }
-}
-}
-@media(max-width:768px){
-    .figure{
-        width: 30%;
-        background-color: #7FD262 !important;
-    }
-    
-    
 }
