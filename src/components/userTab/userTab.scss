@@ -33,14 +33,13 @@
                 cursor: pointer;
             }
         }
-
-        
     }
 
     .form {
         display: flex;
         flex-direction: column;
-        width: 90%;
+        width: 100%;
+        background-color: #7FD262;
         align-self: center;
 
         .Operations {
@@ -62,5 +61,18 @@
             border-radius: 5px;
             width: fit-content;
         }
+    }
+}
+@media(max-width:768px){
+    .form{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+       .table{
+        Input{            
+            background-color: #7FD262 !important;
+            width: 100% !important;
+        }
+       }
     }
 }

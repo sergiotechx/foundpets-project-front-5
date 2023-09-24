@@ -44,10 +44,17 @@ return (
 
         <Tabs variant="outline" defaultValue="user">
           <Tabs.List>
-            <Tabs.Tab icon={<IconUserCircle size="1rem" color="black" />} value="user" ><span class="text-body-emphasis text-center fs-6">Usuario</span></Tabs.Tab>
-            <Tabs.Tab icon={<IconPaw size="1rem" color="black"/>} value="pet" > <span class="text-body-emphasis text-center fs-6">Mascota</span></Tabs.Tab>
-            <Tabs.Tab icon={<IconMail size="1rem" color="black" />} value="inbox" ><span class="text-body-emphasis text-center fs-6">Mensajes</span></Tabs.Tab>
-            <Tabs.Tab icon={<IconMapPinHeart  size="1rem" color="black"/>} value="map" ><span class="text-body-emphasis text-center fs-6">Ubicación</span></Tabs.Tab>
+            <Tabs.Tab icon={<IconUserCircle size="1rem" color="black" />} value="user" >
+              <span class="text-body-emphasis text-center fs-6">Usuario</span>
+              </Tabs.Tab>
+            <Tabs.Tab icon={<IconPaw size="1rem" color="black"/>} value="pet" > 
+            <span class="text-body-emphasis text-center fs-6">Mascota</span>
+            </Tabs.Tab>
+            <Tabs.Tab icon={<IconMail size="1rem" color="black" />} value="inbox" >
+              <span class="text-body-emphasis text-center fs-6">Mensajes</span>
+              </Tabs.Tab>
+            <Tabs.Tab icon={<IconMapPinHeart  size="1rem" color="black"/>} value="map" >
+              <span class="text-body-emphasis text-center fs-6">Ubicación</span></Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="user" >
