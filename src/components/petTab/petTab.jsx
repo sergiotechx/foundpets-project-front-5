@@ -175,6 +175,7 @@ const PetTab = () => {
         <div id='PetTab'>
             <div className='PetGallery'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <figure className="figure">
                     <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
@@ -200,6 +201,8 @@ const PetTab = () => {
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                     </figure>
+=======
+>>>>>>> 0afbe0a83fb2910e9273b45d3fb4b731f015d9a2
 =======
 >>>>>>> 0afbe0a83fb2910e9273b45d3fb4b731f015d9a2
 
