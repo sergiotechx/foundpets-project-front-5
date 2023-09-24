@@ -153,11 +153,12 @@ const CardFound = ({ currentData }) => {
         animate="visible"
       >
         {currentData?.map((lost, index) => (
+          
           <motion.div
+            className="carta"
             onClick={() => handleClick(lost.id)}
             key={index}
             shadow="sm"
-            className="carta"
             padding="lg"
             radius="md"
             withborder="false"
