@@ -2,8 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./lostPest.scss";
 import { useParams } from "next/navigation";
-import { getOneLostPet } from "@/lib/pocketbase";
+import { getOneLostPet, newMessage } from "@/lib/pocketbase";
 import { useScroll, motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { Button, Modal } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import Swal from "sweetalert2";
 
 const Page = () => {
   const ref = useRef(null);
@@ -11,6 +16,59 @@ const Page = () => {
   const params = useParams();
   const id = params.id;
   const [animal, setAnimal] = useState(null);
+
+  const [opened, { open, close }] = useDisclosure(false);
+
+   const formData = {
+     petOwner: id,
+     email: "",
+     celphone: "",
+     description: "",
+   };
+
+   const dispatch = useDispatch()
+
+    const {
+     register,
+     handleSubmit,
+     formState: { errors },
+     setValue,
+     reset,
+   } = useForm({defaultValues:{
+    petOwner: id,
+    email: "",
+    celphone: "",
+    description: ""}});
+
+
+    const onSubmit = handleSubmit((dataC) => {
+     console.log("data:", dataC);
+
+     
+
+     dispatch(createNewMessage(dataC))
+     reset()
+   
+   });
+
+    const createNewMessage = (data) =>{
+     return async (dispatch) => {
+       try {
+         const response = await newMessage(data);
+       console.log("prueba:", response);
+       if(response.id){
+         Swal.fire({
+           title: 'Bien hecho',
+           text: 'Informacion enviada',
+           icon: 'success',
+           confirmButtonText: 'Ok'
+         })
+       }
+       } catch (error) {
+         console.log("aca", error);
+       }
+     }
+   }
 
   const getOnePet = async (id) => {
     try {
@@ -30,6 +88,62 @@ const Page = () => {
 
   return (
     <div className="lostPest mb-4">
+      <Modal  opened={opened} onClose={close} title="Contacta al dueño">
+      <form className="contactOwner" onSubmit={onSubmit}>
+        <label >Correo electronico</label>
+    <input
+            type="email"
+            placeholder="nombre@ejemplo.com"
+            {...register("email", {
+              required: {
+                value: true,
+                message: "Correo es requerido",
+              },
+              pattern: {
+                value: /^[a-z0-9._%+-]+@[a-z0-9-]+\.[a-z]{2,4}$/,
+                message: "Correo no valido",
+              },
+            })}
+          />
+          {errors.email && <span>{errors.email.message} </span>}
+          <label >Nombre</label>
+          <input
+            type="text"
+            {...register("name", {
+              required: {
+                value: true,
+                message: "Nombre requerido",
+              },
+              minLength: {
+                value: 4,
+                message: "Nombre debe tener al menos 4 caracteres",
+              },
+            })}
+          />
+          {errors.name && <span>{errors.name.message} </span>}
+          <label >Descripción de la mascota</label>
+          <textarea 
+            className="description"
+            type="textarea"
+            {...register("description", {
+              required: {
+                value: true,
+                message: "debe describir la mascota encontrada",
+              },
+              minLength: {
+                value: 4,
+                message: "el texto debe tener al menos 4 caracteres",
+              },
+            })}
+           cols="30"
+            rows="10"
+            ></textarea>
+            {errors.description && <span>{errors.description.message} </span>}
+        <Button color="indigo" radius="md" type="submit" >
+          Contactar
+        </Button>
+        </form>
+      </Modal>
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
       <div>
         {animal ? (
@@ -92,7 +206,7 @@ const Page = () => {
             <label>* Así me puedes reconocer</label>
             <span>{animal?.petDescrription}</span>
           </div>
-          {animal ? <span className="loaderlostpets3"></span> : ""}
+          {animal ? <span onClick={open} className="loaderlostpets3"></span> : ""}
         </div>
       ) : (
         <span className="loaderlostpets2"></span>
