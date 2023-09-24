@@ -124,10 +124,7 @@ const UserTab = () => {
   return (
     <div id='UserTab'>
       <figure>
-
         {usrImage ? <img src={usrImage} /> : <i className="bi bi-person-circle fs-1"></i>}
-
-
         <CldUploadButton
           uploadPreset="FoundPets"
           onUpload={handleOnUpload}
@@ -135,9 +132,9 @@ const UserTab = () => {
         >
           <i className="bi bi-camera fs-5" id='CameraIcon' />
         </CldUploadButton>
-
       </figure>
-      <form onSubmit={(event) => updateUserData(event)}>
+
+      <form className="form" onSubmit={(event) => updateUserData(event)}>
         < table>
           <thead>
             <tr>
@@ -147,7 +144,7 @@ const UserTab = () => {
               <th className="col-md-1 " scope="col">Visible</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table">
             <tr>
               <td>Nombre</td>
               <td ><TextInput
@@ -179,7 +176,6 @@ const UserTab = () => {
               <td ><TextInput
                 label=""
                 placeholder="Número celular"
-
                 value={usrMobile}
                 onChange={(event) => setUsrMobile(event.currentTarget.value)}
                 disabled={usrMobileDisabled}
