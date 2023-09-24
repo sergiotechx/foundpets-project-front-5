@@ -121,7 +121,6 @@ export const getBarrios = async () => {
 };
 
 export const getOneLostPet = async (id) => {
-  console.log(id);
   const record = await client.collection("lostPets").getOne(id, {
     expand: "relField1,relField2.subRelField",
   });

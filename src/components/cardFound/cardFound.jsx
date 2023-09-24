@@ -1,23 +1,16 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import { Card, Image, Text, Button, Group } from "@mantine/core";
 import "./cardFound.scss";
-import { useDispatch } from "react-redux";
-import { getOnePetAction } from "@/store/lostPet/lostPetAction";
 import { useRouter } from "next/navigation";
 
 const CardFound = ({ currentData }) => {
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const cardStyle = {
     width: "18rem",
   };
-
-  useEffect(() => {
-    console.log(currentData);
-  }, [currentData]);
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -40,8 +33,7 @@ const CardFound = ({ currentData }) => {
   };
 
   const handleClick = (id) => {
-    dispatch(getOnePetAction(id));
-    router.push("/lostPet");
+    router.push(`/lostPet/${id}`);
   };
 
   return (
