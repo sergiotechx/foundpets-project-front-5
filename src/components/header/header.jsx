@@ -71,10 +71,10 @@ const Header = () => {
             {!isLogin ? <i className="bi bi-person-circle fs-3"></i> :
               <Menu shadow="md" width={200}>
                 <Menu.Target>
-                  {auth.user.record?.userImage?<img src={auth.user.record?.userImage} />:
+                  {auth.user.record?.userImage?
+                  <img src={auth.user.record?.userImage} />:
                   <i className="bi bi-person-circle fs-3"></i>
                   }
-                  
                 </Menu.Target>
                 <Menu.Dropdown>
                   <Menu.Item rightSection={<IconUserCircle style={{ width: rem(14), height: rem(14) }} />}
@@ -124,6 +124,7 @@ const Header = () => {
           </section>
         )}
       </div>
+      <div className="div">
       <motion.nav
         initial={{ scale: 0 }}
         animate={{ rotate: 360, scale: 1 }}
@@ -199,6 +200,8 @@ const Header = () => {
           </div>
         </div>
       </motion.nav>
+      </div>
+     
     </div>
   );
 };

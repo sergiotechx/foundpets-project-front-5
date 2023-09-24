@@ -37,7 +37,7 @@
         
     }
 
-    form {
+    .form {
         display: flex;
         flex-direction: column;
         width: 90%;
@@ -62,5 +62,17 @@
             border-radius: 5px;
             width: fit-content;
         }
+    }
+}
+@media(max-width:768px){
+    .form{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+       .table{
+        Input{
+            width: 100% !important;
+        }
+       }
     }
 }

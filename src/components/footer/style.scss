@@ -66,10 +66,21 @@ hr {
 .redesc {
   display: flex;
   align-items: center;
-  margin-top: 7.5rem;
   position: absolute;
+  margin-top: 14rem;
   .h2{
     display: none;
   }
 }
 }
+@media(max-width:650px){
+  .redesc{
+    margin-top: 10rem;
+  }
+}
+@media(max-width:450px){
+  .redesc{
+    margin-top: 6.5rem;
+  }
+}
+

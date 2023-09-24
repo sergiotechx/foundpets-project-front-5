@@ -52,3 +52,15 @@
         }
     }
 }
+@media(max-width:768){
+    .form{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+       .table{
+        Input{
+            background-color: #7FD262;
+        }
+       }
+    }
+}

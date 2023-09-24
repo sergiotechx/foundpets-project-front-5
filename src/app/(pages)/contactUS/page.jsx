@@ -2,19 +2,8 @@
 
 import React from "react";
 import "./contactUS.scss";
-import { useRouter } from "next/navigation";
 
 const Page = () => {
-
-  const router = useRouter()
-
-  const handleClickR = () => {
-    router.push('user/register')
-  }
-  const handleClickH = () => {
-    router.push('/')
-  }
-
 
   return (
     <main className="mainC">
@@ -26,10 +15,6 @@ const Page = () => {
         </p>
       </article>
       <article className="right">
-        <div className="btnTop">
-          <button onClick={handleClickR}>Registrarse</button>
-          <button onClick={handleClickH}>Inicio</button>
-        </div>
         <div className="form">
         <div className="countC">
           <h3>Mis datos</h3>
@@ -61,8 +46,7 @@ const Page = () => {
         </div>
         </div>
         <div className="btnbotton">
-          <button>Chatea con nosotros</button>
-          <button>Te llamamos?</button>
+          <button>envia</button>
         </div>
       </article>
     </main>

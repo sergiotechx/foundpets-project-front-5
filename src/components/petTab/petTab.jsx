@@ -71,7 +71,7 @@ const PetTab = () => {
                 </figure>
             </div>
             <form onSubmit={petForm.onSubmit((values) => updatePetData(values))}>
-                < table>
+                < table className="table">
                     <thead>
                         <tr>
                             <th className="col-md-1 invisible" scope="col">Items</th>

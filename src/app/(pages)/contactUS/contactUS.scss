@@ -20,32 +20,21 @@
 .right{
  margin: 2rem;
 }
-.btnTop{
-    display: flex;
-    gap: 15px;
-    justify-content: space-around;
-    button{
-        background-color: rgb(223, 172, 43);
-        border-radius: 10px;
-        border: 1px solid rgb(199, 151, 30);
-    }
-}
 .btnbotton{
     display: flex;
-    gap: 15px;
     margin-top: 16px;
     justify-content: center;
     button{
         background-color: rgb(223, 172, 43);
-        border-radius: 10px;
-        border: 1px solid rgb(199, 151, 30);
+        border-radius: .5rem;
+        border: .1rem solid rgb(199, 151, 30);
     }
 }
 .form{
     display: flex;
 }
 .countC{
-    border:1px solid rgb(182, 187, 187); ;
+    border: .1rem solid rgb(182, 187, 182);
     border-radius: 10px ;
     padding: 5px;
     margin-top: 15px;
@@ -53,12 +42,11 @@
     width: 300px;
     height: 400px;
     input{
-        width: 280px;
+        width: 100%;
+        border-radius: .5rem;
+        padding: .5rem;
         border: none;
     }
-}
-.N{
-    width: 300px;
 }
 .figures{
     width: 100%;
@@ -68,8 +56,8 @@
     border-radius: 15px;
     position: absolute;
     left: 40px;
-        width: 150px;
-        height: 150px;
+    width: 150px;
+    height: 150px;
     
 }
 .image2{
@@ -87,46 +75,26 @@
     top: 280px;
     left: 40px;
     width: 150px;
-        height: 150px;
+    height: 150px;
 }
 @media (max-width: 768px) {
     .mainC {
       flex-direction: column;
       align-items: center;
     }
-  
     .left {
       width: 90%;
       padding: 2rem;
       text-align: center;
     }
-  
     .right {
       width: 90%;
     }
-  
-    .btnTop {
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 16px;
-      justify-content: center;
-    }
-  
-    .btnTop button {
-      width: 100%;
-    }
-  
     .btnbotton {
+      gap: 2rem;
       flex-direction: column;
-      gap: 15px;
-      margin-top: 16px;
-      justify-content: center;
+      margin-top: 2rem;
     }
-  
-    .btnbotton button {
-      width: 100%;
-    }
-  
     .form {
       flex-direction: column;
       align-items: center;
