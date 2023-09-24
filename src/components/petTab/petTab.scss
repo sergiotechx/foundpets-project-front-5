@@ -17,15 +17,24 @@
 
             img {
 
-                max-width: 10em;
+                max-width: 8em;
             }
-
-            #CameraIcon {
-                position: absolute;
+            #cloudinary {
+               position: absolute;
+                border: none;
+                background-color: transparent;
+                margin: 0;
                 left: -1em;
                 bottom: -0.5em;
-                cursor: pointer;
+                #CameraIcon {
+                    position: absolute;
+                    left: -1em;
+                    bottom: -0.5em;
+                    cursor: pointer;
+                }
             }
+
+           
 
             #TrashIcon {
                 position: absolute;
@@ -42,6 +51,11 @@
         flex-direction: column;
         width: 90%;
         align-self: center;
+        
+        .bi-pencil {
+            cursor: pointer;
+            margin-left: 0.3em;
+        }
 
         #BtnActualizar {
             margin-top: 1em;

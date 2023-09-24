@@ -15,7 +15,6 @@ export const createUser = async (data) => {
   console.log("usuario:", newUser);
   try {
     let record = await client.collection("users").create(newUser);
-
     return record;
   } catch (error) {
     console.error("Error al crear el usuario:", error);
@@ -64,27 +63,11 @@ export const deleteUserBd = async (id) => {
   const operation = await client.collection("users").delete(id);
   return operation;
 }
-export const updateUserBd = async (id, name, email, mobile,
-  address, ciudad, barrio, userImage, lost, publicAddress,
-  publicEmail, publicMobile,publicCiudad, publicBarrio) => {
+export const updateUserBd = async (data) => {
 
-  const data = {
-    name,
-    email,
-    mobile,
-    address,
-    ciudad,
-    barrio,
-    userImage,
-    lost,
-    publicAddress,
-    publicEmail,
-    publicMobile,
-    publicCiudad, 
-    publicBarrio
-  }
+ 
   try {
-    const record = await client.collection('users').update(id, data);
+    const record = await client.collection('users').update(data.id, data);
     return record
   }
   catch (error) {
@@ -100,7 +83,12 @@ export const getPet = async (ownerId) => {
       .getFirstListItem(`owner="${ownerId}"`);
     return record;
   } catch (error) {
-    return {};
+    if( error.status == 404){
+      return {};
+    }
+    else{
+      throw error
+    }
   }
 };
 
@@ -114,6 +102,28 @@ export const getBarrios = async () => {
   return records;
 };
 
+export const createPetBd = async (data) => {
+  try {
+   
+    let record = await client.collection("pets").create(data);
+    return record;
+  } catch (error) {
+    throw error
+  }
+};
+export const updatePetBd = async (id,data) => {
+  try {
+   
+    let record = await client.collection("pets").update(id,data);
+    return record;
+  } catch (error) {
+    throw error
+  }
+};
+
+
+
+
 
 
 
@@ -122,18 +132,18 @@ export const getBarrios = async () => {
 export const newMessage = async (dataC) => {
 
   const messageNew = {
-    
+
     message: dataC.description,
     contactName: dataC.name,
     contactData: dataC.email
   };
 
-    try {
-      const record = await client.collection('messages').create(messageNew);
-      return record;
-    } catch (error) {
-      console.log("error aca:", error);
-    }
+  try {
+    const record = await client.collection('messages').create(messageNew);
+    return record;
+  } catch (error) {
+    console.log("error aca:", error);
+  }
 }
 
 export const ownerMessages = async (userMessageId) => {
