@@ -15,8 +15,8 @@
             margin-top: 1em;
             position: relative;
 
-            img {
-
+            .img {
+                background-color: aqua;
                 max-width: 10em;
             }
 
@@ -52,15 +52,11 @@
         }
     }
 }
-@media(max-width:768){
-    .form{
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-       .table{
-        Input{
-            background-color: #7FD262;
-        }
-       }
+@media(max-width:768px){
+    .figure{
+        width: 30%;
+        background-color: #7FD262 !important;
     }
+    
+    
 }

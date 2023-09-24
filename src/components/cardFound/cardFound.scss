@@ -6,26 +6,20 @@
   gap: 20px;
   overflow: hidden;
 }
-.card{
+
+.carta{
+  border: .1rem solid #586165;
+  border-radius: 1rem;
   padding: 1rem;
 }
-
-
-
 .contactOwner{
   display: flex;
   flex-direction: column;
-  gap: 10px;
   input{
     border-radius: 8px;
-    border: 1px solid black;
     padding-left: 8px;
-   
   }
 }
 
-textarea{
-  border-radius: 8px;
-  resize: none;
-  padding: 6px;
-}
+
+ 

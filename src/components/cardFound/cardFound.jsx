@@ -162,14 +162,14 @@ const CardFound = ({ currentData }) => {
           key={index}
           shadow="sm"
           padding="lg"
+          className="carta"
           radius="md"
           withborder="false"
           style={{ width: "300px", height: "auto" }}
           variants={item}
-          
         >
           <Card.Section >
-            <Image src={lost.image1} height={160} alt="Norway" />
+            <Image  src={lost.image1} height={160} alt="Norway" />
           </Card.Section>
 
           <Group position="apart" mt="md" mb="xs">

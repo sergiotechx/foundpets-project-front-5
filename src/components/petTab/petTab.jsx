@@ -44,28 +44,28 @@ const PetTab = () => {
     return (
         <div id='PetTab'>
             <div className='PetGallery'>
-                <figure>
-                    <img src='/images/EmptyDogPhotoGray.png' />
+                <figure className="figure">
+                    <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                 </figure>
                 <figure>
-                    <img src='/images/EmptyDogPhotoGray.png' />
+                    <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                 </figure>
                 <figure>
-                    <img src='/images/EmptyDogPhotoGray.png' />
+                    <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                 </figure>
                 <figure>
-                    <img src='/images/EmptyDogPhotoGray.png' />
+                    <img  className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                 </figure>
                 <figure>
-                    <img src='/images/EmptyDogPhotoGray.png' />
+                    <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                 </figure>
