@@ -19,3 +19,8 @@
         height: 85vh;
     }
 }
+@media(max-width:768px){
+    .ProfileL{
+        display: none !important;
+    }
+}

@@ -3,13 +3,11 @@ import thunk from "redux-thunk";
 import { authActions } from "./auth/authReducer";
 import { adminSlice } from "./admin/adminReducer";
 import { userSlice } from "./user/userReducer";
-import { onePetSlice } from "./lostPet/lostPetsReducer";
 
 const rootReducer = {
   auth: authActions.reducer,
   admin: adminSlice.reducer,
   user: userSlice.reducer,
-  onePetSlice: onePetSlice.reducer,
 };
 
 export const store = configureStore({
