@@ -35,11 +35,10 @@
         }
     }
 
-    .form {
+    form {
         display: flex;
         flex-direction: column;
         width: 100%;
-        background-color: #7FD262;
         align-self: center;
 
         .Operations {
@@ -61,6 +60,7 @@
             border-radius: 5px;
             width: fit-content;
         }
+        
     }
 }
 @media(max-width:768px){

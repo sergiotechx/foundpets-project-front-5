@@ -1,16 +1,17 @@
 import PocketBase from "pocketbase";
 import { DBURL } from "./constants";
+import { v4 as uuidv4 } from 'uuid';
 
 export const client = new PocketBase(DBURL);
 
 export const createUser = async (data) => {
   const newUser = {
-    //verified : true,
     name: data.name,
     emailVisibility: true,
     email: data.email,
     password: data.password,
     passwordConfirm: data.password,
+    qr:uuidv4()
   };
   console.log("usuario:", newUser);
   try {
@@ -27,11 +28,11 @@ export const authWithEmail = async (data2) => {
   return authData;
 };
 
-export const authWithPassword = async (data) => {
+/*export const authWithPassword = async (data) => {
   const authData = await client
     .collection("users")
     .authWithPassword(user_email, password);
-};
+};*/
 
 export const login = async (user_email, password) => {
   const authData = await pb
@@ -104,7 +105,6 @@ export const getBarrios = async () => {
 
 export const createPetBd = async (data) => {
   try {
-   
     let record = await client.collection("pets").create(data);
     return record;
   } catch (error) {

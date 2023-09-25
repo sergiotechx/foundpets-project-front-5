@@ -13,7 +13,7 @@ const UserTab = () => {
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
   const user = useSelector((store) => store.user);
- 
+
   const [usrNameDisabled, setUsrNameDisabled] = useState(true);
   const [usrMobileDisabled, setUsrMobileDisabled] = useState(true);
   const [usrAddressDisabled, setUsrAddressDisabled] = useState(true);
@@ -22,7 +22,7 @@ const UserTab = () => {
   const [usrBarrioDisabled, setUsrBarrioDisabled] = useState(true);
   const [formatedBarrios, setFormatedBarrios] = useState('');
   const [barrios, setBarrios] = useState([])
-  const [trigger, setTrigger] =useState(false)
+ const [usrBarrio, setUsrBarrio] =useState(0)
 
   const { register, formState: { errors }, watch, handleSubmit, setValue, getValues } =
     useForm({
@@ -44,10 +44,10 @@ const UserTab = () => {
       }
     });
   const ciudad = watch('ciudad');
-  const barrio = watch('barrio');
+  let barrio = watch('barrio');
 
   const onSubmit = async (data) => {
-    
+
     data.id = auth.user.record.id
 
     console.log('la data', data)
@@ -71,46 +71,53 @@ const UserTab = () => {
 
   }
   const loadData = () => {
-
-    let usrImage = user.user?.userImage;
-    if (usrImage == '') {
-      usrImage = auth.user.record.userImage;
+    if (Object.entries(user.user).length > 0) {
+   
+      let usrImage = user.user?.userImage;
+      if (usrImage == '') {
+        usrImage = auth.user.record.userImage;
+      }
+      setUsrImage(usrImage)
+      setValue("userImage", usrImage);
+      setValue("name", user.user?.name);
+      setValue("email", user.user?.email);
+      setValue("mobile", user.user?.mobile);
+      setValue("address", user.user?.address);
+      setValue("ciudad", user.user?.ciudad);
+      setValue("barrio", user.user?.barrio);
+      setUsrBarrio(user.user?.barrio)
+      setValue("lost", user.user?.lost);
+      setValue("publicAddress", user.user?.publicAddress);
+      setValue("publicEmail", user.user?.publicEmail);
+      setValue("publicMobile", user.user?.publicMobile);
+      setValue("publicBarrio", user.user?.publicBarrio);
+      setValue("publicCiudad", user.user?.publicCiudad);
+      setValue("lost", user.user?.lost);
+    
     }
-    setUsrImage(usrImage)
-    setValue("userImage", usrImage);
-    setValue("name", user.user?.name);
-    setValue("email", user.user?.email);
-    setValue("mobile", user.user?.mobile);
-    setValue("address", user.user?.address);
-    setValue("ciudad", user.user?.ciudad);
-    setValue("barrio", user.user?.barrio);
-    setValue("lost", user.user?.lost);
-    setValue("publicAddress", user.user?.publicAddress);
-    setValue("publicEmail", user.user?.publicEmail);
-    setValue("publicMobile", user.user?.publicMobile);
-    setValue("publicBarrio", user.user?.publicBarrio);
-    setValue("publicCiudad", user.user?.publicCiudad);
-    setValue("lost", user.user?.lost);
   }
 
   const loadBarrios = async () => {
     if (barrios.length == 0) {
-      
-      setBarrios(await getBarrios())
+        setBarrios(await getBarrios())
+     
     }
   }
+  
   const createFormatedBarrio = async () => {
-    let preformated = barrios.filter((barrio) => barrio.ciudad == getValues("ciudad"))
-    let temFormatedBarrios = []
-    preformated.forEach((barrio,index) => {
+    if(getValues("ciudad")!=0){
      
-      temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
-    })
-    setFormatedBarrios(temFormatedBarrios)
+      let preformated = barrios.filter((barrio) => barrio.ciudad == getValues("ciudad"))
+      let temFormatedBarrios = []
+      preformated.forEach((barrio, index) => {
+  
+        temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
+      })
+      setFormatedBarrios(temFormatedBarrios)
+    }
   }
   useEffect(() => {
-   
-    loadBarrios()
+     loadBarrios()
   }, [])
 
   useEffect(() => {
@@ -121,13 +128,17 @@ const UserTab = () => {
   }, [user.user])
 
   useEffect(() => {
-    createFormatedBarrio()
-
+     createFormatedBarrio()
   }, [ciudad])
 
+  useEffect(() => {
+    if(barrio!=0){
+      setUsrBarrio(barrio)
+    }
+  }, [barrio])
+  
 
  
-  
 
 
 
@@ -222,7 +233,7 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
-                <input type="tel" class="form-control" placeholder="Número celular" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+                <input type="tel" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
                   {...register('address', {
                     required: true,
                     maxLength: 100
@@ -255,12 +266,15 @@ const UserTab = () => {
 
               <td>
                 {formatedBarrios.length > 0 ?
-                  <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
-                    {formatedBarrios?.map(barrio=> 
-                      
-                        <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
+                  <>
+                  <select class="form-select" value={usrBarrio}  disabled={usrBarrioDisabled}  {...register('barrio')} >
+                    {formatedBarrios?.map(barrio =>
+
+                      <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
                     )}
                   </select>
+                 
+                </>
                   :
                   <>
                     <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
@@ -280,7 +294,7 @@ const UserTab = () => {
             <label class="form-check-label" for="flexSwitchCheckDefault">habilitar busqueda </label>
           </div>
         </div>
-        <button >Actualizar</button>
+        <button id='BtnActualizar'>Actualizar</button>
       </form>
     </div>
   )

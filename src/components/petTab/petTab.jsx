@@ -40,10 +40,6 @@ const PetTab = () => {
             }
         });
 
-
-
-
-
     const onSubmit = async (data) => {
         const answer = await Swal.fire({
             title: "Operación de sistema",
@@ -56,12 +52,22 @@ const PetTab = () => {
             showCancelButton: true,
         })
         if (answer.isConfirmed) {
-
-
-
+            if (data.image1 == noImage) {
+                data.image1 = ''
+            }
+            if (data.image2 == noImage) {
+                data.image2 = ''
+            }
+            if (data.image3 == noImage) {
+                data.image3 = ''
+            }
+            if (data.image4 == noImage) {
+                data.image4 = ''
+            }
+            if (data.image5 == noImage) {
+                data.image5 = ''
+            }
             dispatch(updatePetDataAction(data))
-
-
         }
 
     }
@@ -73,11 +79,21 @@ const PetTab = () => {
         setValue("type", user.pet?.type);
         setValue("genre", user.pet?.genre);
         setValue("description", user.pet?.description);
-        setValue("image1", user.pet?.image1 === '' ? noImage : user.pet?.image1);
-        setValue("image2", user.pet?.image2 === '' ? noImage : user.pet?.image2);
-        setValue("image3", user.pet?.image3 === '' ? noImage : user.pet?.image3);
-        setValue("image4", user.pet?.image4 === '' ? noImage : user.pet?.image4);
-        setValue("image5", user.pet?.image5 === '' ? noImage : user.pet?.image5);
+        if (Object.entries(user.pet).length == 0) {
+            setValue("image1", noImage);
+            setValue("image2", noImage);
+            setValue("image3", noImage);
+            setValue("image4", noImage);
+            setValue("image5", noImage);
+        }
+        else {
+            setValue("image1", user.pet?.image1 === '' ? noImage : user.pet?.image1);
+            setValue("image2", user.pet?.image2 === '' ? noImage : user.pet?.image2);
+            setValue("image3", user.pet?.image3 === '' ? noImage : user.pet?.image3);
+            setValue("image4", user.pet?.image4 === '' ? noImage : user.pet?.image4);
+            setValue("image5", user.pet?.image5 === '' ? noImage : user.pet?.image5);
+        }
+
         setPetImage1(getValues("image1"))
         setPetImage2(getValues("image2"))
         setPetImage3(getValues("image3"))
@@ -92,16 +108,27 @@ const PetTab = () => {
         }
     }, [user.pet])
 
-   
+
 
 
     function handleOnUpload1(result, operations) {
+        try{
         if (!result.event === "success") {
             updateError(result?.info);
             return;
         }
-        setPetImage1(result?.info.secure_url);
-        setValue("image1", result?.info.secure_url)
+        console.log(result)
+        if (result?.info?.secure_url != undefined) {
+            alert(result?.info?.secure_url);
+            setPetImage1(result?.info?.secure_url);
+            setValue("image1", result?.info.secure_url)
+        }
+    }
+    catch(error){
+        alert(error.message)
+    }
+
+
     }
     function handleOnUpload2(result, operations) {
         if (!result.event === "success") {
@@ -176,13 +203,13 @@ const PetTab = () => {
             <div className='PetGallery'>
 
 
-            <figure>
+                <figure>
                     {petImage1 != '' ? <img src={petImage1} /> : <img src={noImage} />}
                     <CldUploadButton
                         uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload1}
+                        onUpload={() => handleOnUpload1}
                         id="cloudinary"
-                      
+
                     >
                         <i className="bi bi-camera fs-5" id='CameraIcon' onClick={handleOnUpload1}></i>
                     </CldUploadButton>
@@ -192,9 +219,9 @@ const PetTab = () => {
                     {petImage2 != '' ? <img src={petImage2} /> : <img src={noImage} />}
                     <CldUploadButton
                         uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload2}
+                        onUpload={() => handleOnUpload2}
                         id="cloudinary"
-                      
+
                     >
                         <i className="bi bi-camera fs-5" id='CameraIcon'></i>
                     </CldUploadButton>
@@ -204,9 +231,9 @@ const PetTab = () => {
                     {petImage3 != '' ? <img src={petImage3} /> : <img src={noImage} />}
                     <CldUploadButton
                         uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload3}
+                        onUpload={() => handleOnUpload3}
                         id="cloudinary"
-                     
+
                     >
                         <i className="bi bi-camera fs-5" id='CameraIcon'></i>
                     </CldUploadButton>
@@ -216,9 +243,9 @@ const PetTab = () => {
                     {petImage4 != '' ? <img src={petImage4} /> : <img src={noImage} />}
                     <CldUploadButton
                         uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload4}
+                        onUpload={() => handleOnUpload4}
                         id="cloudinary"
-                      
+
                     >
                         <i className="bi bi-camera fs-5" id='CameraIcon'></i>
                     </CldUploadButton>
@@ -228,9 +255,9 @@ const PetTab = () => {
                     {petImage5 != '' ? <img src={petImage5} /> : <img src={noImage} />}
                     <CldUploadButton
                         uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload5}
+                        onUpload={() => handleOnUpload5}
                         id="cloudinary"
-                       
+
                     >
                         <i className="bi bi-camera fs-5" id='CameraIcon'></i>
                     </CldUploadButton>
