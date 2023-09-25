@@ -1,19 +1,21 @@
 import './userTab.scss';
+import '../../lib/bearLoader.scss'
 import React, { useEffect, useState } from "react";
 import { TextInput, Switch, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDataAction } from "@/store/user/userActions";
 import { CldUploadButton } from "next-cloudinary";
 import Swal from "sweetalert2";
-import { cities } from "@/lib/constants";
+import { URL, cities } from "@/lib/constants";
 import { getBarrios } from "@/lib/pocketbase";
 import { useForm, useWatch } from "react-hook-form";
+import QRCode from 'react-qr-code';
 
 const UserTab = () => {
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
   const user = useSelector((store) => store.user);
- 
+
   const [usrNameDisabled, setUsrNameDisabled] = useState(true);
   const [usrMobileDisabled, setUsrMobileDisabled] = useState(true);
   const [usrAddressDisabled, setUsrAddressDisabled] = useState(true);
@@ -22,7 +24,8 @@ const UserTab = () => {
   const [usrBarrioDisabled, setUsrBarrioDisabled] = useState(true);
   const [formatedBarrios, setFormatedBarrios] = useState('');
   const [barrios, setBarrios] = useState([])
-  const [trigger, setTrigger] =useState(false)
+  const [usrBarrio, setUsrBarrio] = useState(0)
+  const [usrQRURL, setUsrQRURL] = useState(0)
 
   const { register, formState: { errors }, watch, handleSubmit, setValue, getValues } =
     useForm({
@@ -44,10 +47,10 @@ const UserTab = () => {
       }
     });
   const ciudad = watch('ciudad');
-  const barrio = watch('barrio');
+  let barrio = watch('barrio');
 
   const onSubmit = async (data) => {
-    
+
     data.id = auth.user.record.id
 
     console.log('la data', data)
@@ -71,63 +74,77 @@ const UserTab = () => {
 
   }
   const loadData = () => {
+    if (Object.entries(user.user).length > 0) {
 
-    let usrImage = user.user?.userImage;
-    if (usrImage == '') {
-      usrImage = auth.user.record.userImage;
+      let usrImage = user.user?.userImage;
+      if (usrImage == '') {
+        usrImage = auth.user.record.userImage;
+      }
+      setUsrImage(usrImage)
+      setValue("userImage", usrImage);
+      setValue("name", user.user?.name);
+      setValue("email", user.user?.email);
+      setValue("mobile", user.user?.mobile);
+      setValue("address", user.user?.address);
+      setValue("ciudad", user.user?.ciudad);
+      setValue("barrio", user.user?.barrio);
+      setUsrBarrio(user.user?.barrio)
+      setValue("lost", user.user?.lost);
+      setValue("publicAddress", user.user?.publicAddress);
+      setValue("publicEmail", user.user?.publicEmail);
+      setValue("publicMobile", user.user?.publicMobile);
+      setValue("publicBarrio", user.user?.publicBarrio);
+      setValue("publicCiudad", user.user?.publicCiudad);
+      setValue("lost", user.user?.lost);
+
+      let QRURL = `${URL}lostPet/${user.user.id}?qr=${user.user.qr}`
+      setUsrQRURL(QRURL)
+
     }
-    setUsrImage(usrImage)
-    setValue("userImage", usrImage);
-    setValue("name", user.user?.name);
-    setValue("email", user.user?.email);
-    setValue("mobile", user.user?.mobile);
-    setValue("address", user.user?.address);
-    setValue("ciudad", user.user?.ciudad);
-    setValue("barrio", user.user?.barrio);
-    setValue("lost", user.user?.lost);
-    setValue("publicAddress", user.user?.publicAddress);
-    setValue("publicEmail", user.user?.publicEmail);
-    setValue("publicMobile", user.user?.publicMobile);
-    setValue("publicBarrio", user.user?.publicBarrio);
-    setValue("publicCiudad", user.user?.publicCiudad);
-    setValue("lost", user.user?.lost);
   }
 
   const loadBarrios = async () => {
     if (barrios.length == 0) {
-      
       setBarrios(await getBarrios())
+
     }
   }
+
   const createFormatedBarrio = async () => {
-    let preformated = barrios.filter((barrio) => barrio.ciudad == getValues("ciudad"))
-    let temFormatedBarrios = []
-    preformated.forEach((barrio,index) => {
-     
-      temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
-    })
-    setFormatedBarrios(temFormatedBarrios)
+    if (getValues("ciudad") != 0) {
+
+      let preformated = barrios.filter((barrio) => barrio.ciudad == getValues("ciudad"))
+      let temFormatedBarrios = []
+      preformated.forEach((barrio, index) => {
+
+        temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
+      })
+      setFormatedBarrios(temFormatedBarrios)
+    }
   }
   useEffect(() => {
-   
     loadBarrios()
   }, [])
 
   useEffect(() => {
     if (auth.status != "not-authenticated") {
-    
+
       loadData()
     }
   }, [user.user])
 
   useEffect(() => {
     createFormatedBarrio()
-
   }, [ciudad])
 
+  useEffect(() => {
+    if (barrio != 0) {
+      setUsrBarrio(barrio)
+    }
+  }, [barrio])
 
- 
-  
+
+
 
 
 
@@ -222,7 +239,7 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
-                <input type="tel" class="form-control" placeholder="Número celular" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+                <input type="tel" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
                   {...register('address', {
                     required: true,
                     maxLength: 100
@@ -255,12 +272,15 @@ const UserTab = () => {
 
               <td>
                 {formatedBarrios.length > 0 ?
-                  <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
-                    {formatedBarrios?.map(barrio=> 
-                      
+                  <>
+                    <select class="form-select" value={usrBarrio} disabled={usrBarrioDisabled}  {...register('barrio')} >
+                      {formatedBarrios?.map(barrio =>
+
                         <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
-                    )}
-                  </select>
+                      )}
+                    </select>
+
+                  </>
                   :
                   <>
                     <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
@@ -272,6 +292,37 @@ const UserTab = () => {
               <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
               <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" {...register('publicBarrio')} /></td>
             </tr>
+            <tr>
+              <td>Qr</td>
+              <br />
+              {usrQRURL != '' &&
+                <QRCode
+                  size={256}
+                  style={{ height: "200", maxWidth: "100%", width: "100%" }}
+                  value={usrQRURL}
+                  viewBox={`0 0 256 256`}
+                />
+              }
+              <td>
+
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+
+              <td>
+                {usrQRURL != '' &&
+                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center>
+                }
+                 {usrQRURL == '' &&
+                 <></>
+                }
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
         <div className="form-check form-switch mt-4">
@@ -280,7 +331,7 @@ const UserTab = () => {
             <label class="form-check-label" for="flexSwitchCheckDefault">habilitar busqueda </label>
           </div>
         </div>
-        <button >Actualizar</button>
+        <button id='BtnActualizar'>Actualizar</button>
       </form>
     </div>
   )

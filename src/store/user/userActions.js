@@ -79,8 +79,8 @@ export const updatePetDataAction = (data) => {
 
 
             if (Object.entries(petData).length == 0) {
-
-                updatedRecord = await createPetBd(data)
+           
+                 updatedRecord = await createPetBd(data)
             }
             else {
                updatedRecord = await updatePetBd(petData.id,data)
@@ -97,21 +97,6 @@ export const updatePetDataAction = (data) => {
                 })
             }
 
-            /* const updateRecord = await updateUserBd(id, name, email, mobile,
-                 address, ciudad, barrio, userImage, lost, publicAddress,
-                 publicEmail, publicMobile, publicCiudad, publicBarrio)
- 
-             if (Object.entries(updateRecord).length > 0) {
-                 dispatch(updateUser({ user: updateRecord }))
-                 const answer = await Swal.fire({
- 
-                     title: "Operación exitosa",
-                     text: "Modificaciones relizadas",
-                     icon: "success",
-                     confirmButtonText: "Aceptar",
-                     confirmButtonColor: "#7FD161"
-                 })
-             }*/
 
         }
         catch (error) {

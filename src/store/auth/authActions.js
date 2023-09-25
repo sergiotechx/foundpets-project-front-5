@@ -6,9 +6,10 @@ import {
   logout,
   updateUser,
 } from "./authReducer";
-import { authWithEmail, createUser, logoutPb } from "../../lib/pocketbase";
+import { authWithEmail, createUser, logoutPb, updateUserBd } from "../../lib/pocketbase";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const checkingAuthetication = (email, password) => {
@@ -27,15 +28,15 @@ export const startLoginWithGoogle = () => {
 
     const result = await loginWithGoogle();
 
-
-    console.log("resultado:", result);
-
-
     if (result.meta.id != null) {
       let record = result.record;
       let token = result.token;
       if (record.userImage == '') {
         record.userImage = result.meta.avatarUrl
+      }
+      if(record.qr == ''){
+        record.qr = uuidv4()
+        record = await updateUserBd(record)
       }
       dispatch(loging({ record, token }));
     }
@@ -47,20 +48,20 @@ export const startLoginWithGoogle = () => {
   };
 };
 
-export const startGoogleSignIn = () => {
+/*export const startGoogleSignIn = () => {
   return async (dispatch) => {
     dispatch(chekingCredentials());
 
     try {
-      const authData2 = await loginWithGoogle();
-
+      let authData2 = await loginWithGoogle();
+      
       dispatch(loging(authData2));
     }
     catch (error) {
       dispatch(logout(error.message));
     }
   };
-};
+};*/
 
 export const startCreatingUserWithEmailPassword = (data) => {
   return async (dispatch) => {
@@ -79,7 +80,7 @@ export const startCreatingUserWithEmailPassword = (data) => {
           confirmButtonText: "Aceptar",
           confirmButtonColor: "#7FD161"
         })
-        let data ={record:result}
+        let data = { record: result }
         dispatch(loging(data));
       }
     } catch (error) {
@@ -94,11 +95,15 @@ export const startLoginWithEmailPassword = (data2) => {
 
     try {
 
-      const validation = await authWithEmail(data2);
-      
+      let validation = await authWithEmail(data2);
+
       if (validation.record.id != null) {
         let record = validation.record;
         let token = validation.token;
+        if (record.qr == '') {
+          record.qr = uuidv4()
+          record = await updateUserBd(record)
+        }
         dispatch(loging({ record, token }))
       }
     }

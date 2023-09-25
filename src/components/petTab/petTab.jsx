@@ -6,6 +6,7 @@ import { updatePetDataAction } from "@/store/user/userActions";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { CldUploadButton } from "next-cloudinary";
+import PetImage from './petImage.jsx/petImage';
 
 
 const PetTab = () => {
@@ -22,7 +23,6 @@ const PetTab = () => {
     const [petImage3, setPetImage3] = useState('')
     const [petImage4, setPetImage4] = useState('')
     const [petImage5, setPetImage5] = useState('')
-    const noImage = '/images/EmptyDogPhotoGray.png'
     const { register, formState: { errors }, watch, handleSubmit, setValue, getValues } =
         useForm({
             defaultValues: {
@@ -40,10 +40,6 @@ const PetTab = () => {
             }
         });
 
-
-
-
-
     const onSubmit = async (data) => {
         const answer = await Swal.fire({
             title: "Operación de sistema",
@@ -56,12 +52,7 @@ const PetTab = () => {
             showCancelButton: true,
         })
         if (answer.isConfirmed) {
-
-
-
-            dispatch(updatePetDataAction(data))
-
-
+             dispatch(updatePetDataAction(data))
         }
 
     }
@@ -73,11 +64,21 @@ const PetTab = () => {
         setValue("type", user.pet?.type);
         setValue("genre", user.pet?.genre);
         setValue("description", user.pet?.description);
-        setValue("image1", user.pet?.image1 === '' ? noImage : user.pet?.image1);
-        setValue("image2", user.pet?.image2 === '' ? noImage : user.pet?.image2);
-        setValue("image3", user.pet?.image3 === '' ? noImage : user.pet?.image3);
-        setValue("image4", user.pet?.image4 === '' ? noImage : user.pet?.image4);
-        setValue("image5", user.pet?.image5 === '' ? noImage : user.pet?.image5);
+        /*if (Object.entries(user.pet).length == 0) {
+            setValue("image1", noImage);
+            setValue("image2", noImage);
+            setValue("image3", noImage);
+            setValue("image4", noImage);
+            setValue("image5", noImage);
+        }*/
+       // else {
+            setValue("image1",  user.pet?.image1);
+            setValue("image2",  user.pet?.image2);
+            setValue("image3",  user.pet?.image3);
+            setValue("image4",  user.pet?.image4);
+            setValue("image5",  user.pet?.image5);
+        //}
+
         setPetImage1(getValues("image1"))
         setPetImage2(getValues("image2"))
         setPetImage3(getValues("image3"))
@@ -92,150 +93,18 @@ const PetTab = () => {
         }
     }, [user.pet])
 
-   
 
 
-    function handleOnUpload1(result, operations) {
-        if (!result.event === "success") {
-            updateError(result?.info);
-            return;
-        }
-        setPetImage1(result?.info.secure_url);
-        setValue("image1", result?.info.secure_url)
-    }
-    function handleOnUpload2(result, operations) {
-        if (!result.event === "success") {
-            updateError(result?.info);
-            return;
-        }
-        setPetImage2(result?.info.secure_url);
-        setValue("image2", result?.info.secure_url)
-    }
-    function handleOnUpload3(result, operations) {
-        if (!result.event === "success") {
-            updateError(result?.info);
-            return;
-        }
-        setPetImage3(result?.info.secure_url);
-        setValue("image3", result?.info.secure_url)
-    }
-    function handleOnUpload4(result, operations) {
-        if (!result.event === "success") {
-            updateError(result?.info);
-            return;
-        }
-        setPetImage4(result?.info.secure_url);
-        setValue("image4", result?.info.secure_url)
-    }
-    function handleOnUpload5(result, operations) {
-        if (!result.event === "success") {
-            updateError(result?.info);
-            return;
-        }
-        setPetImage5(result?.info.secure_url);
-        setValue("image5", result?.info.secure_url)
-    }
-    const deleteImage = async (index) => {
-        const answer = await Swal.fire({
 
-            title: "¿Estás seguro?",
-            text: "¿Quieres eliminar esta imagen?",
-            icon: "warning",
-            confirmButtonText: "Sí",
-            confirmButtonColor: "#7FD161",
-            cancelButtonText: "No",
-            cancelButtonColor: "#CDD4DA",
-            showCancelButton: true,
-        })
-        if (answer.isConfirmed) {
-            const image = `image${index}`
-            setValue(image, '')
-            switch (index) {
-                case 1:
-                    setPetImage1('')
-                    break;
-                case 2:
-                    setPetImage2('')
-                    break;
-                case 3:
-                    setPetImage3('')
-                    break;
-                case 4:
-                    setPetImage4('')
-                    break;
-                case 5:
-                    setPetImage5('')
-                    break;
-
-            }
-        }
-    }
 
     return (
         <div id='PetTab'>
             <div className='PetGallery'>
-
-
-            <figure>
-                    {petImage1 != '' ? <img src={petImage1} /> : <img src={noImage} />}
-                    <CldUploadButton
-                        uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload1}
-                        id="cloudinary"
-                      
-                    >
-                        <i className="bi bi-camera fs-5" id='CameraIcon' onClick={handleOnUpload1}></i>
-                    </CldUploadButton>
-                    <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(1)} />
-                </figure>
-                <figure>
-                    {petImage2 != '' ? <img src={petImage2} /> : <img src={noImage} />}
-                    <CldUploadButton
-                        uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload2}
-                        id="cloudinary"
-                      
-                    >
-                        <i className="bi bi-camera fs-5" id='CameraIcon'></i>
-                    </CldUploadButton>
-                    <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(2)} />
-                </figure>
-                <figure>
-                    {petImage3 != '' ? <img src={petImage3} /> : <img src={noImage} />}
-                    <CldUploadButton
-                        uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload3}
-                        id="cloudinary"
-                     
-                    >
-                        <i className="bi bi-camera fs-5" id='CameraIcon'></i>
-                    </CldUploadButton>
-                    <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(3)} />
-                </figure>
-                <figure>
-                    {petImage4 != '' ? <img src={petImage4} /> : <img src={noImage} />}
-                    <CldUploadButton
-                        uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload4}
-                        id="cloudinary"
-                      
-                    >
-                        <i className="bi bi-camera fs-5" id='CameraIcon'></i>
-                    </CldUploadButton>
-                    <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(4)} />
-                </figure>
-                <figure>
-                    {petImage5 != '' ? <img src={petImage5} /> : <img src={noImage} />}
-                    <CldUploadButton
-                        uploadPreset="FoundPets"
-                        onUpload={()=>handleOnUpload5}
-                        id="cloudinary"
-                       
-                    >
-                        <i className="bi bi-camera fs-5" id='CameraIcon'></i>
-                    </CldUploadButton>
-                    <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(5)} />
-                </figure>
+                <PetImage petImage={petImage1} setPetImage={setPetImage1}  setValue={setValue} image ={"image1"}/>
+                <PetImage petImage={petImage2} setPetImage={setPetImage2} setValue={setValue}  image ={"image2"}/>
+                <PetImage petImage={petImage3} setPetImage={setPetImage3} setValue={setValue} image ={"image3"}/>
+                <PetImage petImage={petImage4} setPetImage={setPetImage4} setValue={setValue} image ={"image4"} />
+                <PetImage petImage={petImage5} setPetImage={setPetImage5} setValue={setValue} image ={"image5"} />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 < table>
