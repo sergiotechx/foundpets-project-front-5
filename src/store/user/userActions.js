@@ -83,7 +83,7 @@ export const updatePetDataAction = (data) => {
                  updatedRecord = await createPetBd(data)
             }
             else {
-             //  updatedRecord = await updatePetBd(petData.id,data)
+               updatedRecord = await updatePetBd(petData.id,data)
             }
             if (Object.entries(updatedRecord).length > 0) {
                 dispatch(updatePet({ pet:  updatedRecord }))

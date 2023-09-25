@@ -1,13 +1,15 @@
 import './userTab.scss';
+import '../../lib/bearLoader.scss'
 import React, { useEffect, useState } from "react";
 import { TextInput, Switch, Select } from '@mantine/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDataAction } from "@/store/user/userActions";
 import { CldUploadButton } from "next-cloudinary";
 import Swal from "sweetalert2";
-import { cities } from "@/lib/constants";
+import { URL, cities } from "@/lib/constants";
 import { getBarrios } from "@/lib/pocketbase";
 import { useForm, useWatch } from "react-hook-form";
+import QRCode from 'react-qr-code';
 
 const UserTab = () => {
   const dispatch = useDispatch();
@@ -22,7 +24,8 @@ const UserTab = () => {
   const [usrBarrioDisabled, setUsrBarrioDisabled] = useState(true);
   const [formatedBarrios, setFormatedBarrios] = useState('');
   const [barrios, setBarrios] = useState([])
- const [usrBarrio, setUsrBarrio] =useState(0)
+  const [usrBarrio, setUsrBarrio] = useState(0)
+  const [usrQRURL, setUsrQRURL] = useState(0)
 
   const { register, formState: { errors }, watch, handleSubmit, setValue, getValues } =
     useForm({
@@ -72,7 +75,7 @@ const UserTab = () => {
   }
   const loadData = () => {
     if (Object.entries(user.user).length > 0) {
-   
+
       let usrImage = user.user?.userImage;
       if (usrImage == '') {
         usrImage = auth.user.record.userImage;
@@ -93,52 +96,55 @@ const UserTab = () => {
       setValue("publicBarrio", user.user?.publicBarrio);
       setValue("publicCiudad", user.user?.publicCiudad);
       setValue("lost", user.user?.lost);
-    
+
+      let QRURL = `${URL}lostPet/${user.user.id}?qr=${user.user.qr}`
+      setUsrQRURL(QRURL)
+
     }
   }
 
   const loadBarrios = async () => {
     if (barrios.length == 0) {
-        setBarrios(await getBarrios())
-     
+      setBarrios(await getBarrios())
+
     }
   }
-  
+
   const createFormatedBarrio = async () => {
-    if(getValues("ciudad")!=0){
-     
+    if (getValues("ciudad") != 0) {
+
       let preformated = barrios.filter((barrio) => barrio.ciudad == getValues("ciudad"))
       let temFormatedBarrios = []
       preformated.forEach((barrio, index) => {
-  
+
         temFormatedBarrios.push({ label: barrio.descripcion, value: barrio.id })
       })
       setFormatedBarrios(temFormatedBarrios)
     }
   }
   useEffect(() => {
-     loadBarrios()
+    loadBarrios()
   }, [])
 
   useEffect(() => {
     if (auth.status != "not-authenticated") {
-    
+
       loadData()
     }
   }, [user.user])
 
   useEffect(() => {
-     createFormatedBarrio()
+    createFormatedBarrio()
   }, [ciudad])
 
   useEffect(() => {
-    if(barrio!=0){
+    if (barrio != 0) {
       setUsrBarrio(barrio)
     }
   }, [barrio])
-  
 
- 
+
+
 
 
 
@@ -267,14 +273,14 @@ const UserTab = () => {
               <td>
                 {formatedBarrios.length > 0 ?
                   <>
-                  <select class="form-select" value={usrBarrio}  disabled={usrBarrioDisabled}  {...register('barrio')} >
-                    {formatedBarrios?.map(barrio =>
+                    <select class="form-select" value={usrBarrio} disabled={usrBarrioDisabled}  {...register('barrio')} >
+                      {formatedBarrios?.map(barrio =>
 
-                      <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
-                    )}
-                  </select>
-                 
-                </>
+                        <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
+                      )}
+                    </select>
+
+                  </>
                   :
                   <>
                     <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
@@ -285,6 +291,37 @@ const UserTab = () => {
               </td>
               <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
               <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" {...register('publicBarrio')} /></td>
+            </tr>
+            <tr>
+              <td>Qr</td>
+              <br />
+              {usrQRURL != '' &&
+                <QRCode
+                  size={256}
+                  style={{ height: "200", maxWidth: "100%", width: "100%" }}
+                  value={usrQRURL}
+                  viewBox={`0 0 256 256`}
+                />
+              }
+              <td>
+
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+
+              <td>
+                {usrQRURL != '' &&
+                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center>
+                }
+                 {usrQRURL == '' &&
+                 <></>
+                }
+              </td>
+              <td></td>
+              <td></td>
             </tr>
           </tbody>
         </table>
