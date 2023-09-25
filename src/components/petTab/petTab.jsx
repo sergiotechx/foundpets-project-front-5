@@ -106,7 +106,7 @@ const PetTab = () => {
                 <PetImage petImage={petImage4} setPetImage={setPetImage4} setValue={setValue} image ={"image4"} />
                 <PetImage petImage={petImage5} setPetImage={setPetImage5} setValue={setValue} image ={"image5"} />
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='form' onSubmit={handleSubmit(onSubmit)}>
                 < table>
                     <thead>
                         <tr>
