@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import "./lostPest.scss";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { getOneLostPet, newMessage } from "@/lib/pocketbase";
 import { useScroll, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -15,68 +15,70 @@ const Page = () => {
   const { scrollXProgress } = useScroll({ container: ref });
   const params = useParams();
   const id = params.id;
-  
+
   const [animal, setAnimal] = useState(null);
-  const owner = animal? animal.name : "";
-  
+  const owner = animal ? animal.name : "";
+
   const [opened, { open, close }] = useDisclosure(false);
+  const SearchParams = useSearchParams();
+  const [fountQr, setFoundQr] = useState(null);
+  const qr = SearchParams.get("qr");
 
-   const formData = {
-     petOwner: id,
-     email: "",
-     celphone: "",
-     description: "",
-   };
-
-   console.log("este", owner);
-   const dispatch = useDispatch()
-
-    const {
-     register,
-     handleSubmit,
-     formState: { errors },
-     setValue,
-     reset,
-   } = useForm({defaultValues:{
-    petOwner: owner,
+  const formData = {
+    petOwner: id,
     email: "",
     celphone: "",
-    description: ""}});
+    description: "",
+  };
 
+  console.log("este", owner);
+  const dispatch = useDispatch();
 
-    const onSubmit = handleSubmit((dataC) => {
-     
-      const updatedData = {
-        ...dataC,
-        petOwner: id,
-      };
-     
-      console.log("data:", updatedData);
-     
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    reset,
+  } = useForm({
+    defaultValues: {
+      petOwner: owner,
+      email: "",
+      celphone: "",
+      description: "",
+    },
+  });
 
-      dispatch(createNewMessage(updatedData))
-      reset()
-   
-   });
+  const onSubmit = handleSubmit((dataC) => {
+    const updatedData = {
+      ...dataC,
+      petOwner: id,
+    };
 
-    const createNewMessage = (data) =>{
-     return async (dispatch) => {
-       try {
-         const response = await newMessage(data);
-       console.log("prueba:", response);
-       if(response.id){
-         Swal.fire({
-           title: 'Bien hecho',
-           text: 'Informacion enviada',
-           icon: 'success',
-           confirmButtonText: 'Ok'
-         })
-       }
-       } catch (error) {
-         console.log("aca", error);
-       }
-     }
-   }
+    console.log("data:", updatedData);
+
+    dispatch(createNewMessage(updatedData));
+    reset();
+  });
+
+  const createNewMessage = (data) => {
+    return async (dispatch) => {
+      try {
+        const response = await newMessage(data);
+        //console.log("prueba:", response);
+        if (response.id) {
+          Swal.fire({
+            title: "Bien hecho",
+            text: "Informacion enviada",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      } catch (error) {
+        console.log("aca", error);
+      }
+    };
+  };
 
   const getOnePet = async (id) => {
     try {
@@ -89,18 +91,23 @@ const Page = () => {
     }
   };
 
-
   useEffect(() => {
     setAnimal(null);
     getOnePet(id);
+    console.log(qr);
+    if (qr) {
+      setFoundQr(qr);
+    } else {
+      setFoundQr(null);
+    }
   }, []);
 
   return (
     <div className="lostPest mb-4">
-      <Modal  opened={opened} onClose={close} title="Contacta al dueño">
-      <form className="contactOwner" onSubmit={onSubmit}>
-        <label >Correo electronico</label>
-    <input
+      <Modal opened={opened} onClose={close} title="Contacta al dueño">
+        <form className="contactOwner" onSubmit={onSubmit}>
+          <label>Correo electronico</label>
+          <input
             type="email"
             placeholder="nombre@ejemplo.com"
             {...register("email", {
@@ -115,7 +122,7 @@ const Page = () => {
             })}
           />
           {errors.email && <span>{errors.email.message} </span>}
-          <label >Nombre</label>
+          <label>Nombre</label>
           <input
             type="text"
             {...register("name", {
@@ -130,8 +137,8 @@ const Page = () => {
             })}
           />
           {errors.name && <span>{errors.name.message} </span>}
-          <label >Descripción de la mascota</label>
-          <textarea 
+          <label>Descripción de la mascota</label>
+          <textarea
             className="description"
             type="textarea"
             {...register("description", {
@@ -144,13 +151,13 @@ const Page = () => {
                 message: "el texto debe tener al menos 4 caracteres",
               },
             })}
-           cols="30"
+            cols="30"
             rows="10"
-            ></textarea>
-            {errors.description && <span>{errors.description.message} </span>}
-        <Button color="indigo" radius="md" type="submit" >
-          Contactar
-        </Button>
+          ></textarea>
+          {errors.description && <span>{errors.description.message} </span>}
+          <Button color="indigo" radius="md" type="submit">
+            Contactar
+          </Button>
         </form>
       </Modal>
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
@@ -215,7 +222,14 @@ const Page = () => {
             <label>* Así me puedes reconocer</label>
             <span>{animal?.petDescrription}</span>
           </div>
-          {animal ? <span onClick={open} className="loaderlostpets3"></span> : ""}
+          {animal ? (
+            <>
+              <h4>Contacta con el dueño</h4>
+              <span onClick={open} className="loaderlostpets3"></span>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         <span className="loaderlostpets2"></span>
