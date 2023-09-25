@@ -15,20 +15,32 @@
 
         display: flex;
         flex-direction: column;
-        width: 90%;
         align-self: center;
-        
+        width: 100%;
         .bi-pencil {
             cursor: pointer;
-            margin-left: 0.3em;
+            margin: 1rem;
         }
-
         #BtnActualizar {
-            margin-top: 1em;
             background-color: #7FD262;
+            padding: .5rem;
+            margin-top: 1rem;
             border: none;
             border-radius: 5px;
             width: fit-content;
+        }
+        
+        input{
+            margin:.1rem;
+            width: 100% !important;
+        }
+        select{
+            margin:.1rem;
+            width: 100% !important;
+        }
+        textarea {
+            margin:.1rem;
+            width: 100% !important;
         }
     }
 

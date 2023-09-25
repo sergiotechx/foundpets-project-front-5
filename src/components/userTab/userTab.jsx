@@ -170,7 +170,7 @@ const UserTab = () => {
           <i className="bi bi-camera fs-5" id='CameraIcon' />
         </CldUploadButton>
       </figure>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         < table>
           <thead>
             <tr>
@@ -185,7 +185,7 @@ const UserTab = () => {
               <td>Nombre</td>
               <td >
 
-                <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrNameDisabled}
+                <input type="text" class="form-control input" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrNameDisabled}
                   {...register('name', {
                     required: true,
                     maxLength: 50
@@ -195,7 +195,7 @@ const UserTab = () => {
               </td>
 
               <td><i className="bi bi-pencil " onClick={() => setUsrNameDisabled(!usrNameDisabled)} /></td>
-              <td><input className="form-check-input-solid invisible" type="checkbox" id="checkboxNoLabel" value="" /></td>
+              <td><input className="form-check-input-solid invisible input" type="checkbox" id="checkboxNoLabel" value="" /></td>
             </tr>
             <tr>
               <td>Correo</td>
@@ -214,7 +214,7 @@ const UserTab = () => {
               </td>
               <td><i className="bi bi-pencil invisible" /></td>
               <td>
-                <input type="checkbox"  {...register('publicEmail')} />
+                <input className="input" type="checkbox"  {...register('publicEmail')} />
               </td>
             </tr>
             <tr>
@@ -222,7 +222,7 @@ const UserTab = () => {
               <td >
 
 
-                <input type="tel" class="form-control" placeholder="Número celular" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrMobileDisabled}
+                <input type="tel" className="form-control input" placeholder="Número celular" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrMobileDisabled}
                   {...register('mobile', {
                     required: true,
                     maxLength: 20
@@ -233,7 +233,7 @@ const UserTab = () => {
 
               </td>
               <td><i className="bi bi-pencil" onClick={() => setUsrMobileDisabled(!usrMobileDisabled)} /></td>
-              <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel" {...register('publicMobile')} /></td>
+              <td><input className="form-check-input-solid input" type="checkbox" id="checkboxNoLabel" {...register('publicMobile')} /></td>
             </tr>
             <tr>
               <td>Dirección</td>
@@ -249,13 +249,13 @@ const UserTab = () => {
                 {errors.address?.type === 'maxLength' && <p>El campo dirección debe tener menos de 100 caracteres</p>}
               </td>
               <td><i className="bi bi-pencil " onClick={() => setUsrAddressDisabled(!usrAddressDisabled)} /></td>
-              <td><input className="form-check-input-solid" type="checkbox" id="checkboxNoLabel"  {...register('publicAddress')} /></td>
+              <td><input className="form-check-input-solid input" type="checkbox" id="checkboxNoLabel"  {...register('publicAddress')} /></td>
             </tr>
             <tr>
               <td>Ciudad</td>
               <td >
 
-                <select class="form-select" disabled={usrCityDisabled}  {...register('ciudad', {
+                <select class="form-select input" disabled={usrCityDisabled}  {...register('ciudad', {
                   required: true
                 })} >
                   {cities?.map((city) =>
@@ -265,7 +265,7 @@ const UserTab = () => {
                 {errors.ciudad?.type === 'required' && <p>El campo ciudad es requerido</p>}
               </td>
               <td><i className="bi bi-pencil " onClick={() => setUsrCityDisabled(!usrCityDisabled)} /></td>
-              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel"  {...register('publicCiudad')} /></td>
+              <td><input className="form-check-input-solid input" type="checkbox" id="checkboxNoLabel"  {...register('publicCiudad')} /></td>
             </tr>
             <tr>
               <td>Barrio</td>
@@ -283,14 +283,14 @@ const UserTab = () => {
                   </>
                   :
                   <>
-                    <select class="form-select" disabled={usrBarrioDisabled}  {...register('barrio')} >
+                    <select class="form-select input" disabled={usrBarrioDisabled}  {...register('barrio')} >
                       <option value={null}> Elige un barrio</option>
                     </select>
                   </>
                 }
               </td>
               <td><i className="bi bi-pencil " onClick={() => setUsrBarrioDisabled(!usrBarrioDisabled)} /></td>
-              <td><input className="form-check-input-solid " type="checkbox" id="checkboxNoLabel" {...register('publicBarrio')} /></td>
+              <td><input className="form-check-input-solid  input" type="checkbox" id="checkboxNoLabel" {...register('publicBarrio')} /></td>
             </tr>
             <tr>
               <td>Qr</td>
