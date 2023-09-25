@@ -174,11 +174,7 @@ const PetTab = () => {
     return (
         <div id='PetTab'>
             <div className='PetGallery'>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <figure className="figure">
+                <figure >
                     <img className="img" src='/images/EmptyDogPhotoGray.png' />
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
@@ -203,11 +199,6 @@ const PetTab = () => {
                     <i className="bi bi-camera fs-5" id='CameraIcon' ></i>
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon'></i>
                     </figure>
-=======
->>>>>>> 0afbe0a83fb2910e9273b45d3fb4b731f015d9a2
-=======
->>>>>>> 0afbe0a83fb2910e9273b45d3fb4b731f015d9a2
->>>>>>> develop
 
 
             <figure>
@@ -271,7 +262,7 @@ const PetTab = () => {
                     <i class="bi bi-trash3-fill fs-5" id='TrashIcon' onClick={() => deleteImage(5)} />
                 </figure>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='form' onSubmit={handleSubmit(onSubmit)}>
                 < table>
                     <thead>
                         <tr>
