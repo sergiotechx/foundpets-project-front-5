@@ -86,7 +86,7 @@ const InboxTab = () => {
         <thead>
           <tr>
             <th className='col-md-3'>Nombre <i className="bi bi-sort-alpha-down"></i></th>
-            <th className='col-md-7'>Mensaje</th>
+            <th className='col-md-7'>Asunto</th>
             <th className='col-md-1'>Fecha <i className="bi bi-sort-alpha-down"></i></th>
             <th className='col-md-1'>Borrar</th>
           </tr>
@@ -101,7 +101,7 @@ const InboxTab = () => {
                   open();
                 }}
               >
-                Asunto
+                {message.asunto}
               </td>
               <td>{message.updated}</td>
               <td>

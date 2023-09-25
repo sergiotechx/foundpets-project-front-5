@@ -130,6 +130,23 @@ const Page = () => {
             })}
           />
           {errors.name && <span>{errors.name.message} </span>}
+
+          <label >Asunto</label>
+          <input
+            type="text"
+            {...register("asunto", {
+              required: {
+                value: true,
+                message: "Nombre requerido",
+              },
+              minLength: {
+                value: 4,
+                message: "Nombre debe tener al menos 4 caracteres",
+              },
+            })}
+          />
+          {errors.asunto && <span>{errors.asunto.message} </span>}
+
           <label >Descripción de la mascota</label>
           <textarea 
             className="description"
