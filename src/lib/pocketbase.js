@@ -129,6 +129,7 @@ export const newMessage = async (updatedData) => {
 
     message: updatedData.description,
     contactName: updatedData.name,
+    asunto: updatedData.asunto,
     contactData: updatedData.email,
     petOwner: updatedData.petOwner
   };
