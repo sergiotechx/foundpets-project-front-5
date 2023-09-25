@@ -15,8 +15,10 @@ const Page = () => {
   const { scrollXProgress } = useScroll({ container: ref });
   const params = useParams();
   const id = params.id;
+  
   const [animal, setAnimal] = useState(null);
-
+  const owner = animal? animal.name : "";
+  
   const [opened, { open, close }] = useDisclosure(false);
 
    const formData = {
@@ -26,6 +28,7 @@ const Page = () => {
      description: "",
    };
 
+   console.log("este", owner);
    const dispatch = useDispatch()
 
     const {
@@ -35,19 +38,24 @@ const Page = () => {
      setValue,
      reset,
    } = useForm({defaultValues:{
-    petOwner: id,
+    petOwner: owner,
     email: "",
     celphone: "",
     description: ""}});
 
 
     const onSubmit = handleSubmit((dataC) => {
-     console.log("data:", dataC);
-
+     
+      const updatedData = {
+        ...dataC,
+        petOwner: id,
+      };
+     
+      console.log("data:", updatedData);
      
 
-     dispatch(createNewMessage(dataC))
-     reset()
+      dispatch(createNewMessage(updatedData))
+      reset()
    
    });
 
@@ -80,6 +88,7 @@ const Page = () => {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     setAnimal(null);
