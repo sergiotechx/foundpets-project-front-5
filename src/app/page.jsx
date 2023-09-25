@@ -8,6 +8,7 @@ import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
 import { fullDataHomeBd, getBarrios, getOneLostPet } from "@/lib/pocketbase";
 import { cities, species } from "@/lib/constants";
+import "@/lib/bearLoader.scss";
 import { imagesHome } from "@/lib/constants";
 
 const Page = () => {
@@ -147,8 +148,6 @@ const Page = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = petsLostprops?.records.slice(startIndex, endIndex);
 
-  
-
   return (
     <div className="home p-3">
       <Carrusel imagesHome={imagesHome} />
@@ -156,7 +155,7 @@ const Page = () => {
         <h1 className="mb-5">Huellitas perdidas</h1>
         {!petsLost ? (
           <>
-            <span className="loader "></span>
+            <span className="loader"></span>
             <h3>Buscando animalitos...</h3>
           </>
         ) : (
@@ -210,7 +209,6 @@ const Page = () => {
                 total={totalPages}
                 value={currentPage}
                 onChange={handlePageChange}
-                
               />
             </div>
           </section>
