@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { Button, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Swal from "sweetalert2";
+import 
+  import GeoLocation from "@/components/geoLocation/geoLocation";
 
 const Page = () => {
   const ref = useRef(null);
@@ -23,6 +25,8 @@ const Page = () => {
   const SearchParams = useSearchParams();
   const [fountQr, setFoundQr] = useState(null);
   const qr = SearchParams.get("qr");
+  //geoLocation funcionality
+  const [geLocation,setGeLocation] = useState(false);
 
   const formData = {
     petOwner: id,
@@ -56,6 +60,7 @@ const Page = () => {
     };
 
     console.log("data:", updatedData);
+   
 
     dispatch(createNewMessage(updatedData));
     reset();
@@ -104,6 +109,7 @@ const Page = () => {
 
   return (
     <div className="lostPest mb-4">
+    
       <Modal opened={opened} onClose={close} title="Contacta al dueño">
         <form className="contactOwner" onSubmit={onSubmit}>
           <label>Correo electronico</label>
@@ -174,8 +180,11 @@ const Page = () => {
           <Button color="indigo" radius="md" type="submit">
             Contactar
           </Button>
+          
+          <GeoLocation/>
         </form>
       </Modal>
+
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
       <div>
         {animal ? (
