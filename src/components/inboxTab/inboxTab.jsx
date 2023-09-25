@@ -101,7 +101,7 @@ const InboxTab = () => {
                   open();
                 }}
               >
-                {message.message}
+                Asunto
               </td>
               <td>{message.updated}</td>
               <td>

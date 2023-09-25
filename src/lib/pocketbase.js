@@ -123,19 +123,14 @@ export const updatePetBd = async (id,data) => {
 
 
 
-
-
-
-
-
-
-export const newMessage = async (dataC) => {
+export const newMessage = async (updatedData) => {
 
   const messageNew = {
 
-    message: dataC.description,
-    contactName: dataC.name,
-    contactData: dataC.email
+    message: updatedData.description,
+    contactName: updatedData.name,
+    contactData: updatedData.email,
+    petOwner: updatedData.petOwner
   };
 
   try {
