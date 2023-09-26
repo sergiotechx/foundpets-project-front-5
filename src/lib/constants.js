@@ -1,6 +1,6 @@
 export const DBURL = "https://foundpets.pockethost.io"
 export const URL = "http://127.0.0.1:3000/"
-export const googleMaps ="AIzaSyAC-8z_Liue1TYnyDrkm1obD-Dji_krDvE"
+
 
 export const cities = [
   { label: "Medellin", value: 1 },

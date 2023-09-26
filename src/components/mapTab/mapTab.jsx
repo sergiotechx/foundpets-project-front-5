@@ -33,7 +33,7 @@ const MapTab = () => {
       let temp = []
       data.forEach((point, index) => { temp.push({ lat: point.latitude, lng: point.longitude, text: index.toString() }) })
       setPoints(temp)
-
+      
     }
     catch (error) {
       console.log(error.data)
@@ -58,11 +58,11 @@ const MapTab = () => {
       </div>
 
       <div className='MapTabB'>
-
+       
 
         {points.length > 0 &&
           <GoogleMapReact
-            bootstrapURLKeys={{ key: googleMaps }}
+            bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLEMAPS }}
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}
           >

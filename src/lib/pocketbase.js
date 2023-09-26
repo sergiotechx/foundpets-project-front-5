@@ -131,14 +131,15 @@ export const newMessage = async (updatedData) => {
     contactName: updatedData.name,
     asunto: updatedData.asunto,
     contactData: updatedData.email,
-    petOwner: updatedData.petOwner
+    petOwner: updatedData.petOwner,
+    image: updatedData.image
   };
 
   try {
     const record = await client.collection('messages').create(messageNew);
     return record;
   } catch (error) {
-    console.log("error aca:", error);
+    console.log("error aca:!!!!!!!!!!!!!!!!!!", error);
   }
 }
 
@@ -184,23 +185,23 @@ export const newLocationBd = async (petOwner, latitude, longitude) => {
     return record;
   }
   catch (error) {
-       throw error
+    throw error
   }
 
 };
 export const getPetPoints = async (ownerId) => {
-  try{
-  const records = await client.collection('location').getFullList({
-    filter: `petOwner="${ownerId}"`,sort: '-created'
-  });
-  return records;
-}
-catch(error){
-  throw error
-}
+  try {
+    const records = await client.collection('location').getFullList({
+      filter: `petOwner="${ownerId}"`, sort: '-created'
+    });
+    return records;
+  }
+  catch (error) {
+    throw error
+  }
 
 
-  
+
 
 }
 

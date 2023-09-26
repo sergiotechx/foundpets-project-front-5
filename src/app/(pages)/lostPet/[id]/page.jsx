@@ -10,6 +10,7 @@ import { Button, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Swal from "sweetalert2";
 import GeoLocation from "@/components/geoLocation/geoLocation";
+import { CldUploadButton } from "next-cloudinary";
 
 const Page = () => {
   const ref = useRef(null);
@@ -21,6 +22,7 @@ const Page = () => {
   const owner = animal ? animal.name : "";
 
   const [opened, { open, close }] = useDisclosure(false);
+  const [messageImage,setMessageImage ] = useState('')
   const SearchParams = useSearchParams();
   const [fountQr, setFoundQr] = useState(null);
   const qr = SearchParams.get("qr");
@@ -36,6 +38,14 @@ const Page = () => {
 
   console.log("este", owner);
   const dispatch = useDispatch();
+  
+  function handleOnUpload(result, operations) {
+    if (!result.event === "success") {
+      updateError(result?.info);
+      return;
+    }
+    setMessageImage(result?.info.secure_url);
+  }
 
   const {
     register,
@@ -49,23 +59,25 @@ const Page = () => {
       email: "",
       celphone: "",
       description: "",
+      image:""
     },
   });
 
   const onSubmit = handleSubmit((dataC) => {
+    
+   
     const updatedData = {
       ...dataC,
       petOwner: id,
+      image:messageImage,
     };
 
-    console.log("data:", updatedData);
-
-
-    dispatch(createNewMessage(updatedData));
+   dispatch(createNewMessage(updatedData));
     reset();
+    setMessageImage('')
   });
 
-  const createNewMessage = async (data) => {
+  const createNewMessage =  (data) => {
     return async (dispatch) => {
       try {
         const response = await newMessage(data);
@@ -79,6 +91,8 @@ const Page = () => {
             confirmButtonText: "Aceptar",
             confirmButtonColor: "#7FD161"
           })
+          
+          close()
         }
       }
       catch (error) {
@@ -120,7 +134,7 @@ const Page = () => {
   return (
     <div className="lostPest mb-4">
 
-      <Modal opened={opened} onClose={close} title="Contacta al dueño">
+      <Modal  size="xs" opened={opened} onClose={close} title="Contacta al dueño">
         <GeoLocation petOwner={id} />
         <form className="contactOwnerMessage" onSubmit={onSubmit}>
           <label>Correo electronico</label>
@@ -188,6 +202,14 @@ const Page = () => {
             rows="10"
           ></textarea>
           {errors.description && <span>{errors.description.message} </span>}
+          <CldUploadButton
+          uploadPreset="FoundPets"
+          onUpload={handleOnUpload}
+          id="cloudinary"
+        >
+          <i className="bi bi-camera fs-5" id='CameraIcon' />
+          {messageImage&&<img src={messageImage}/>}
+        </CldUploadButton>
           <Button color="indigo" radius="md" type="submit">
             Contactar
           </Button>
