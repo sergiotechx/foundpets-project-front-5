@@ -23,7 +23,6 @@
   }
   
   .como-funciona-step {
-
     flex: 1;
     text-align: center;
     padding: 20px;
@@ -45,8 +44,14 @@
       }
   }
   .paso {
-   
     max-width: 100%;
     margin: .1rem;
   }
-  
+@media(max-width:768px){
+    .como-funciona {
+        .como-funciona-steps {
+        display: flex;
+        flex-direction: column;
+    }
+    }
+}
