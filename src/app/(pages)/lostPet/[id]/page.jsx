@@ -65,21 +65,32 @@ const Page = () => {
     reset();
   });
 
-  const createNewMessage = (data) => {
+  const createNewMessage = async (data) => {
     return async (dispatch) => {
       try {
         const response = await newMessage(data);
-        //console.log("prueba:", response);
+
         if (response.id) {
-          Swal.fire({
-            title: "Bien hecho",
-            text: "Informacion enviada",
+          const answer = await Swal.fire({
+
+            title: "Operación exitosa",
+            text: "Mensaje enviado",
             icon: "success",
-            confirmButtonText: "Ok",
-          });
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#7FD161"
+          })
         }
-      } catch (error) {
-        console.log("aca", error);
+      }
+      catch (error) {
+        const answer = await Swal.fire({
+
+          title: "Error de sistema",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#FF394D"
+        })
+
       }
     };
   };
@@ -108,9 +119,9 @@ const Page = () => {
 
   return (
     <div className="lostPest mb-4">
-       
+
       <Modal opened={opened} onClose={close} title="Contacta al dueño">
-      <GeoLocation petOwner={id}/>
+        <GeoLocation petOwner={id} />
         <form className="contactOwnerMessage" onSubmit={onSubmit}>
           <label>Correo electronico</label>
           <input
@@ -180,7 +191,7 @@ const Page = () => {
           <Button color="indigo" radius="md" type="submit">
             Contactar
           </Button>
-        
+
 
         </form>
       </Modal>

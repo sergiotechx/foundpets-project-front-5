@@ -303,7 +303,7 @@ const UserTab = () => {
                   value={usrQRURL}
                   viewBox={`0 0 256 256`}
                 />
-              : <div className='bear'><span className="loader"></span><h5>Cargando el perfil</h5></div>
+              : <><span className="loader"></span><h5>Cargando el perfil</h5></>
               }
 
               <td>
