@@ -52,6 +52,11 @@
         .como-funciona-steps {
         display: flex;
         flex-direction: column;
+        .como-funciona-step{
+            h3 {
+                padding: .5rem;
+            }
+        }
     }
     }
 }
