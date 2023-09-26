@@ -10,14 +10,17 @@ const pointStyle = {
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
 
-  border: '5px solid #7FD161',
-  borderRadius: K_HEIGHT,
-  backgroundColor: 'white',
+  //border: '5px solid #7FD161',
+  //borderRadius: K_HEIGHT,
+  //backgroundColor: 'white',
   textAlign: 'center',
   color: '#3f51b5',
   fontSize: 16,
   fontWeight: 'bold',
-  padding: 4
+  padding: 4,
+  backgroundImage: 'url("/images/pin.png")',
+  backgroundSize: 'cover', // Ajusta el tamaño de la imagen de fondo
+  backgroundColor: 'transparent',
 };
 
 export {pointStyle};
