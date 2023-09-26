@@ -237,7 +237,7 @@ const Page = () => {
                   <th className="table-info">Dueño</th>
                   <th>{animal.name}</th>
                 </tr>
-                {animal.publicMobile ? (
+                {animal.publicMobile && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Telefono</th>
                     <th>{animal.mobile}</th>
@@ -245,7 +245,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {animal.publicEmail ? (
+                {animal.publicEmail && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Email</th>
                     <th>{animal.email}</th>
@@ -253,7 +253,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {animal.publicCiudad ? (
+                {animal.publicCiudad && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Ciudad</th>
                     <th>
@@ -266,7 +266,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {animal.publicAddress ? (
+                {animal.publicAddress && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Dirección</th>
                     <th>{animal.address}</th>
@@ -274,7 +274,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {animal.publicBarrio ? (
+                {animal.publicBarrio && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Barrio</th>
                     <th>{animal.BarrioName}</th>
