@@ -1,7 +1,6 @@
 export const DBURL = "https://foundpets.pockethost.io";
 export const URL = "http://127.0.0.1:3000/";
 
-
 export const cities = [
   { label: "Medellin", value: 1 },
   { label: "Bello", value: 2 },
@@ -35,17 +34,15 @@ export const imagesHome = [
 ];
 
 export const imagenesFinalesFelices = [
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703124/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.57.14_rjz6fy.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703124/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.57.13_wejn1z.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703121/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_15.48.42_npdcja.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703119/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_09.49.31_uglgko.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703117/animales-encontrados/Imagen_de_WhatsApp_2023-09-25_a_las_09.20.19_vqhndd.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703120/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_15.47.49_behocv.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695703116/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_18.28.34_vbkjuy.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702943/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.04.23_nsol2p.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702942/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_14.26_fcji2a.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702941/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.04.28_gsmoer.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702940/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.04.26_r9hk4p.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702939/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.04.24_bwlc6v.jpg",
-  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695702940/animales-encontrados/Imagen_de_WhatsApp_2023-09-24_a_las_16.04.25_qoqbzk.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755380/animales-encontrados/SI_20230926_125758_g06vha.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755380/animales-encontrados/SI_20230926_125826_aldo9b.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755381/animales-encontrados/SI_20230926_102055_vr7nob.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755380/animales-encontrados/SI_20230926_125736_wxalaq.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755379/animales-encontrados/SI_20230926_130055_s9zgpf.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755380/animales-encontrados/SI_20230926_130211_c9iw8g.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755379/animales-encontrados/SI_20230926_125917_vcmwof.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755379/animales-encontrados/SI_20230926_130147_se3ujo.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755379/animales-encontrados/SI_20230926_130037_fpigcz.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755378/animales-encontrados/SI_20230926_130020_npyy72.jpg",
+  "https://res.cloudinary.com/dtvyiun88/image/upload/v1695755379/animales-encontrados/SI_20230926_125900_ede33s.jpg",
 ];
