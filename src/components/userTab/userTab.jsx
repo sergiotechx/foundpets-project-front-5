@@ -10,6 +10,7 @@ import { URL, cities } from "@/lib/constants";
 import { getBarrios } from "@/lib/pocketbase";
 import { useForm, useWatch } from "react-hook-form";
 import QRCode from 'react-qr-code';
+import "@/lib/bearLoader.scss";
 
 const UserTab = () => {
   const dispatch = useDispatch();
@@ -239,7 +240,7 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
-                <input type="tel" class="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+                <input type="tel" className="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
                   {...register('address', {
                     required: true,
                     maxLength: 100
@@ -255,7 +256,7 @@ const UserTab = () => {
               <td>Ciudad</td>
               <td >
 
-                <select class="form-select input" disabled={usrCityDisabled}  {...register('ciudad', {
+                <select className="form-select input" disabled={usrCityDisabled}  {...register('ciudad', {
                   required: true
                 })} >
                   {cities?.map((city) =>
@@ -273,7 +274,7 @@ const UserTab = () => {
               <td>
                 {formatedBarrios.length > 0 ?
                   <>
-                    <select class="form-select" value={usrBarrio} disabled={usrBarrioDisabled}  {...register('barrio')} >
+                    <select className="form-select" value={usrBarrio} disabled={usrBarrioDisabled}  {...register('barrio')} >
                       {formatedBarrios?.map(barrio =>
 
                         <option key={barrio.value} value={barrio.value}>{barrio.label}</option>
@@ -283,7 +284,7 @@ const UserTab = () => {
                   </>
                   :
                   <>
-                    <select class="form-select input" disabled={usrBarrioDisabled}  {...register('barrio')} >
+                    <select className="form-select input" disabled={usrBarrioDisabled}  {...register('barrio')} >
                       <option value={null}> Elige un barrio</option>
                     </select>
                   </>
@@ -295,14 +296,16 @@ const UserTab = () => {
             <tr>
               <td>Qr</td>
               <br />
-              {usrQRURL != '' &&
+              {usrQRURL != '' ?
                 <QRCode
                   size={256}
                   style={{ height: "200", maxWidth: "100%", width: "100%" }}
                   value={usrQRURL}
                   viewBox={`0 0 256 256`}
                 />
+              : <div className='bear'><span className="loader"></span><h5>Cargando el perfil</h5></div>
               }
+
               <td>
 
               </td>
@@ -313,12 +316,12 @@ const UserTab = () => {
               <td></td>
 
               <td>
-                {usrQRURL != '' &&
-                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center>
+                {usrQRURL != '' ?
+                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center>:
+                  <></>
                 }
-                 {usrQRURL == '' &&
-                 <></>
-                }
+                 
+               
               </td>
               <td></td>
               <td></td>
@@ -326,9 +329,9 @@ const UserTab = () => {
           </tbody>
         </table>
         <div className="form-check form-switch mt-4">
-          <div class="form-check form-switch">
-            <input class="form-check-input bg-success" type="checkbox" role="switch" {...register('lost')} />
-            <label class="form-check-label" for="flexSwitchCheckDefault">habilitar busqueda </label>
+          <div className="form-check form-switch">
+            <input className="form-check-input bg-success" type="checkbox" role="switch" {...register('lost')} />
+            <label className="form-check-label" for="flexSwitchCheckDefault">habilitar busqueda </label>
           </div>
         </div>
         <button id='BtnActualizar'>Actualizar</button>

@@ -60,6 +60,13 @@
             border-radius: 5px;
             width: fit-content;
         }
+       .bear{
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         align-items:center;
+         background-color: #7FD262;
+       }
         
     }
 }

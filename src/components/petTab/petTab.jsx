@@ -133,7 +133,7 @@ const PetTab = () => {
                         <tr>
                             <td>Especie</td>
                             <td >
-                                <select class="form-select" disabled={petTypeDisabled}  {...register('type', {
+                                <select className="form-select" disabled={petTypeDisabled}  {...register('type', {
                                     required: true
                                 })} >
                                     {species?.map((specie) =>
@@ -147,7 +147,7 @@ const PetTab = () => {
                         <tr>
                             <td>Género</td>
                             <td >
-                                <select class="form-select" disabled={petGenreDisabled}  {...register('genre', {
+                                <select className="form-select" disabled={petGenreDisabled}  {...register('genre', {
                                     required: true
                                 })} >
                                     {genre?.map((_genre) =>
@@ -161,7 +161,7 @@ const PetTab = () => {
                         <tr>
                             <td>Edad</td>
                             <td >
-                                <input class="form-control" type="number" placeholder="Edad" disabled={petAgeDisabled} {...register("age", { required: true, max: 30, min: 0, maxLength: 2 })} />
+                                <input className="form-control" type="number" placeholder="Edad" disabled={petAgeDisabled} {...register("age", { required: true, max: 30, min: 0, maxLength: 2 })} />
                                 {errors.age?.type === 'required' && <p>El campo edad es requerido</p>}
                                 {errors.age?.type === 'maxLength' && <p>El campo edad debe tener 2 cifras máximo</p>}
                             </td>
@@ -170,7 +170,7 @@ const PetTab = () => {
                         <tr>
                             <td>Otras descripciones</td>
                             <td >
-                                <textarea class="form-control " placeholder="Descripciones relevantes de tu  mascota"
+                                <textarea className="form-control " placeholder="Descripciones relevantes de tu  mascota"
                                     disabled={petDescriptionDisabled}
                                     {...register("description", { maxLength: 255 })} />
                             </td>

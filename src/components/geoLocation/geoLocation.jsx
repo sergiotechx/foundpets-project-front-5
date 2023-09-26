@@ -1,52 +1,40 @@
-import React, { useState } from 'react'
+import { newLocationBd } from '@/lib/pocketbase';
+import React, { useState, useEffect } from 'react'
 import { useGeolocated } from "react-geolocated";
 
-const GeoLocation = () => {
-   
+const GeoLocation = ({ petOwner }) => {
+    const [flag, setFlag] = useState(true)
     const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated({
-        positionOptions: {
-            enableHighAccuracy: false,
-        },
-        userDecisionTimeout: 10000,
-    });
-    useEffect(() => {
-        if (isGeolocationEnabled) {
-          alert('Geolocation enabled!');
+        useGeolocated({
+            positionOptions: {
+                enableHighAccuracy: false,
+            },
+            userDecisionTimeout: 10000,
+        });
+
+    const newLocation = async (petOwner, latitude, longitude) => {
+
+        if (flag) {
+            try {
+                let result = await newLocationBd(petOwner, coords?.latitude, coords?.longitude)
+                setFlag(!flag)
+            }
+            catch (error) {
+                throw error
+            }
         }
-      }, [isGeolocationEnabled]);
-    return (
-   <>
-   {isGeolocationEnabled&&
-    <>{coords&&<>
-     <table>
-            <tbody>
-                <tr>
-                    <td>latitude</td>
-                    <td>{coords.latitude}</td>
-                </tr>
-                <tr>
-                    <td>longitude</td>
-                    <td>{coords.longitude}</td>
-                </tr>
-                <tr>
-                    <td>altitude</td>
-                    <td>{coords.altitude}</td>
-                </tr>
-                <tr>
-                    <td>heading</td>
-                    <td>{coords.heading}</td>
-                </tr>
-                <tr>
-                    <td>speed</td>
-                    <td>{coords.speed}</td>
-                </tr>
-            </tbody>
-        </table>
-    </>}</>
-   }
-   </>
-  )
+    }
+
+    useEffect(() => {
+
+
+        if (coords?.latitude != undefined) {
+            newLocation(petOwner, coords?.latitude, coords?.longitude)
+        }
+
+    }, [coords]);
+
+    return <></>
 }
 
 export default GeoLocation
