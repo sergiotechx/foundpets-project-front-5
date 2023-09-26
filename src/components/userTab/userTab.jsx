@@ -204,7 +204,7 @@ const UserTab = () => {
                 <input
                   type="email"
                   placeholder="Correo electrónico"
-                  class="form-control" aria-label="Username" aria-describedby="basic-addon1 "
+                  class="form-control input" aria-label="Username" aria-describedby="basic-addon1 "
                   disabled={true}
                   {...register('email', {
                     required: true,
@@ -240,7 +240,11 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
+<<<<<<< HEAD
                 <input type="tel" className="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+=======
+                <input type="tel" class="form-control input" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+>>>>>>> cc4d399f83562c72160288060abd42ebd4801156
                   {...register('address', {
                     required: true,
                     maxLength: 100

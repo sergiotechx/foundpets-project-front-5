@@ -10,6 +10,8 @@
         width: 90%;
         justify-content: space-between;
         margin: auto;
+        padding: 1rem;
+        border: .1rem solid #333
     }
     form {
 
@@ -31,7 +33,7 @@
         }
         
         input{
-            margin:.1rem;
+            margin:.2rem;
             width: 100% !important;
         }
         select{
@@ -51,10 +53,10 @@
        
         .PetGallery {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            justify-content: space-between;
             margin: auto;
         }
         form {
