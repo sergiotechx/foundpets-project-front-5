@@ -11,7 +11,7 @@ export const createUser = async (data) => {
     email: data.email,
     password: data.password,
     passwordConfirm: data.password,
-    qr:uuidv4()
+    qr: uuidv4()
   };
   console.log("usuario:", newUser);
   try {
@@ -66,7 +66,7 @@ export const deleteUserBd = async (id) => {
 }
 export const updateUserBd = async (data) => {
 
- 
+
   try {
     const record = await client.collection('users').update(data.id, data);
     return record
@@ -84,10 +84,10 @@ export const getPet = async (ownerId) => {
       .getFirstListItem(`owner="${ownerId}"`);
     return record;
   } catch (error) {
-    if( error.status == 404){
+    if (error.status == 404) {
       return {};
     }
-    else{
+    else {
       throw error
     }
   }
@@ -111,10 +111,10 @@ export const createPetBd = async (data) => {
     throw error
   }
 };
-export const updatePetBd = async (id,data) => {
+export const updatePetBd = async (id, data) => {
   try {
-   
-    let record = await client.collection("pets").update(id,data);
+
+    let record = await client.collection("pets").update(id, data);
     return record;
   } catch (error) {
     throw error
@@ -131,26 +131,27 @@ export const newMessage = async (updatedData) => {
     contactName: updatedData.name,
     asunto: updatedData.asunto,
     contactData: updatedData.email,
-    petOwner: updatedData.petOwner
+    petOwner: updatedData.petOwner,
+    image: updatedData.image
   };
 
   try {
     const record = await client.collection('messages').create(messageNew);
     return record;
   } catch (error) {
-    console.log("error aca:", error);
+    console.log("error aca:!!!!!!!!!!!!!!!!!!", error);
   }
 }
 
 export const ownerMessages = async (userMessageId) => {
   console.log("userMessageId en ownerMessages:", userMessageId);
   const records3 = await client.collection('messages').getFullList({
-      filter: `petOwner="${userMessageId}"`,
+    filter: `petOwner="${userMessageId}"`,
   });
-  
+
   console.log("mesajes:", records3);
-   return records3;
-  
+  return records3;
+
 }
 
 export const deleteMessage = async (id) => {
@@ -172,3 +173,36 @@ export const getOneLostPet = async (id) => {
   });
   return record;
 };
+
+export const newLocationBd = async (petOwner, latitude, longitude) => {
+  try {
+    const data = {
+      petOwner: petOwner,
+      latitude: latitude,
+      longitude: longitude
+    };
+    const record = await client.collection('location').create(data);
+    return record;
+  }
+  catch (error) {
+    throw error
+  }
+
+};
+export const getPetPoints = async (ownerId) => {
+  try {
+    const records = await client.collection('location').getFullList({
+      filter: `petOwner="${ownerId}"`, sort: '-created'
+    });
+    return records;
+  }
+  catch (error) {
+    throw error
+  }
+
+
+
+
+}
+
+

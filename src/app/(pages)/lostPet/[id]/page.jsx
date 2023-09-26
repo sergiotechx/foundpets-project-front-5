@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { Button, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Swal from "sweetalert2";
+import GeoLocation from "@/components/geoLocation/geoLocation";
+import { CldUploadButton } from "next-cloudinary";
 
 const Page = () => {
   const ref = useRef(null);
@@ -20,9 +22,12 @@ const Page = () => {
   const owner = animal ? animal.name : "";
 
   const [opened, { open, close }] = useDisclosure(false);
+  const [messageImage,setMessageImage ] = useState('')
   const SearchParams = useSearchParams();
   const [fountQr, setFoundQr] = useState(null);
   const qr = SearchParams.get("qr");
+
+
 
   const formData = {
     petOwner: id,
@@ -33,6 +38,14 @@ const Page = () => {
 
   console.log("este", owner);
   const dispatch = useDispatch();
+  
+  function handleOnUpload(result, operations) {
+    if (!result.event === "success") {
+      updateError(result?.info);
+      return;
+    }
+    setMessageImage(result?.info.secure_url);
+  }
 
   const {
     register,
@@ -46,36 +59,52 @@ const Page = () => {
       email: "",
       celphone: "",
       description: "",
+      image:""
     },
   });
 
   const onSubmit = handleSubmit((dataC) => {
+    
+   
     const updatedData = {
       ...dataC,
       petOwner: id,
+      image:messageImage,
     };
 
-    console.log("data:", updatedData);
-
-    dispatch(createNewMessage(updatedData));
+   dispatch(createNewMessage(updatedData));
     reset();
+    setMessageImage('')
   });
 
-  const createNewMessage = (data) => {
+  const createNewMessage =  (data) => {
     return async (dispatch) => {
       try {
         const response = await newMessage(data);
-        //console.log("prueba:", response);
+
         if (response.id) {
-          Swal.fire({
-            title: "Bien hecho",
-            text: "Informacion enviada",
+          const answer = await Swal.fire({
+
+            title: "Operación exitosa",
+            text: "Mensaje enviado",
             icon: "success",
-            confirmButtonText: "Ok",
-          });
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#7FD161"
+          })
+          
+          close()
         }
-      } catch (error) {
-        console.log("aca", error);
+      }
+      catch (error) {
+        const answer = await Swal.fire({
+
+          title: "Error de sistema",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#FF394D"
+        })
+
       }
     };
   };
@@ -106,8 +135,10 @@ const Page = () => {
 
   return (
     <div className="lostPest mb-4">
-      <Modal opened={opened} onClose={close} title="Contacta al dueño">
-        <form className="contactOwner" onSubmit={onSubmit}>
+
+      <Modal  size="xs" opened={opened} onClose={close} title="Contacta al dueño">
+        <GeoLocation petOwner={id} />
+        <form className="contactOwnerMessage" onSubmit={onSubmit}>
           <label>Correo electronico</label>
           <input
             type="email"
@@ -155,7 +186,7 @@ const Page = () => {
           />
           {errors.asunto && <span>{errors.asunto.message} </span>}
 
-          <label>Descripción de la mascota</label>
+          <label >Descripción de la mascota</label>
           <textarea
             className="description"
             type="textarea"
@@ -173,11 +204,22 @@ const Page = () => {
             rows="10"
           ></textarea>
           {errors.description && <span>{errors.description.message} </span>}
+          <CldUploadButton
+          uploadPreset="FoundPets"
+          onUpload={handleOnUpload}
+          id="cloudinary"
+        >
+          <i className="bi bi-camera fs-5" id='CameraIcon' />
+          {messageImage&&<img src={messageImage}/>}
+        </CldUploadButton>
           <Button color="indigo" radius="md" type="submit">
             Contactar
           </Button>
+
+
         </form>
       </Modal>
+
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
       <div className="carrusel__onePets">
         {animal ? (
