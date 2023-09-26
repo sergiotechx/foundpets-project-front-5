@@ -77,9 +77,12 @@ const InboxTab = () => {
             rows="10"
             value={selectedMessage ? selectedMessage.message : ""}
           ></textarea>
-          <Button color="indigo" radius="md" type="submit">
+          <figure className='imageContact'>
+          {selectedMessage&&<img src={selectedMessage.image}/>}
+          </figure>
+          {/* <Button color="indigo" radius="md" type="submit">
             Contactar
-          </Button>
+          </Button> */}
         </form>
       </Modal>
 

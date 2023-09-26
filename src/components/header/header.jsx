@@ -181,7 +181,12 @@ const Header = () => {
                     Inicio
                   </motion.div>
                 </li>
-                <li className="nav-item">
+                <li
+                  className="nav-item"
+                  onClick={() => {
+                    router.push("/help");
+                  }}
+                >
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
