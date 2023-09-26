@@ -25,3 +25,15 @@
         }
     }
 }
+
+.imageContact{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    img{
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        width: 90%;
+        height: auto;
+    }
+}
