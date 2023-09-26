@@ -6,8 +6,8 @@ import { Select } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
-import { fullDataHomeBd, getBarrios, getOneLostPet } from "@/lib/pocketbase";
-import { cities, species } from "@/lib/constants";
+import { fullDataHomeBd, getBarrios } from "@/lib/pocketbase";
+import { cities, imagenesFinalesFelices, species } from "@/lib/constants";
 import "@/lib/bearLoader.scss";
 import { imagesHome } from "@/lib/constants";
 
@@ -151,7 +151,7 @@ const Page = () => {
   return (
     <div className="home p-3">
       <Carrusel imagesHome={imagesHome} />
-      <div className="search">
+      <div className="search ">
         <h1 className="mb-5">Huellitas perdidas</h1>
         {!petsLost ? (
           <>
@@ -217,7 +217,7 @@ const Page = () => {
           Algunos reencuentros felices del mes de septiembre
         </h2>
       </div>
-      <Carrusel imagesHome={imagesHome} />
+      <Carrusel imagesHome={imagenesFinalesFelices} />
     </div>
   );
 };

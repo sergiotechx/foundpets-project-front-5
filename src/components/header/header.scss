@@ -21,7 +21,6 @@
     img {
       width: 10em;
     }
-   
 
     .Options {
       display: flex;
@@ -40,20 +39,18 @@
         padding: 2px;
         background-color: #ffd16d;
       }
-      #name{
-        color: #848E95;
+      #name {
+        color: #848e95;
         font-weight: 300;
         font-size: 0.8em;
       }
-      img{
+      img {
         width: 3.125em;
         height: 3.125em;
         border-radius: 50%;
         object-fit: cover;
         cursor: pointer;
       }
-   
-     
     }
     .center {
       display: flex;
@@ -66,41 +63,41 @@
     background-color: #8fd04e;
     .colorMia {
       color: #ffff;
+      cursor: pointer;
     }
     .colorMia:hover {
       font-weight: bold;
       color: #ffff;
     }
-    #forum{
+    #forum {
       text-decoration: none;
       color: #ffff;
     }
   }
 }
-@media(max-width:768px){
-  .div{
+@media (max-width: 768px) {
+  .div {
     display: flex;
     justify-content: end;
     width: 100%;
     margin-right: 2rem !important;
-    .container-fluid{
+    .container-fluid {
       padding: 0 !important;
       display: flex !important;
       justify-content: end !important;
     }
-    .navbar{
-      border-radius: .5rem !important;
+    .navbar {
+      border-radius: 0.5rem !important;
       padding: 0 !important;
     }
     .nav-item {
       margin-left: 1.2rem !important;
     }
   }
-  h5{
+  h5 {
     display: none;
   }
-  #name{
+  #name {
     display: none;
   }
-  
 }

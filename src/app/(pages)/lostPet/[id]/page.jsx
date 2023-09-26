@@ -80,11 +80,19 @@ const Page = () => {
     };
   };
 
-  const getOnePet = async (id) => {
+  const getOnePet = async (id, qr) => {
     try {
       const oneLostPet = await getOneLostPet(id);
       console.log(oneLostPet);
-      setAnimal(oneLostPet);
+      if (qr == "null") {
+        setAnimal(oneLostPet);
+      }
+      if (oneLostPet.qr == qr) {
+        setAnimal(oneLostPet);
+      } else {
+        console.log("Pagina no encontrada");
+      }
+
       return oneLostPet;
     } catch (error) {
       console.log(error);
@@ -93,13 +101,7 @@ const Page = () => {
 
   useEffect(() => {
     setAnimal(null);
-    getOnePet(id);
-    console.log(qr);
-    if (qr) {
-      setFoundQr(qr);
-    } else {
-      setFoundQr(null);
-    }
+    getOnePet(id, qr);
   }, []);
 
   return (
@@ -137,7 +139,7 @@ const Page = () => {
             })}
           />
           {errors.name && <span>{errors.name.message} </span>}
-          <label >Asunto</label>
+          <label>Asunto</label>
           <input
             type="text"
             {...register("asunto", {
@@ -153,8 +155,8 @@ const Page = () => {
           />
           {errors.asunto && <span>{errors.asunto.message} </span>}
 
-          <label >Descripción de la mascota</label>
-          <textarea 
+          <label>Descripción de la mascota</label>
+          <textarea
             className="description"
             type="textarea"
             {...register("description", {
@@ -177,7 +179,7 @@ const Page = () => {
         </form>
       </Modal>
       <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
-      <div>
+      <div className="carrusel__onePets">
         {animal ? (
           <svg id="progress" width="100" height="100" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="30" pathLength="1" className="bg2" />
@@ -224,28 +226,77 @@ const Page = () => {
       </div>
       {animal ? (
         <div className="section__lostCard">
-          <div className="card__description">
-            <label>* El nombre de mi dueño es: </label>
-            <span>{animal?.name}</span>
-            <label>* vivo en la ciudad de:</label>
-            <span>{animal?.ciudad}</span>
-            <label>* Me vieron por ultima vez cerca a: </label>
-            <span>{animal?.address}</span>
-            <label>* Quieres hablar con mis dueños ?</label>
-            <span>
-              {animal?.email}, {animal?.mobile}
-            </span>
-            <label>* Así me puedes reconocer</label>
-            <span>{animal?.petDescrription}</span>
+          <div className="table2 ">
+            <table className="table ">
+              <tbody>
+                <tr>
+                  <th className="table-info">Mascota</th>
+                  <th>{animal.petName}</th>
+                </tr>
+                <tr>
+                  <th className="table-info">Dueño</th>
+                  <th>{animal.name}</th>
+                </tr>
+                {animal.publicMobile ? (
+                  <tr>
+                    <th className="table-info">Telefono</th>
+                    <th>{animal.mobile}</th>
+                  </tr>
+                ) : (
+                  ""
+                )}
+                {animal.publicEmail ? (
+                  <tr>
+                    <th className="table-info">Email</th>
+                    <th>{animal.email}</th>
+                  </tr>
+                ) : (
+                  ""
+                )}
+                {animal.publicCiudad ? (
+                  <tr>
+                    <th className="table-info">Ciudad</th>
+                    <th>
+                      {animal.ciudad === 1 ? "Medellín" : ""}
+                      {animal.ciudad === 2 ? "Bello" : ""}
+                      {animal.ciudad === 3 ? "Itagüí" : ""}
+                      {animal.ciudad === 4 ? "Barbosa" : ""}
+                    </th>
+                  </tr>
+                ) : (
+                  ""
+                )}
+                {animal.publicAddress ? (
+                  <tr>
+                    <th className="table-info">Dirección</th>
+                    <th>{animal.address}</th>
+                  </tr>
+                ) : (
+                  ""
+                )}
+                {animal.publicBarrio ? (
+                  <tr>
+                    <th className="table-info">Barrio</th>
+                    <th>{animal.BarrioName}</th>
+                  </tr>
+                ) : (
+                  ""
+                )}
+                <tr>
+                  <th className="table-info">Descripción</th>
+                  <th>{animal.petDescrription}</th>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          {animal ? (
-            <>
-              <h4>Contacta con el dueño</h4>
-              <span onClick={open} className="loaderlostpets3"></span>
-            </>
-          ) : (
-            ""
-          )}
+          <motion.div
+            className="card__sms"
+            whileHover={{ scale: 1.2 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <h5>Contacta con el dueño</h5>
+            <span onClick={open} className="loaderlostpets3"></span>
+          </motion.div>
         </div>
       ) : (
         <span className="loaderlostpets2"></span>

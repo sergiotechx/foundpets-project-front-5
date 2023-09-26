@@ -6,50 +6,49 @@
   justify-content: center;
   align-content: center;
   align-items: center;
-  div {
+  .carrusel__onePets {
     padding: 30px 0 20px 0;
     width: 70%;
   }
-}
 
-#progress {
-  
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  transform: rotate(-90deg);
-}
+  #progress {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: rotate(-90deg);
+  }
 
-circle {
-  stroke-dashoffset: 0;
-  stroke-width: 15%;
-  fill: none;
-}
+  circle {
+    stroke-dashoffset: 0;
+    stroke-width: 15%;
+    fill: none;
+  }
 
-.bg2 {
-  stroke: rgba(179, 191, 169, 0.669);
-  opacity: 0.3;
-}
+  .bg2 {
+    stroke: rgba(179, 191, 169, 0.669);
+    opacity: 0.3;
+  }
 
-#progress .indicator {
-  stroke: rgba(130, 198, 69, 0.669);
-}
+  #progress .indicator {
+    stroke: rgba(130, 198, 69, 0.669);
+  }
 
-.ul_card {
-  display: flex;
-  list-style: none;
-  height: 300px;
-  overflow-x: scroll;
-  //padding: 20px 0;
-  flex: 0 0 200px;
-
-  //margin: 45px 30px 30px 30px;
-  img {
+  .ul_card {
+    display: flex;
+    list-style: none;
+    height: 300px;
+    overflow-x: scroll;
+    //padding: 20px 0;
     flex: 0 0 200px;
-    background: rgba(0, 255, 64, 0.617);
-    margin: 0 20px 20px 0;
-    height: auto;
-    width: 100%;
+
+    //margin: 45px 30px 30px 30px;
+    img {
+      flex: 0 0 200px;
+      background: rgba(0, 255, 64, 0.617);
+      margin: 0 20px 20px 0;
+      height: auto;
+      width: 100%;
+    }
   }
 }
 
@@ -68,21 +67,29 @@ circle {
 }
 
 .section__lostCard {
+  width: 100%;
   display: flex;
   padding: 0;
+  justify-content: space-around;
   align-items: center;
-  .card__description {
+
+  .card__sms {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    label {
-      font-weight: 900;
-    }
+    align-items: center;
+    gap: 15px;
   }
   .userContacta {
     display: flex;
     flex-direction: column;
+  }
+}
+.table2 {
+  min-width: 40%;
+  .table {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -229,5 +236,27 @@ circle {
   100% {
     background-position: -30px 11px, -30px 35px, -30px 60px;
     opacity: 0;
+  }
+}
+
+@media (max-width: 965px) {
+  .section__lostCard {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .lostPest {
+    .carrusel__onePets {
+      padding: 30px 0 20px 0;
+      width: 95%;
+    }
+  }
+  .table2 {
+    padding: 20px 30px 15px 30px;
+  }
+}
+
+@media (max-width: 685px) {
+  #progress {
+    display: none;
   }
 }
