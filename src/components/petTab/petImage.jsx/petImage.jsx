@@ -7,8 +7,8 @@ import Swal from 'sweetalert2'
 
 const PetImage = ({ petImage, setPetImage, setValue, image}) => {
   const emptyPhoto = '/images/EmptyDogPhotoGray.png'
-  
-  if (petImage == '') {
+  console.log('petImage',petImage)
+  if (petImage == '' || petImage == undefined) {
     setPetImage(emptyPhoto)
   }
   function handleOnUpload(result, operations) {
