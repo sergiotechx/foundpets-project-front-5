@@ -45,6 +45,8 @@ const CardFound = ({ currentData }) => {
     >
       {currentData?.map((lost, index) => (
         <motion.div
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
           className="carta"
           onClick={() => handleClick(lost.id)}
           key={index}
