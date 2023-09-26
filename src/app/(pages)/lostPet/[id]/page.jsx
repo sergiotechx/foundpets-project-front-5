@@ -282,8 +282,11 @@ const Page = () => {
                 {animal.publicMobile && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Telefono</th>
-                    <th>{animal.mobile}</th>
+                    <th>{animal.mobile}
+                    <GeoLocation petOwner={id} />
+                    </th>
                   </tr>
+                 
                 ) : (
                   ""
                 )}
