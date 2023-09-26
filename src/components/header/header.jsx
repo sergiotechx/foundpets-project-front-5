@@ -191,6 +191,9 @@ const Header = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className="nav-link colorMia"
+                    onClick={() => {
+                      router.push("/help");
+                    }}
                     //href="#"
                   >
                     Como funciona

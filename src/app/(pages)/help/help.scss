@@ -1,0 +1,52 @@
+/* help.scss */
+
+.como-funciona {
+    background-color: #f8f8f8;
+    padding: 50px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .como-funciona-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .como-funciona-steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .como-funciona-step {
+
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 0 10px 20px;
+      p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+      h3 {
+        background-color: #8FD14F;
+        border-radius: 5rem;
+        font-size: 24px; 
+        color: #fff; 
+        margin-bottom: 10px; 
+      }
+  }
+  .paso {
+   
+    max-width: 100%;
+    margin: .1rem;
+  }
+  
