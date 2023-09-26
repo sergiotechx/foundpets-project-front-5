@@ -240,11 +240,7 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
-<<<<<<< HEAD
-                <input type="tel" className="form-control" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
-=======
                 <input type="tel" class="form-control input" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
->>>>>>> cc4d399f83562c72160288060abd42ebd4801156
                   {...register('address', {
                     required: true,
                     maxLength: 100
@@ -307,7 +303,7 @@ const UserTab = () => {
                   value={usrQRURL}
                   viewBox={`0 0 256 256`}
                 />
-              : <><span className="loader"></span><h5>Cargando el perfil</h5></>
+              : <h5>Cargando el perfil</h5>
               }
 
               <td>
