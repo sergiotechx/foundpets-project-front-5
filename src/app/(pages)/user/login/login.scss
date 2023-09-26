@@ -32,13 +32,14 @@
     transform: translate(-50%, -50%);
     overflow: hidden;
     background-image: linear-gradient(to top right, #f9a743, #f9db5f);
-  }
     span{
       display: block;
       color: tomato;
       font-size: x-small;
       cursor:pointer;
   }
+  }
+   
   
   .logo3{
     margin-top: 15%;
@@ -243,27 +244,19 @@
   }
   
   .center .hands .hand--left {
-    left: 50px;
+    left: 54px;
   }
-  .center .hands .hand--left .hide {
+  .center .hands .hand--left .hideL {
     transform: translate(2px, -155px) rotate(-160deg);
   }
-  .center .hands .hand--left .peek {
-    transform: translate(0px, -120px) rotate(-160deg);
-  }
   .center .hands .hand--right {
-    left: 170px;
+    left: 160px;
+    
   }
-  .center .hands .hand--right .hide {
-    transform: translate(-6px, -155px) rotate(160deg);
+  .center .hands .hand--right .hideR {
+    transform: translate(6px, 155px) rotate(123deg);
   }
-  .center .hands .hand--right .peek {
-    transform: translate(-4px, -120px) rotate(160deg);
-}
-  
-//   .center .hands .hand--right.peek {
-//     transform: translate(-4px, -120px) rotate(160deg);
-//   }
+
   
   .center .hands .finger {
     position: relative;
@@ -304,8 +297,11 @@
   .center .hands .hand.peek {
     transform: translate(0px, -120px) rotate(-160deg);
   }
-  .center .hands .hand.hide {
+  .center .hands .hand.hideL {
     transform: translate(2px, -155px) rotate(-160deg);
+  }
+  .center .hands .hand.hideR {
+    transform: translate(2px, -155px) rotate(150deg);
   }
   
   .center .hands .finger:nth-child(3) {

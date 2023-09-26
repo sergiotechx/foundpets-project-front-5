@@ -140,7 +140,7 @@ const Page = () => {
           </div>
         </div>
         <div className="hands">
-          <div className={`hand hand--left ${!handsVisible ? "hide" : ""} `}>
+          <div className={`hand hand--left ${!handsVisible ? "hideL" : ""} `}>
             <div className="finger">
               <div className="bone"></div>
               <div className="nail"></div>
@@ -154,7 +154,7 @@ const Page = () => {
               <div className="nail"></div>
             </div>
           </div>
-          <div className={`hand hand--right ${!handsVisible ? "hide" : ""}`}>
+          <div className={`hand hand--right ${!handsVisible ? "hideR" : ""}`}>
             <div className="finger">
               <div className="bone"></div>
               <div className="nail"></div>

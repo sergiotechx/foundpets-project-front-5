@@ -25,6 +25,11 @@ const InboxTab = () => {
         console.error("Error al obtener mensajes:", error);
       });
   }, [userMessageId]);
+  
+  const formatDateM = (dateString) => {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   const handleDeleteMessage = async (id) => {
     const result = await Swal.fire({
@@ -103,7 +108,7 @@ const InboxTab = () => {
               >
                 {message.asunto}
               </td>
-              <td>{message.updated}</td>
+              <td>{formatDateM(message.updated)}</td>
               <td>
                 <i
                   className="bi bi-trash3-fill fs-5"
