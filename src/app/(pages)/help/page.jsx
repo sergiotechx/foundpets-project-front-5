@@ -11,7 +11,6 @@ const Page = () => {
           <h3>Paso 1</h3>
           <p>Regístrate en Found Pets para empezar.</p>
           <img className="paso" src="/images/registro.png" alt="Paso 1" />
-
         </div>
         <div className="como-funciona-step">
           <h3>Paso 2</h3>
