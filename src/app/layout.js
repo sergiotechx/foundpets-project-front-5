@@ -17,10 +17,10 @@ const roboto = Roboto_Serif({
   weight: ["100", "200", "300", "400"],
 });
 
-export const metadata = {
+/*export const metadata = {
   title: "Found Pets",
   description: "Made with love 🐶",
-};
+};*/
 
 export default function RootLayout({ children }) {
   const currentPath = usePathname();
