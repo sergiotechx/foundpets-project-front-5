@@ -66,8 +66,9 @@ const MapTab = () => {
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}
           >
-            {points.map((point) =>
+            {points.map((point,index) =>
               <Point
+                key ={index}
                 lat={point.lat}
                 lng={point.lng}
                 text={point.text}
