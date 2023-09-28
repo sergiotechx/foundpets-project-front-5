@@ -13,12 +13,12 @@ const Footer = () => {
       Contacto
       </h2>
       <br />
-      Teléfono: (123) 456-7890
+      Teléfono: (+57) 350-8681733
       <br />
       Correo Electrónico: info@Foundpet.com
       <br />
-      Dirección: 123 Calle Principal, Ciudad de 
-      Medellin
+      Dirección: Calle 33AA#50-30, Ciudad de 
+      Medellin Colombia
       <br />
       © 2023 Found Pet. 
       <br />
