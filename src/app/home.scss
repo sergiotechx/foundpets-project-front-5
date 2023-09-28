@@ -19,6 +19,11 @@
         display: flex;
         flex-direction: column;
         width: 14rem;
+        .mantine-Select-input{
+          border-color: #66B89B;
+         }
+        
+       
       }
       .container__CardFound {
         display: flex;
