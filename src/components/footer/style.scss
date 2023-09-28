@@ -1,0 +1,86 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #8FD14F, #FFD16D);
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+hr {
+  width: 100%;
+  border-top: 0.2rem solid #333;
+}
+
+.hr {
+  display: none;
+}
+
+.contanto {
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.footer-img {
+  margin-left: 1rem;
+  width: 8%;
+  border-radius: 7rem;
+}
+
+.redes {
+  margin: 1rem;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.redesc {
+  position: relative;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    text-align: center; 
+  }
+  hr{
+    display: none;
+  }
+
+  .hr {
+    display: block;
+    border-top: .1rem solid #333;
+  }
+
+  .footer-img {
+    width: 30%;
+  }
+
+  .contanto {
+    margin-top: 5rem;
+    font-size: 18px; 
+  }
+  
+.redesc {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin-top: 14rem;
+  .h2{
+    display: none;
+  }
+}
+}
+@media(max-width:650px){
+  .redesc{
+    margin-top: 10rem;
+  }
+}
+@media(max-width:450px){
+  .redesc{
+    margin-top: 6.5rem;
+  }
+}
+

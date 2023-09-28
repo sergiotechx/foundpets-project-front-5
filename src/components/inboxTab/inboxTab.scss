@@ -1,0 +1,39 @@
+#InboxTab {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .InboxTabH {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+
+        img {
+            max-width: 7em;
+        }
+    }
+
+    table {
+        width: 90%;
+        margin: auto;
+
+        i {
+            cursor: pointer;
+        }
+    }
+}
+
+.imageContact{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    img{
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        width: 90%;
+        height: auto;
+    }
+}

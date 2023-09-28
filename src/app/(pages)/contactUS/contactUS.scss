@@ -1,0 +1,116 @@
+.mainC{
+    display: flex;
+}
+
+.left{
+    margin: 2rem;
+    width: 40%;
+    padding: 5rem;
+    border-radius: 2rem;
+    border: .2rem solid #333;
+}
+.logoC1{
+    width: 30%;
+    height: auto;
+}
+.logoC2{
+    width: 30%;
+    height: auto;
+}
+.right{
+ margin: 2rem;
+}
+.btnbotton{
+    display: flex;
+    margin-top: 16px;
+    justify-content: center;
+    button{
+        background-color: rgb(223, 172, 43);
+        border-radius: .5rem;
+        border: .1rem solid rgb(199, 151, 30);
+    }
+}
+.form{
+    display: flex;
+}
+.countC{
+    border: .1rem solid rgb(182, 187, 182);
+    border-radius: 10px ;
+    padding: 5px;
+    margin-top: 15px;
+    background-color: rgb(249, 245, 245);
+    width: 300px;
+    height: 400px;
+    input{
+        width: 100%;
+        border-radius: .5rem;
+        padding: .5rem;
+        border: none;
+    }
+}
+.figures{
+    width: 100%;
+    position: relative;   
+}
+.image1{
+    border-radius: 15px;
+    position: absolute;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    
+}
+.image2{
+    border-radius: 15px;
+    position: absolute;
+    top: 140px;
+    left: 230px;
+    width: 150px;
+    height: 150px;
+    
+}
+.image3{
+    border-radius: 15px;
+    position: absolute;
+    top: 280px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+}
+@media (max-width: 768px) {
+    .mainC {
+      flex-direction: column;
+      align-items: center;
+    }
+    .left {
+      width: 90%;
+      padding: 2rem;
+      text-align: center;
+    }
+    .right {
+      width: 90%;
+    }
+    .btnbotton {
+      gap: 2rem;
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+    .form {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .countC {
+      width: 100%;
+    }
+  
+    .N {
+      width: 100%;
+    }
+  
+    .figures {
+      display: none;
+      
+    }
+  }
+  

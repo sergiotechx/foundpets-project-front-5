@@ -1,0 +1,31 @@
+#MapTab {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .MapTabH {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+
+        img {
+            max-width: 7em;
+        }
+    }
+
+    .MapTabB {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 1em;
+        height:80vh;
+       
+     
+
+    }
+}
