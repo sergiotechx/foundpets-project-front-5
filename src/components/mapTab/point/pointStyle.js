@@ -1,5 +1,5 @@
-const K_WIDTH = 40;
-const K_HEIGHT = 40;
+const K_WIDTH = 60;
+const K_HEIGHT = 60;
 
 const pointStyle = {
   // initially any map object has left top corner at lat lng coordinates
