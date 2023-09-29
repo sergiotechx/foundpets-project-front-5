@@ -3,14 +3,14 @@ import "bootstrap/dist/css/bootstrap.css";
 //import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Roboto_Serif } from "next/font/google";
+import { Roboto_Flex, Roboto_Serif, Roboto_Slab } from "next/font/google";
 import Header from "@/components/header/header";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import Footer from "@/components/footer/footer";
 import { ReduxProvider } from "../store/auth/providers";
 
-const roboto = Roboto_Serif({
+const roboto = Roboto_Slab({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400"],
 });

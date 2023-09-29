@@ -28,7 +28,6 @@ const Header = () => {
   const auth = useSelector((store) => store.auth);
 
   const goLogin = () => {
-  // router.push("/user/login");
    open()
   };
   const goRegister = () => {
@@ -41,9 +40,13 @@ const Header = () => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [auth.status]);
+
+
 
   useEffect(() => {}, [isLogin]);
+ 
+ 
 
   const goProfile = () => {
     router.push("/user/profile");
@@ -61,7 +64,7 @@ const Header = () => {
   return (
     <div className="Header__primary">
       <Modal size="sm" opened={opened} onClose={close} title="Ingreso al sistema" centered>
-        <Dog/>
+        <Dog close={close}/>
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">
