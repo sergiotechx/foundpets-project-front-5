@@ -10,12 +10,12 @@ const Footer = () => {
       <div className='contanto'>
       <hr className='hr'/>
         <h2>
-      Contacto
+     <div id="contacto"> Contacto</div>
       </h2>
+    
+      <i class="bi bi-telephone-fill">: (+57) 350-8681733</i> 
       <br />
-      Teléfono: (+57) 350-8681733
-      <br />
-      Correo Electrónico: info@Foundpet.com
+      <i class="bi bi-envelope-fill">: info@Foundpet.com</i> 
       <br />
       Dirección: Calle 33AA#50-30, Ciudad de 
       Medellin Colombia

@@ -3,7 +3,9 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to right, #8FD14F, #E1D073);
-  padding: 30px;
+  padding-left:1.8em;
+  padding-right:1.8em;
+  padding-top:1.8em;
   font-family: Arial, sans-serif;
 }
 
@@ -20,6 +22,9 @@ hr {
   text-align: center;
   font-size: 22px;
   line-height: 1.5;
+  #contacto{
+    font-weight: bold;
+  }
 }
 
 .footer-img {

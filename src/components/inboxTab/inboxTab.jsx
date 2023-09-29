@@ -93,10 +93,10 @@ const InboxTab = () => {
       <table className='col-md-12'>
         <thead>
           <tr>
-            <th className='col-md-3'>Nombre <i className="bi bi-sort-alpha-down"></i></th>
-            <th className='col-md-7'>Asunto</th>
-            <th className='col-md-1'>Fecha <i className="bi bi-sort-alpha-down"></i></th>
-            <th className='col-md-1'>Borrar</th>
+            <th className='col-md-3 fw-bold'>Nombre <i className="bi bi-sort-alpha-down"></i></th>
+            <th className='col-md-7 fw-bold' >Asunto</th>
+            <th className='col-md-1 fw-bold'>Fecha <i className="bi bi-sort-alpha-down"></i></th>
+            <th className='col-md-1 fw-bold '>Borrar</th>
           </tr>
         </thead>
         <tbody>
@@ -109,10 +109,11 @@ const InboxTab = () => {
                   open();
                 }}
               >
-                {message.asunto}
+               <div id='Asunto'> {message.asunto} </div>
               </td>
               <td>{formatDateM(message.updated)}</td>
               <td>
+               
                 <i
                   className="bi bi-trash3-fill fs-5"
                   id='TrashIcon'

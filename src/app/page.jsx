@@ -198,7 +198,7 @@ const Page = () => {
                 className="btn btn-outline-success"
                 onClick={handlevaciar}
               >
-                vaciar busqueda
+                Vaciar busqueda
               </button>
             </div>
             <div className="container__CardFound">

@@ -28,7 +28,7 @@ const Header = () => {
   const auth = useSelector((store) => store.auth);
 
   const goLogin = () => {
-   // router.push("/user/login");
+  // router.push("/user/login");
    open()
   };
   const goRegister = () => {

@@ -16,7 +16,7 @@ export const loadScript = () => {
   
   
   if (usernameInput != undefined){
-    alert('andentro')
+ 
     usernameInput.addEventListener('focus', event => {
       let length = Math.min(usernameInput.value.length - 16, 19);
       document.querySelectorAll('.hand').forEach(hand => {
