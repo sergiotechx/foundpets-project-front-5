@@ -63,8 +63,10 @@ const Header = () => {
 
   return (
     <div className="Header__primary">
-      <Modal size="sm" opened={opened} onClose={close} title="Ingreso al sistema" centered>
+      <Modal size="xs" opened={opened} onClose={close} title="Ingreso al sistema" centered>
+       
         <Dog close={close}/>
+     
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">

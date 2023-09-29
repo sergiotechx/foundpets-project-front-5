@@ -156,7 +156,7 @@ const Dog = ({ close }) => {
           </div>
           
         </div>
-        <div className="footer">Random text</div>
+      
         <Script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js' />
 
       </div>

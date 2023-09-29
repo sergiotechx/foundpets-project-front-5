@@ -12,12 +12,14 @@
     transform-origin: 0%;
     z-index: 1;
   }
+
   .HeaderC {
     padding: 1em 1em 0 1em;
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+
     img {
       width: 10em;
     }
@@ -31,19 +33,23 @@
       i {
         cursor: pointer;
       }
+
       .btn1 {
         padding: 2px;
         background: linear-gradient(to right, #8fd14f, #b4d159);
       }
+
       .btn2 {
         padding: 2px;
         background-color: #e1d073;
       }
+
       #name {
         color: #848e95;
         font-weight: 300;
         font-size: 0.8em;
       }
+
       img {
         width: 3.125em;
         height: 3.125em;
@@ -53,46 +59,56 @@
       }
     }
   }
+
   .navbar {
     background: linear-gradient(to right, #8fd14f, #b4d159);
     border-radius: 5px;
     width: 100%;
+
     .colorMia {
       color: #ffff;
       cursor: pointer;
     }
+
     .colorMia:hover {
       font-weight: bold;
       color: #ffff;
     }
+
     #forum {
       text-decoration: none;
       color: #ffff;
     }
   }
 }
+
 @media (max-width: 768px) {
   .div {
     display: flex;
     justify-content: end;
     width: 100%;
     margin-right: 2rem !important;
+
     .container-fluid {
       padding: 0 !important;
       display: flex !important;
       justify-content: end !important;
     }
+
     .navbar {
       border-radius: 0.5rem !important;
       padding: 0 !important;
     }
+
     .nav-item {
       margin-left: 1.2rem !important;
     }
   }
+
   h5 {
     display: none;
   }
+
   #name {
     display: none;
   }
