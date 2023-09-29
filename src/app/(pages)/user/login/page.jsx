@@ -5,7 +5,11 @@ import "./login.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { logoutAction, startLoginWithEmailPassword, startLoginWithGoogle } from "../../../../store/auth/authActions";
+import {
+  logoutAction,
+  startLoginWithEmailPassword,
+  startLoginWithGoogle,
+} from "../../../../store/auth/authActions";
 import { chekingCredentials, loging } from "../../../../store/auth/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { store } from "@/store/store";
@@ -30,14 +34,13 @@ const Page = () => {
     reset,
   } = useForm();
 
-   const logout = ()=>{
-    dispatch(clearUserDataAction())
-    dispatch(logoutAction())
-   }
+  const logout = () => {
+    dispatch(clearUserDataAction());
+    dispatch(logoutAction());
+  };
   useEffect(() => {
     logout();
   }, []);
-
 
   const dispatch = useDispatch();
   const isLogin = useMemo(() => status === "authenticated", [status]);
@@ -67,16 +70,14 @@ const Page = () => {
     setRotateHead(0);
   };
 
-  
-
   const handleClik = () => {
     router.push("register");
   };
   // const handleLogin = (data) => {
   // };
   const onSubmit = handleSubmit((data) => {
-    const data2 = data
-    console.log("data2:",data2);
+    const data2 = data;
+    console.log("data2:", data2);
     dispatch(startLoginWithEmailPassword(data2));
     reset();
   });
@@ -84,7 +85,7 @@ const Page = () => {
     dispatch(chekingCredentials());
     dispatch(startLoginWithGoogle());
   };
-  
+
   if (isLogin) {
     router.push("/");
   }
@@ -213,7 +214,7 @@ const Page = () => {
               {showPassword ? "Ocultar" : "Mostrar"}
             </button>
           </label>
-          <button type="submit" className="login-button" >
+          <button type="submit" className="login-button">
             Iniciar sesión
           </button>
         </form>

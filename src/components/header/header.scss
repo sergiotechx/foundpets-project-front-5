@@ -33,12 +33,11 @@
       }
       .btn1 {
         padding: 2px;
-        background:linear-gradient(to right, #8fd14f, #B4D159);
+        background: linear-gradient(to right, #8fd14f, #b4d159);
       }
       .btn2 {
         padding: 2px;
-        background-color: #E1D073;
-      
+        background-color: #e1d073;
       }
       #name {
         color: #848e95;
@@ -53,16 +52,11 @@
         cursor: pointer;
       }
     }
-    .center {
-      display: flex;
-      align-content: center;
-      width: 40%;
-      background-color: #ffd16d;
-    }
   }
   .navbar {
-    background: linear-gradient(to right, #8fd14f, #B4D159);
+    background: linear-gradient(to right, #8fd14f, #b4d159);
     border-radius: 5px;
+    width: 100%;
     .colorMia {
       color: #ffff;
       cursor: pointer;

@@ -1,8 +1,9 @@
 "use client";
 import { Pagination } from "@mantine/core";
+import { Icon } from "@iconify/react";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Select } from "@mantine/core";
+import { Select, Tooltip, Button } from "@mantine/core";
 import "./home.scss";
 import Carrusel from "@/components/carrusel/carrusel";
 import CardFound from "@/components/cardFound/cardFound";
@@ -218,6 +219,11 @@ const Page = () => {
         </h2>
       </div>
       <Carrusel imagesHome={imagenesFinalesFelices} />
+      <a href="https://wa.me/573508681733" target="_blank">
+        <Tooltip label="Tienes dudas? Escríbenos." color="green">
+          <Icon className="iconWhatsapp" icon="logos:whatsapp-icon" />
+        </Tooltip>
+      </a>
     </div>
   );
 };

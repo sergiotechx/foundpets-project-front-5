@@ -22,12 +22,10 @@ const Page = () => {
   const owner = animal ? animal.name : "";
 
   const [opened, { open, close }] = useDisclosure(false);
-  const [messageImage,setMessageImage ] = useState('')
+  const [messageImage, setMessageImage] = useState("");
   const SearchParams = useSearchParams();
   const [fountQr, setFoundQr] = useState(null);
   const qr = SearchParams.get("qr");
-
-
 
   const formData = {
     petOwner: id,
@@ -38,7 +36,7 @@ const Page = () => {
 
   console.log("este", owner);
   const dispatch = useDispatch();
-  
+
   function handleOnUpload(result, operations) {
     if (!result.event === "success") {
       updateError(result?.info);
@@ -59,52 +57,46 @@ const Page = () => {
       email: "",
       celphone: "",
       description: "",
-      image:""
+      image: "",
     },
   });
 
   const onSubmit = handleSubmit((dataC) => {
-    
-   
     const updatedData = {
       ...dataC,
       petOwner: id,
-      image:messageImage,
+      image: messageImage,
     };
 
-   dispatch(createNewMessage(updatedData));
+    dispatch(createNewMessage(updatedData));
     reset();
-    setMessageImage('')
+    setMessageImage("");
   });
 
-  const createNewMessage =  (data) => {
+  const createNewMessage = (data) => {
     return async (dispatch) => {
       try {
         const response = await newMessage(data);
 
         if (response.id) {
           const answer = await Swal.fire({
-
             title: "Operación exitosa",
             text: "Mensaje enviado",
             icon: "success",
             confirmButtonText: "Aceptar",
-            confirmButtonColor: "#7FD161"
-          })
-          
-          close()
-        }
-      }
-      catch (error) {
-        const answer = await Swal.fire({
+            confirmButtonColor: "#7FD161",
+          });
 
+          close();
+        }
+      } catch (error) {
+        const answer = await Swal.fire({
           title: "Error de sistema",
           text: error.message,
           icon: "error",
           confirmButtonText: "Aceptar",
-          confirmButtonColor: "#FF394D"
-        })
-
+          confirmButtonColor: "#FF394D",
+        });
       }
     };
   };
@@ -135,8 +127,12 @@ const Page = () => {
 
   return (
     <div className="lostPest mb-4">
-
-      <Modal  size="xs" opened={opened} onClose={close} title="Contacta al dueño">
+      <Modal
+        size="xs"
+        opened={opened}
+        onClose={close}
+        title="Contacta al dueño"
+      >
         <GeoLocation petOwner={id} />
         <form className="contactOwnerMessage" onSubmit={onSubmit}>
           <label>Correo electronico</label>
@@ -186,7 +182,7 @@ const Page = () => {
           />
           {errors.asunto && <span>{errors.asunto.message} </span>}
 
-          <label >Descripción de la mascota</label>
+          <label>Descripción de la mascota</label>
           <textarea
             className="description"
             type="textarea"
@@ -205,22 +201,24 @@ const Page = () => {
           ></textarea>
           {errors.description && <span>{errors.description.message} </span>}
           <CldUploadButton
-          uploadPreset="FoundPets"
-          onUpload={handleOnUpload}
-          id="cloudinary"
-        >
-          <i className="bi bi-camera fs-5" id='CameraIcon' />
-          {messageImage&&<img src={messageImage}/>}
-        </CldUploadButton>
+            uploadPreset="FoundPets"
+            onUpload={handleOnUpload}
+            id="cloudinary"
+          >
+            <i className="bi bi-camera fs-5" id="CameraIcon" />
+            {messageImage && <img src={messageImage} />}
+          </CldUploadButton>
           <Button color="indigo" radius="md" type="submit">
             Contactar
           </Button>
-
-
         </form>
       </Modal>
 
-      <h2 className="mt-5">{`Hola soy ${animal?.petName} me has visto?`}</h2>
+      {animal ? (
+        <h2 className="mt-5">{`Hola soy ${animal.petName}, ¿me has visto?`}</h2>
+      ) : (
+        ""
+      )}
       <div className="carrusel__onePets">
         {animal ? (
           <svg id="progress" width="100" height="100" viewBox="0 0 100 100">
@@ -282,11 +280,11 @@ const Page = () => {
                 {animal.publicMobile && qr == animal.qr ? (
                   <tr>
                     <th className="table-info">Telefono</th>
-                    <th>{animal.mobile}
-                    <GeoLocation petOwner={id} />
+                    <th>
+                      {animal.mobile}
+                      <GeoLocation petOwner={id} />
                     </th>
                   </tr>
-                 
                 ) : (
                   ""
                 )}
