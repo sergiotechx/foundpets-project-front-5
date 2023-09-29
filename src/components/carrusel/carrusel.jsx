@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { Carousel } from "@mantine/carousel";
 import "./carrusel.scss";
