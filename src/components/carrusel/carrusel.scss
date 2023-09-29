@@ -15,3 +15,17 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .HomeC_RestaurantsLogo {
+    .mantine-Carousel-slide {
+      img {
+        width: 12em;
+        height: auto;
+        object-fit: fill;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

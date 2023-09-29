@@ -4,17 +4,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Avatar, Menu, Button, Text, rem } from "@mantine/core";
+import { Avatar, Menu, Text, rem, Modal, Button, Group } from "@mantine/core";
 import { IconSettings, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { logoutAction } from "@/store/auth/authActions";
 import Link from "next/link";
 import { clearUserDataAction } from "@/store/user/userActions";
+import { useDisclosure } from '@mantine/hooks';
+import Dog from "../dog/dog";
+
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
   const router = useRouter();
   const dispatch = useDispatch();
+  const [opened, { open, close }] = useDisclosure(false);
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -24,7 +28,8 @@ const Header = () => {
   const auth = useSelector((store) => store.auth);
 
   const goLogin = () => {
-    router.push("/user/login");
+   // router.push("/user/login");
+   open()
   };
   const goRegister = () => {
     router.push("/user/register");
@@ -55,6 +60,9 @@ const Header = () => {
 
   return (
     <div className="Header__primary">
+      <Modal size="sm" opened={opened} onClose={close} title="Ingreso al sistema" centered>
+        <Dog/>
+      </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">
         <img src="/images/logo.png" />

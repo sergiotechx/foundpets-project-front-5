@@ -33,11 +33,12 @@
       }
       .btn1 {
         padding: 2px;
-        background-color: #8fd14f;
+        background:linear-gradient(to right, #8fd14f, #B4D159);
       }
       .btn2 {
         padding: 2px;
-        background-color: #ffd16d;
+        background-color: #E1D073;
+      
       }
       #name {
         color: #848e95;
@@ -60,7 +61,8 @@
     }
   }
   .navbar {
-    background-color: #8fd04e;
+    background: linear-gradient(to right, #8fd14f, #B4D159);
+    border-radius: 5px;
     .colorMia {
       color: #ffff;
       cursor: pointer;
