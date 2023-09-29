@@ -11,7 +11,8 @@ const Dog = () => {
 
 
   return (
-    <div className="center">
+   <div className="centerC">
+   <div className="center">
       <div className="ear ear--left"></div>
       <div className="ear ear--right"></div>
       <div className="face">
@@ -97,6 +98,7 @@ const Dog = () => {
       <div className="footer">Random text</div>
       <Script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js' />
      
+    </div>
     </div>
   )
 }

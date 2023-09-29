@@ -1,15 +1,22 @@
-.center {
-  position: relative;
-  margin-top: 20%;
-  top: 50%;
-  left: 50%;
-  display: inline-block;
-  width: 275px;
+.centerC {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   height: 460px;
-  border-radius: 3px;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+  justify-items: center;
+
+  .center {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: 275px;
+    height: 460px;
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+  }
 }
 
 .center .ear {
@@ -20,12 +27,15 @@
   border-radius: 50%;
   background-color: #243946;
 }
+
 .center .ear.ear--left {
   left: -135px;
 }
+
 .center .ear.ear--right {
   right: -135px;
 }
+
 .center .face {
   display: flex;
   flex-direction: column;
@@ -38,6 +48,7 @@
   transition: transform 0.2s;
   transform-origin: center 20px;
 }
+
 .center .eye {
   display: inline-block;
   width: 25px;
@@ -45,12 +56,15 @@
   border-radius: 50%;
   background-color: #243946;
 }
+
 .center .eye.eye--left {
   margin-right: 40px;
 }
+
 .center .eye.eye--right {
   margin-left: 40px;
 }
+
 .center .eye .glow {
   position: relative;
   top: 3px;
@@ -61,11 +75,13 @@
   background-color: #fff;
   transform: rotate(38deg);
 }
+
 .center .nose {
   position: relative;
   top: 30px;
   transform: scale(1.1);
 }
+
 .center .nose .glow {
   position: absolute;
   top: 3px;
@@ -75,10 +91,12 @@
   border-radius: 50%;
   background-color: #476375;
 }
+
 .center .mouth {
   position: relative;
   margin-top: 45px;
 }
+
 .center svg.smile {
   position: absolute;
   left: -28px;
@@ -86,6 +104,7 @@
   transform: scaleX(1.1);
   stroke: #243946;
 }
+
 .center .mouth-hole {
   position: absolute;
   top: 0;
@@ -97,6 +116,7 @@
   background-color: #243946;
   z-index: -1;
 }
+
 .center .tongue {
   position: relative;
   top: 5px;
@@ -106,10 +126,12 @@
   transform-origin: top;
   transform: rotateX(60deg);
 }
+
 .center .tongue.breath {
   -webkit-animation: breath 0.3s infinite linear;
-          animation: breath 0.3s infinite linear;
+  animation: breath 0.3s infinite linear;
 }
+
 .center .tongue-top {
   position: absolute;
   bottom: -15px;
@@ -118,6 +140,7 @@
   border-radius: 15px;
   background-color: #ffd7dd;
 }
+
 .center .line {
   position: absolute;
   top: 0;
@@ -125,6 +148,7 @@
   height: 5px;
   background-color: #fcb7bf;
 }
+
 .center .median {
   position: absolute;
   top: 0;
@@ -135,9 +159,11 @@
   border-radius: 5px;
   background-color: #fcb7bf;
 }
+
 .center .hands {
   position: relative;
 }
+
 .center .hands .hand {
   position: absolute;
   top: -6px;
@@ -145,28 +171,36 @@
   transition: transform 0.5s ease-in-out;
   z-index: 1;
 }
+
 .center .hands .hand--left {
   left: 50px;
 }
+
 .center .hands .hand--left.hide {
   transform: translate(2px, -155px) rotate(-160deg);
 }
+
 .center .hands .hand--left.peek {
   transform: translate(0px, -120px) rotate(-160deg);
 }
+
 .center .hands .hand--right {
   left: 170px;
 }
+
 .center .hands .hand--right.hide {
   transform: translate(-6px, -155px) rotate(160deg);
 }
+
 .center .hands .hand--right.peek {
   transform: translate(-4px, -120px) rotate(160deg);
 }
+
 .center .hands .finger {
   position: relative;
   z-index: 0;
 }
+
 .center .hands .finger .bone {
   width: 20px;
   height: 20px;
@@ -175,6 +209,7 @@
   border-top: none;
   background-color: #fac555;
 }
+
 .center .hands .finger .nail {
   position: absolute;
   left: 0;
@@ -186,45 +221,55 @@
   background-color: #fac555;
   z-index: -1;
 }
+
 .center .hands .finger:nth-child(1),
 .center .hands .finger:nth-child(3) {
   left: 4px;
   z-index: 1;
 }
+
 .center .hands .finger:nth-child(1) .bone,
 .center .hands .finger:nth-child(3) .bone {
   height: 10px;
 }
+
 .center .hands .finger:nth-child(3) {
   left: -4px;
 }
+
 .center .hands .finger:nth-child(2) {
   top: -5px;
   z-index: 2;
 }
+
 .center .hands .finger:nth-child(1) .nail,
 .center .hands .finger:nth-child(3) .nail {
   top: 0px;
 }
+
 .center .login {
   position: relative;
   display: flex;
   flex-direction: column;
 }
+
 .center .login label {
   position: relative;
   padding: 0 20px;
 }
+
 .center .login label .fa {
   position: absolute;
   top: 40%;
   left: 35px;
   color: #bbb;
 }
+
 .center .login label .fa:before {
   position: relative;
   left: 1px;
 }
+
 .center .login input,
 .center .login .login-button {
   width: 100%;
@@ -232,24 +277,30 @@
   border: none;
   border-radius: 30px;
 }
+
 .center .login input {
   padding: 0 20px 0 40px;
   margin: 5px 0;
   box-shadow: none;
   outline: none;
 }
+
 .center .login input::-moz-placeholder {
   color: #ccc;
 }
+
 .center .login input:-ms-input-placeholder {
   color: #ccc;
 }
+
 .center .login input::placeholder {
   color: #ccc;
 }
+
 .center .login input.password {
   padding: 0 90px 0 40px;
 }
+
 .center .login .password-button {
   position: absolute;
   top: 9px;
@@ -265,9 +316,11 @@
   background-color: #243946;
   color: #fff;
 }
+
 .center .login .password-button:active {
   transform: scale(0.95);
 }
+
 .center .login .login-button {
   width: calc(100% - 40px);
   margin: 20px 20px 0;
@@ -276,14 +329,17 @@
   color: #fff;
   transition: transform 0.1s;
 }
+
 .center .login .login-button:active {
   transform: scale(0.95);
 }
+
 .center .social-buttons {
   display: flex;
   justify-content: center;
   margin-top: 25px;
 }
+
 .center .social-buttons .social {
   display: flex;
   justify-content: center;
@@ -296,31 +352,42 @@
   color: #fff;
   font-size: 18px;
 }
+
 .center .social-buttons .social:active {
   transform: scale(0.95);
 }
+
 .center .footer {
   text-align: center;
   margin-top: 15px;
 }
+
 @media screen and (max-height: 500px) {
   .center {
     transition: transform 0.5s;
     transform: translate(-50%, -50%) scale(0.8);
   }
 }
+
 @-webkit-keyframes breath {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotateX(0deg);
   }
+
   50% {
     transform: rotateX(60deg);
   }
 }
+
 @keyframes breath {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotateX(0deg);
   }
+
   50% {
     transform: rotateX(60deg);
   }
