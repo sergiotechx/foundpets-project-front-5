@@ -146,7 +146,7 @@ const Dog = ({ close }) => {
            
             <button className="password-button">Mostrar</button>
           </label>
-          <button className="login-button">log in</button>
+          <button className="login-button">Acceder</button>
         </form>
 
         <div className="social-buttons">
