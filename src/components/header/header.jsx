@@ -19,6 +19,7 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const auth = useSelector((store) => store.auth);
   const router = useRouter();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
@@ -45,6 +46,7 @@ const Header = () => {
   useEffect(() => {
     if (auth.status === "authenticated") {
       setIsLogin(true);
+      
     } else {
       setIsLogin(false);
     }
@@ -78,7 +80,7 @@ const Header = () => {
         centered
       >
         {showLoginModal ? <Dog /> : null}
-        {showRegisterModal ? <Register /> : null}
+        {showRegisterModal ? <Register close={close} /> : null}
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">

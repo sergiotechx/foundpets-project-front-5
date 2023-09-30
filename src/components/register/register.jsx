@@ -13,7 +13,7 @@ const formData = {
     celphone: "",
     photoURL: "",
   };
-const Register = () => {
+const Register = ({close}) => {
 
     const dispatch = useDispatch();
   const { status } = useSelector((state) => state.auth);
@@ -37,6 +37,7 @@ const Register = () => {
 
     dispatch(startCreatingUserWithEmailPassword(data));
     reset();
+    close()
   });
 
   
@@ -99,13 +100,6 @@ const Register = () => {
       <button className="btnC" type="submit" >
         Registrarse
       </button>
-      <div className="redireccion">
-        <p>¿Ya tienes cuenta?</p>
-        <h6
-          className="redireccion__link" onClick={handleClik}>
-          Ingresar
-        </h6>
-      </div>
     </form>
   </div>
   )
