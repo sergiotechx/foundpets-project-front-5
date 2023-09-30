@@ -98,7 +98,7 @@ const UserTab = () => {
       setValue("publicCiudad", user.user?.publicCiudad);
       setValue("lost", user.user?.lost);
 
-      let QRURL = `${URL}lostPet/${user.user.id}?qr=${user.user.qr}`
+      let QRURL = `${process.env.NEXT_PUBLIC_URL}lostPet/${user.user.id}?qr=${user.user.qr}`
       setUsrQRURL(QRURL)
 
     }

@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 460px;
+  height: 480px;
   justify-items: center;
+  
 
   .center {
     position: relative;
@@ -11,11 +12,20 @@
     left: 50%;
     display: inline-block;
     width: 275px;
-    height: 460px;
+    height: 480px;
     border-radius: 3px;
     transform: translate(-50%, -50%);
     overflow: hidden;
     background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    .google {
+      background-color:transparent;
+      position: relative;
+      z-index: 1;
+      width: 30px;
+      height: auto;
+      cursor: pointer;
+    }
   }
 }
 
@@ -348,7 +358,7 @@
   height: 35px;
   margin: 0 10px;
   border-radius: 50%;
-  background-color: #243946;
+  background-color: transparent;
   color: #fff;
   font-size: 18px;
 }

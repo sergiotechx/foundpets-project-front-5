@@ -19,6 +19,7 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showTitleModal,setShowTitleModal] =useState('');
   const auth = useSelector((store) => store.auth);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -33,12 +34,15 @@ const Header = () => {
   const openLoginModal = () => {
     setShowLoginModal(true);
     setShowRegisterModal(false);
+    setShowTitleModal('Inicio de sesión')
     open();
-  };
+  }
+  
 
   const openRegisterModal = () => {
     setShowLoginModal(false);
     setShowRegisterModal(true);
+    setShowTitleModal('Registro de usuario')
     open();
   };
   
@@ -50,9 +54,13 @@ const Header = () => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [auth.status]);
+
+
 
   useEffect(() => {}, [isLogin]);
+ 
+ 
 
   const goProfile = () => {
     router.push("/user/profile");
@@ -73,13 +81,13 @@ const Header = () => {
   return (
     <div className="Header__primary">
       <Modal
-        size="sm"
+        size="xs"
         opened={opened}
         onClose={close}
-        title=""
+        title={showTitleModal}
         centered
       >
-        {showLoginModal ? <Dog /> : null}
+        {showLoginModal ? <Dog  close={close} />: null }
         {showRegisterModal ? <Register close={close} /> : null}
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>

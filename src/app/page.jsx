@@ -219,8 +219,8 @@ const Page = () => {
         </h2>
       </div>
       <Carrusel imagesHome={imagenesFinalesFelices} />
-      <a href="https://wa.me/573508681733" target="_blank">
-        <Tooltip label="Tienes dudas? Escríbenos." color="green">
+      <a href="https://wa.me/573508681734" target="_blank">
+        <Tooltip label="¿Tienes dudas? Escríbenos." color="green">
           <Icon className="iconWhatsapp" icon="logos:whatsapp-icon" />
         </Tooltip>
       </a>

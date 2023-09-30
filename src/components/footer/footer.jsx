@@ -17,10 +17,9 @@ const Footer = () => {
       <br />
       <i class="bi bi-envelope-fill">: info@Foundpet.com</i> 
       <br />
-      Dirección: Calle 33AA#50-30, Ciudad de 
-      Medellin Colombia
+      Dirección: Calle 33AA#50-30, Medellín Colombia
       <br />
-      © 2023 Found Pet. 
+      © 2023 Found Pets. 
       <br />
       Todos los derechos reservados. 
       </div>
