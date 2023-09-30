@@ -1,0 +1,66 @@
+.main{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.logoR{
+    width: 20%;
+    height: auto;
+    
+}
+.count{
+             border-radius: 1rem;
+               padding: 2rem;
+               border: .1rem solid gray;
+               align-items: center;
+               gap: 10px;
+               input{
+                 border-radius: 1rem;
+                   width: 100%;
+                   padding: .5rem;
+               }
+               h3{
+                margin-bottom: 12px;
+                font-size: larger;
+                font-weight: bolder;
+               }
+           }
+span{
+    display: block;
+    color: tomato;
+    font-size: x-small;
+}
+.logo3R{
+    margin-top: 15%;
+}
+.btnC{
+    padding: 5px;
+    border-radius: 8px;
+    margin-top: 30px;
+    background-color: rgb(223, 172, 43);
+}
+.redireccion{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+}
+.redireccion__link{
+    cursor: pointer;
+    color:rgb(243, 99, 27);
+   
+}
+.social{
+    figure{
+        width: 20px;
+        height: auto;
+    }
+   
+}
+.googleR{
+    width: 20px;
+    height: auto;
+}
+ 
+

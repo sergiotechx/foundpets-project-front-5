@@ -9,31 +9,38 @@ import { IconSettings, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { logoutAction } from "@/store/auth/authActions";
 import Link from "next/link";
 import { clearUserDataAction } from "@/store/user/userActions";
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure } from "@mantine/hooks";
 import Dog from "../dog/dog";
+import Register from "../register/register";
 
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
-  const auth = useSelector((store) => store.auth);
 
-  const goLogin = () => {
-  // router.push("/user/login");
-   open()
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+    setShowRegisterModal(false);
+    open();
   };
-  const goRegister = () => {
-    router.push("/user/register");
+
+  const openRegisterModal = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+    open();
   };
+  
 
   useEffect(() => {
     if (auth.status === "authenticated") {
@@ -48,20 +55,30 @@ const Header = () => {
   const goProfile = () => {
     router.push("/user/profile");
   };
+
   const logout = () => {
     dispatch(clearUserDataAction());
     dispatch(logoutAction());
     setIsLogin(false);
     router.push("/");
   };
+
   const goAdmin = () => {
     router.push("/admin");
   };
 
+
   return (
     <div className="Header__primary">
-      <Modal size="sm" opened={opened} onClose={close} title="Ingreso al sistema" centered>
-        <Dog/>
+      <Modal
+        size="sm"
+        opened={opened}
+        onClose={close}
+        title=""
+        centered
+      >
+        {showLoginModal ? <Dog /> : null}
+        {showRegisterModal ? <Register /> : null}
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">
@@ -69,9 +86,7 @@ const Header = () => {
         {isLogin ? (
           <div className="Options">
             <h5>Bienvenido: </h5>
-
             <span id="name">{auth.user.record?.name}</span>
-
             {!isLogin ? (
               <i className="bi bi-person-circle fs-3"></i>
             ) : (
@@ -129,7 +144,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn1 "
-              onClick={goLogin}
+              onClick={openLoginModal}
             >
               Acceder
             </motion.button>
@@ -138,7 +153,7 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="button"
               className="btn btn2"
-              onClick={goRegister}
+              onClick={openRegisterModal}
             >
               Registro
             </motion.button>
@@ -184,7 +199,6 @@ const Header = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className="nav-link colorMia"
-                    //href="#"
                   >
                     Inicio
                   </motion.div>
@@ -199,10 +213,6 @@ const Header = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className="nav-link colorMia"
-                    onClick={() => {
-                      router.push("/help");
-                    }}
-                    //href="#"
                   >
                     Como funciona
                   </motion.div>
@@ -217,7 +227,6 @@ const Header = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className="nav-link colorMia"
-                    //href="#"
                   >
                     Acerca de nosotros
                   </motion.div>
@@ -227,7 +236,6 @@ const Header = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     className="nav-link colorMia"
-                    //href="#"
                   >
                     <Link
                       id="forum"
