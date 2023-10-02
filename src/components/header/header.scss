@@ -53,10 +53,12 @@
       }
     }
   }
+
   .navbar {
     background: linear-gradient(to right, #8fd14f, #b4d159);
     border-radius: 5px;
-    width: 100%;
+    width: auto;
+
     .colorMia {
       color: #ffff;
       cursor: pointer;
@@ -69,6 +71,23 @@
       text-decoration: none;
       color: #ffff;
     }
+  }
+  .nav-divider {
+    position: relative;
+    margin-right: 10px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 50%;
+      background-color: #fff;
+    }
+
+    padding-right: 8px;
   }
 }
 @media (max-width: 768px) {
@@ -95,5 +114,10 @@
   }
   #name {
     display: none;
+  }
+  .nav-divider {
+    &::after {
+      display: none;
+    }
   }
 }

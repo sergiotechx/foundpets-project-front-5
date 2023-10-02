@@ -9,9 +9,8 @@ import { IconSettings, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { logoutAction } from "@/store/auth/authActions";
 import Link from "next/link";
 import { clearUserDataAction } from "@/store/user/userActions";
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure } from "@mantine/hooks";
 import Dog from "../dog/dog";
-
 
 const Header = () => {
   const { scrollYProgress } = useScroll();
@@ -28,8 +27,8 @@ const Header = () => {
   const auth = useSelector((store) => store.auth);
 
   const goLogin = () => {
-  // router.push("/user/login");
-   open()
+    // router.push("/user/login");
+    open();
   };
   const goRegister = () => {
     router.push("/user/register");
@@ -60,8 +59,14 @@ const Header = () => {
 
   return (
     <div className="Header__primary">
-      <Modal size="sm" opened={opened} onClose={close} title="Ingreso al sistema" centered>
-        <Dog/>
+      <Modal
+        size="sm"
+        opened={opened}
+        onClose={close}
+        title="Ingreso al sistema"
+        centered
+      >
+        <Dog />
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
       <div className="HeaderC">
@@ -175,7 +180,7 @@ const Header = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider"
                   onClick={() => {
                     router.push("/");
                   }}
@@ -190,7 +195,7 @@ const Header = () => {
                   </motion.div>
                 </li>
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider"
                   onClick={() => {
                     router.push("/help");
                   }}
@@ -208,7 +213,7 @@ const Header = () => {
                   </motion.div>
                 </li>
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider "
                   onClick={() => {
                     router.push("/aboutUS");
                   }}
@@ -222,11 +227,11 @@ const Header = () => {
                     Acerca de nosotros
                   </motion.div>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item ">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="nav-link colorMia"
+                    className="nav-link colorMia "
                     //href="#"
                   >
                     <Link
