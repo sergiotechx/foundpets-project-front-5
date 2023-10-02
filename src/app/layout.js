@@ -22,10 +22,7 @@ const roboto = Roboto_Slab({
 
 export default function RootLayout({ children }) {
   const currentPath = usePathname();
-  let hiddenHeader = !(
-    (currentPath === "/user/login" || currentPath === "/user/register") //||
-    // currentPath === "/user/profile"
-  );
+
 
   return (
     <html lang="es">
@@ -48,9 +45,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={roboto.className}>
         <ReduxProvider>
-          {hiddenHeader && <Header />}
+           <Header />
           {children}
-          {hiddenHeader && <Footer />}
+           <Footer />
         </ReduxProvider>
 
         <Script
