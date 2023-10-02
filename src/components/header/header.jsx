@@ -13,13 +13,12 @@ import { useDisclosure } from "@mantine/hooks";
 import Dog from "../dog/dog";
 import Register from "../register/register";
 
-
 const Header = () => {
   const { scrollYProgress } = useScroll();
   const [isLogin, setIsLogin] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showTitleModal,setShowTitleModal] =useState('');
+  const [showTitleModal, setShowTitleModal] = useState("");
   const auth = useSelector((store) => store.auth);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -30,37 +29,36 @@ const Header = () => {
     restDelta: 0.001,
   });
 
-
   const openLoginModal = () => {
     setShowLoginModal(true);
     setShowRegisterModal(false);
-    setShowTitleModal('Inicio de sesión')
+    setShowTitleModal("Inicio de sesión");
     open();
-  }
-  
+  };
 
   const openRegisterModal = () => {
     setShowLoginModal(false);
     setShowRegisterModal(true);
-    setShowTitleModal('Registro de usuario')
+    setShowTitleModal("Registro de usuario");
     open();
+    const goLogin = () => {
+      // router.push("/user/login");
+      open();
+    };
+    const goRegister = () => {
+      router.push("/user/register");
+    };
   };
-  
 
   useEffect(() => {
     if (auth.status === "authenticated") {
       setIsLogin(true);
-      
     } else {
       setIsLogin(false);
     }
   }, [auth.status]);
 
-
-
   useEffect(() => {}, [isLogin]);
- 
- 
 
   const goProfile = () => {
     router.push("/user/profile");
@@ -77,7 +75,6 @@ const Header = () => {
     router.push("/admin");
   };
 
-
   return (
     <div className="Header__primary">
       <Modal
@@ -87,7 +84,7 @@ const Header = () => {
         title={showTitleModal}
         centered
       >
-        {showLoginModal ? <Dog  close={close} />: null }
+        {showLoginModal ? <Dog close={close} /> : null}
         {showRegisterModal ? <Register close={close} /> : null}
       </Modal>
       <motion.div className="progress-bar" style={{ scaleX }}></motion.div>
@@ -200,7 +197,7 @@ const Header = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider"
                   onClick={() => {
                     router.push("/");
                   }}
@@ -214,7 +211,7 @@ const Header = () => {
                   </motion.div>
                 </li>
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider"
                   onClick={() => {
                     router.push("/help");
                   }}
@@ -228,7 +225,7 @@ const Header = () => {
                   </motion.div>
                 </li>
                 <li
-                  className="nav-item"
+                  className="nav-item nav-divider "
                   onClick={() => {
                     router.push("/aboutUS");
                   }}
@@ -241,7 +238,7 @@ const Header = () => {
                     Acerca de nosotros
                   </motion.div>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item ">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}

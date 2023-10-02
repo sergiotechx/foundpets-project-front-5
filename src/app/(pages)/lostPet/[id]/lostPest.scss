@@ -10,57 +10,58 @@
     padding: 30px 0 20px 0;
     width: 70%;
   }
- }
-
-.contactOwnerMessage{
+}
+.font {
+  font-size: 32px;
+}
+.contactOwnerMessage {
   display: flex;
   flex-direction: column;
-  img{
-    width:100%;
+  img {
+    width: 100%;
     object-fit: scale-down;
   }
 }
 
-  #progress {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    transform: rotate(-90deg);
-  }
+#progress {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transform: rotate(-90deg);
+}
 
-  circle {
-    stroke-dashoffset: 0;
-    stroke-width: 15%;
-    fill: none;
-  }
+circle {
+  stroke-dashoffset: 0;
+  stroke-width: 15%;
+  fill: none;
+}
 
-  .bg2 {
-    stroke: rgba(179, 191, 169, 0.669);
-    opacity: 0.3;
-  }
+.bg2 {
+  stroke: rgba(179, 191, 169, 0.669);
+  opacity: 0.3;
+}
 
-  #progress .indicator {
-    stroke: rgba(130, 198, 69, 0.669);
-  }
+#progress .indicator {
+  stroke: rgba(130, 198, 69, 0.669);
+}
 
-  .ul_card {
-    display: flex;
-    list-style: none;
-    height: 300px;
-    overflow-x: scroll;
-    //padding: 20px 0;
+.ul_card {
+  display: flex;
+  list-style: none;
+  height: 300px;
+  overflow-x: scroll;
+  //padding: 20px 0;
+  flex: 0 0 200px;
+
+  //margin: 45px 30px 30px 30px;
+  img {
     flex: 0 0 200px;
-
-    //margin: 45px 30px 30px 30px;
-    img {
-      flex: 0 0 200px;
-      background: transparent;
-      margin: 0 20px 20px 0;
-      height: auto;
-      width: 100%;
-    }
+    background: transparent;
+    margin: 0 20px 20px 0;
+    height: auto;
+    width: 100%;
   }
-
+}
 
 ::-webkit-scrollbar {
   height: 15px;

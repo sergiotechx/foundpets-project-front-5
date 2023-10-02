@@ -215,7 +215,7 @@ const Page = () => {
       </Modal>
 
       {animal ? (
-        <h2 className="mt-5">{`Hola soy ${animal.petName}, ¿me has visto?`}</h2>
+        <h2 className="mt-5 font">{`Hola soy ${animal.petName}, ¿me has visto?`}</h2>
       ) : (
         ""
       )}
