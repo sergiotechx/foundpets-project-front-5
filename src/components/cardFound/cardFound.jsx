@@ -70,8 +70,8 @@ const CardFound = ({ currentData }) => {
             {lost.petDescrription}
           </Text>
 
-          <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-            Mas info...
+          <Button variant="light" color="teal" fullWidth mt="md" radius="md">
+            <div className="buttonCard">Mas info...</div>
           </Button>
         </motion.div>
       ))}

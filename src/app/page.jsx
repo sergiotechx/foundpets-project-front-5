@@ -153,7 +153,7 @@ const Page = () => {
     <div className="home p-3">
       <Carrusel imagesHome={imagesHome} />
       <div className="search ">
-        <h1 className="mb-5">Huellitas perdidas</h1>
+        <h1 className="mb-5 cardTitle mt-5">Huellitas perdidas</h1>
         {!petsLost ? (
           <>
             <span className="loader"></span>
@@ -214,7 +214,7 @@ const Page = () => {
             </div>
           </section>
         )}
-        <h2 className="pt-5">
+        <h2 className="pt-5 cardTitle mt-5 mb-5">
           Algunos reencuentros felices del mes de septiembre
         </h2>
       </div>
