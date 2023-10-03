@@ -239,14 +239,15 @@ const UserTab = () => {
             <tr>
               <td>Dirección</td>
               <td >
+
                 <input type="text" class="form-control input" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
                   {...register('address', {
                     required: true,
-                    maxLength: 50
+                    maxLength: 100
+
                   })} />
                 {errors.address?.type === 'required' && <p>El campo dirección es requerido</p>}
                 {errors.address?.type === 'maxLength' && <p>El campo dirección debe tener menos de 100 caracteres</p>}
-                
               </td>
               <td><i className="bi bi-pencil " onClick={() => setUsrAddressDisabled(!usrAddressDisabled)} /></td>
               <td><input className="form-check-input-solid input" type="checkbox" id="checkboxNoLabel"  {...register('publicAddress')} /></td>
@@ -259,7 +260,7 @@ const UserTab = () => {
                   required: true
                 })} >
                   {cities?.map((city) =>
-                    <option key={city.value} value={city.value}>{city.label}</option>
+                    <option  key={city.value} value={city.value}>{city.label}</option>
                   )}
                 </select>
                 {errors.ciudad?.type === 'required' && <p>El campo ciudad es requerido</p>}
@@ -302,7 +303,7 @@ const UserTab = () => {
                   value={usrQRURL}
                   viewBox={`0 0 256 256`}
                 />
-                : <h5>Cargando el perfil</h5>
+              : <h5>Cargando el perfil</h5>
               }
 
               <td>
@@ -316,11 +317,11 @@ const UserTab = () => {
 
               <td>
                 {usrQRURL != '' ?
-                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center> :
+                  <center><bold><h5>Imprime este QR y lo pones en el collar de tu mascota</h5></bold></center>:
                   <></>
                 }
-
-
+                 
+               
               </td>
               <td></td>
               <td></td>
