@@ -1,0 +1,52 @@
+#InboxTab {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#InboxTab .InboxTabH {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+#InboxTab .InboxTabH img {
+  max-width: 7em;
+}
+#InboxTab table {
+  width: 90%;
+  margin: auto;
+}
+#InboxTab table #Asunto {
+  cursor: pointer;
+}
+#InboxTab table #Asunto:hover {
+  font-weight: bold;
+}
+#InboxTab table i {
+  cursor: pointer;
+  margin-left: 0.65em;
+}
+
+.imageContact {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.imageContact img {
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 90%;
+  height: auto;
+}
+
+@media (max-width: 450px) {
+  #InboxTab table {
+    width: 100%;
+    margin: auto;
+  }
+  #InboxTab table i {
+    cursor: pointer;
+  }
+}/*# sourceMappingURL=inboxTab.css.map */

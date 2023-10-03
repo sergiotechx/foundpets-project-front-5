@@ -1,0 +1,73 @@
+.AdminM {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.AdminM .AdminC {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.AdminM .AdminC .AdminH {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.5em;
+}
+.AdminM .AdminC .AdminH img {
+  max-width: 7em;
+  border-radius: 5px;
+}
+.AdminM .AdminC .Admin_Search {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5em;
+  font-size: large;
+}
+.AdminM .AdminC .Admin_Search button {
+  background-color: #7FD262;
+  border: none;
+  border-radius: 1rem;
+}
+.AdminM .AdminC table {
+  width: 100%;
+}
+.AdminM .AdminC table thead th {
+  border: 0.1rem solid #ccc;
+  padding: 5px;
+}
+.AdminM .AdminC table tbody tr td {
+  border: 0.1rem solid #ccc;
+  padding: 1rem;
+}
+.AdminM .AdminC table tbody tr td .bi-trash3-fill {
+  cursor: pointer;
+}
+.AdminM .AdminL {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  justify-content: space-between;
+  height: 85vh;
+}
+
+@media (max-width: 768px) {
+  .AdminM .AdminH img {
+    display: none;
+  }
+  .AdminM .AdminL {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .AdminM .Admin_Search {
+    padding: 2rem;
+  }
+}/*# sourceMappingURL=admin.css.map */

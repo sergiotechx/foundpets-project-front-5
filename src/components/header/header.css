@@ -1,0 +1,117 @@
+.Header__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Header__primary .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: linear-gradient(to right, #8fd14f, #ffd16d);
+  transform-origin: 0%;
+  z-index: 1;
+}
+.Header__primary .HeaderC {
+  padding: 1em 1em 0 1em;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.Header__primary .HeaderC img {
+  width: 10em;
+}
+.Header__primary .HeaderC .Options {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5em;
+}
+.Header__primary .HeaderC .Options i {
+  cursor: pointer;
+}
+.Header__primary .HeaderC .Options .btn1 {
+  padding: 2px;
+  background: linear-gradient(to right, #8fd14f, #b4d159);
+}
+.Header__primary .HeaderC .Options .btn2 {
+  padding: 2px;
+  background-color: #e1d073;
+}
+.Header__primary .HeaderC .Options #name {
+  color: #848e95;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+.Header__primary .HeaderC .Options img {
+  width: 3.125em;
+  height: 3.125em;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.Header__primary .navbar {
+  background: linear-gradient(to right, #8fd14f, #b4d159);
+  border-radius: 5px;
+  width: auto;
+}
+.Header__primary .navbar .colorMia {
+  color: white;
+  cursor: pointer;
+}
+.Header__primary .navbar .colorMia:hover {
+  font-weight: bold;
+  color: white;
+}
+.Header__primary .navbar #forum {
+  text-decoration: none;
+  color: white;
+}
+.Header__primary .nav-divider {
+  position: relative;
+  margin-right: 10px;
+  padding-right: 8px;
+}
+.Header__primary .nav-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 50%;
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .div {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    margin-right: 2rem !important;
+  }
+  .div .container-fluid {
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: end !important;
+  }
+  .div .navbar {
+    border-radius: 0.5rem !important;
+    padding: 0 !important;
+  }
+  .div .nav-item {
+    margin-left: 1.2rem !important;
+  }
+  h5 {
+    display: none;
+  }
+  #name {
+    display: none;
+  }
+  .nav-divider::after {
+    display: none;
+  }
+}/*# sourceMappingURL=header.css.map */

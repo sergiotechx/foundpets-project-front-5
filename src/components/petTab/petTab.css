@@ -1,0 +1,64 @@
+#PetTab {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.5em;
+}
+#PetTab .PetGallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: space-between;
+  margin: auto;
+  padding: 1rem;
+  border: 0.1rem solid #333;
+}
+#PetTab form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 100%;
+}
+#PetTab form .bi-pencil {
+  cursor: pointer;
+  margin: 1rem;
+}
+#PetTab form #BtnActualizar {
+  background-color: #7FD262;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 5px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#PetTab form input {
+  margin: 0.2rem;
+  width: 100% !important;
+}
+#PetTab form select {
+  margin: 0.1rem;
+  width: 100% !important;
+}
+#PetTab form textarea {
+  margin: 0.1rem;
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  #PetTab .PetGallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+  }
+  #PetTab form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-self: center;
+  }
+}/*# sourceMappingURL=petTab.css.map */

@@ -240,7 +240,7 @@ const UserTab = () => {
               <td>Dirección</td>
               <td >
 
-                <input type="tel" class="form-control input" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
+                <input type="text" class="form-control input" placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1 " disabled={usrAddressDisabled}
                   {...register('address', {
                     required: true,
                     maxLength: 100
@@ -256,11 +256,11 @@ const UserTab = () => {
               <td>Ciudad</td>
               <td >
 
-                <select className="form-select input" disabled={usrCityDisabled}  {...register('ciudad', {
+                <select className="form-select input " disabled={usrCityDisabled}  {...register('ciudad', {
                   required: true
                 })} >
                   {cities?.map((city) =>
-                    <option key={city.value} value={city.value}>{city.label}</option>
+                    <option  key={city.value} value={city.value}>{city.label}</option>
                   )}
                 </select>
                 {errors.ciudad?.type === 'required' && <p>El campo ciudad es requerido</p>}

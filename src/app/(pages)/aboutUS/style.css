@@ -1,0 +1,29 @@
+.imagen {
+  width: 100%;
+}
+
+.huellas {
+  display: flex;
+}
+.huellas .container {
+  border-radius: 2rem;
+  border: 0.2rem solid #333;
+  text-align: center;
+  padding: 2rem;
+}
+.huellas h2 {
+  font-size: 28px;
+}
+.huellas p {
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .acerca {
+    margin: 2rem;
+  }
+  .acerca .huellas3 {
+    display: none;
+  }
+}/*# sourceMappingURL=style.css.map */

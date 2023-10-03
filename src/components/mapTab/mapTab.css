@@ -1,0 +1,37 @@
+#MapTab {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#MapTab .MapTabH {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+#MapTab .MapTabH img {
+  max-width: 7em;
+}
+#MapTab .MapTabB {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  height: 80vh;
+}
+
+@media (max-width: 450px) {
+  #MapTab .MapTabB {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0em;
+    height: 80vh;
+  }
+}/*# sourceMappingURL=mapTab.css.map */
