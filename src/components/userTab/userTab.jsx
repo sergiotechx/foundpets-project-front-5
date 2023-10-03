@@ -12,6 +12,7 @@ import { useForm, useWatch } from "react-hook-form";
 import QRCode from 'react-qr-code';
 import "@/lib/bearLoader.scss";
 
+
 const UserTab = () => {
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
@@ -303,7 +304,7 @@ const UserTab = () => {
                   value={usrQRURL}
                   viewBox={`0 0 256 256`}
                 />
-              : <h5>Cargando el perfil</h5>
+              : <><span className="loader"> </span> <h5>Cargando el perfil</h5></>
               }
 
               <td>
