@@ -209,7 +209,7 @@ const Page = () => {
             {messageImage && <img src={messageImage} />}
           </CldUploadButton>
           <Button color="indigo" radius="md" type="submit">
-            Contactar
+            <p className="text-white">Contactar</p>
           </Button>
         </form>
       </Modal>
