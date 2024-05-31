@@ -8,7 +8,7 @@ export const createUser = async (data) => {
   const newUser = {
     name: data.name,
     emailVisibility: true,
-    email: data.email,
+    email: new String(data.email).toLowerCase(),
     password: data.password,
     passwordConfirm: data.password,
     qr: uuidv4()
@@ -24,7 +24,7 @@ export const createUser = async (data) => {
 };
 
 export const authWithEmail = async (data2) => {
-  const authData = await client.collection('users').authWithPassword(data2.email, data2.password);
+  const authData = await client.collection('users').authWithPassword(new String(data2.email).toLowerCase(), data2.password);
   return authData;
 };
 

@@ -109,7 +109,7 @@ export const startLoginWithEmailPassword = (data2) => {
     }
     catch (error) {
 
-      if (error.message === "Failed to authenticate.") {
+      
         Swal.fire({
           title: 'Falla de validación',
           text: 'Credenciales incorrectas',
@@ -117,7 +117,7 @@ export const startLoginWithEmailPassword = (data2) => {
           confirmButtonText: 'Intentar de nuevo'
         })
         dispatch(logout())
-      }
+     
     }
 
   }
