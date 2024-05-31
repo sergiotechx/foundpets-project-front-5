@@ -6,6 +6,7 @@ export const cities = [
   { label: "Bello", value: 2 },
   { label: "Itagui", value: 3 },
   { label: "Barbosa", value: 4 },
+  { label: "Bogota", value: 5 },
 ];
 
 export const species = [
